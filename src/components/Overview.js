@@ -3,6 +3,8 @@ import DisplayPanels from "./DisplayPanels";
 import axios from "axios";
 import { withStyles } from "@material-ui/styles";
 import colors from "../colors";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 
 const styles = {
   root: {
@@ -31,9 +33,45 @@ const styles = {
       outline: "none",
       border: "none",
     },
+
     "&:focus": {
       border: "none",
       outline: "none",
+    },
+
+    "&:hover svg": {
+      animationName: "$rotation",
+      animationDuration: "1s",
+      animationTimingFunction: "linear",
+      animationIterationCount: "infinite",
+    },
+  },
+
+  // refreshIcon: {
+  //   marginRight: "1rem",
+  // },
+
+  refreshIcon: {
+    fontSize: "10rem",
+    animationName: "$rotation",
+    animationDuration: "1s",
+    animationTimingFunction: "linear",
+    animationIterationCount: "infinite",
+  },
+
+  loadingIcon: {
+    height: "50vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  "@keyframes rotation": {
+    from: {
+      transform: "rotate(0deg)",
+    },
+    to: {
+      transform: "rotate(359deg)",
     },
   },
 };
@@ -45,6 +83,7 @@ class Overview extends Component {
       currentDay: {},
       previousDay: {},
       dataChanges: {},
+      isLoading: false,
     };
     this.calculateChange = this.calculateChange.bind(this);
     this.fetchData = this.fetchData.bind(this);
@@ -55,6 +94,7 @@ class Overview extends Component {
   }
 
   async fetchData() {
+    this.setState({ isLoading: !this.state.isLoading });
     const response = await axios.get(
       "https://api.rootnet.in/covid19-in/stats/history"
     );
@@ -83,18 +123,28 @@ class Overview extends Component {
   }
 
   calculateChange() {
-    const { previousDay, currentDay } = this.state;
+    const { previousDay, currentDay, isLoading } = this.state;
     let newObj = Object.keys(currentDay).reduce((a, k) => {
       a[k] = currentDay[k] - previousDay[k];
       return a;
     }, {});
-    this.setState({ dataChanges: newObj });
+    this.setState({ dataChanges: newObj, isLoading: !isLoading });
   }
 
   render() {
     const { confirmed, recovered, deaths, activeCases } = this.state.currentDay;
     const dataChange = this.state.dataChanges;
     const { classes } = this.props;
+    const { isLoading } = this.state;
+
+    if (isLoading) {
+      return (
+        <div className={classes.loadingIcon}>
+          <FontAwesomeIcon icon={faSyncAlt} className={classes.refreshIcon} />
+        </div>
+      );
+    }
+
     return (
       <div className={classes.root}>
         <div className={classes.panels}>
@@ -121,6 +171,7 @@ class Overview extends Component {
         </div>
 
         <button className={classes.button} onClick={this.fetchData}>
+          {/* <FontAwesomeIcon icon={faSyncAlt} className={classes.refreshIcon} /> */}
           Update Results
         </button>
       </div>
