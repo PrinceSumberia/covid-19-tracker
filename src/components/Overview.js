@@ -1,8 +1,20 @@
 import React, { Component } from "react";
 import DisplayPanels from "./DisplayPanels";
 import axios from "axios";
+import { withStyles } from "@material-ui/styles";
 
-export default class Overview extends Component {
+const styles = {
+  root: {
+    // display: "flex",
+  },
+  panels: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+};
+
+class Overview extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,9 +23,14 @@ export default class Overview extends Component {
       dataChanges: {},
     };
     this.calculateChange = this.calculateChange.bind(this);
+    this.fetchData = this.fetchData.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  async fetchData() {
     const response = await axios.get(
       "https://api.rootnet.in/covid19-in/stats/history"
     );
@@ -53,31 +70,36 @@ export default class Overview extends Component {
   render() {
     const { confirmed, recovered, deaths, activeCases } = this.state.currentDay;
     const dataChange = this.state.dataChanges;
+    const { classes } = this.props;
     return (
-      <div>
-        <DisplayPanels
-          title="Confirmed"
-          number={confirmed}
-          dataChange={dataChange.confirmed}
-        />
-        <DisplayPanels
-          title="Active"
-          number={activeCases}
-          dataChange={dataChange.activeCases}
-        />
-        <DisplayPanels
-          title="Recovered"
-          number={recovered}
-          dataChange={dataChange.recovered}
-        />
-        <DisplayPanels
-          title="Deceased"
-          number={deaths}
-          dataChange={dataChange.deaths}
-        />
+      <div className={classes.root}>
+        <div className={classes.panels}>
+          <DisplayPanels
+            title="Confirmed"
+            number={confirmed}
+            dataChange={dataChange.confirmed}
+          />
+          <DisplayPanels
+            title="Active"
+            number={activeCases}
+            dataChange={dataChange.activeCases}
+          />
+          <DisplayPanels
+            title="Recovered"
+            number={recovered}
+            dataChange={dataChange.recovered}
+          />
+          <DisplayPanels
+            title="Deceased"
+            number={deaths}
+            dataChange={dataChange.deaths}
+          />
+        </div>
 
-        <button>Update Results</button>
+        <button onClick={this.fetchData}>Update Results</button>
       </div>
     );
   }
 }
+
+export default withStyles(styles)(Overview);
