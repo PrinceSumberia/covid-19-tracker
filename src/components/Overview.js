@@ -68,10 +68,6 @@ const styles = {
     },
   },
 
-  // refreshIcon: {
-  //   marginRight: "1rem",
-  // },
-
   refreshIcon: {
     fontSize: "10rem",
     animationName: "$rotation",
@@ -155,7 +151,7 @@ class Overview extends Component {
   render() {
     const { confirmed, recovered, deaths, activeCases } = this.state.currentDay;
     const dataChange = this.state.dataChanges;
-    const { classes } = this.props;
+    const { classes, isDarkMode } = this.props;
     const { isLoading } = this.state;
 
     if (isLoading) {
@@ -172,21 +168,25 @@ class Overview extends Component {
           <DisplayPanels
             title="Confirmed"
             number={confirmed}
+            isDarkMode={isDarkMode}
             dataChange={dataChange.confirmed}
           />
           <DisplayPanels
             title="Active"
             number={activeCases}
+            isDarkMode={isDarkMode}
             dataChange={dataChange.activeCases}
           />
           <DisplayPanels
             title="Recovered"
             number={recovered}
+            isDarkMode={isDarkMode}
             dataChange={dataChange.recovered}
           />
           <DisplayPanels
             title="Deceased"
             number={deaths}
+            isDarkMode={isDarkMode}
             dataChange={dataChange.deaths}
           />
         </div>

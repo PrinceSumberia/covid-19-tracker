@@ -3,6 +3,7 @@ import Overview from "./Overview";
 import Navbar from "./Navbar";
 import { withStyles } from "@material-ui/styles";
 import colors from "../colors";
+import "./CodeApp.css";
 
 const styles = {
   root: {
@@ -12,7 +13,8 @@ const styles = {
   navBar: {
     flex: "0 0 10%",
     backgroundColor: colors.darkPurple,
-    color: "rgba(255,255,255,.9)",
+    color: (props) =>
+      props.isDarkMode ? "rgba(255,255,255,.87)" : "rgba(255,255,255,.9)",
     textTransform: "capitalize",
     display: "flex",
     justifyContent: "center",
@@ -21,12 +23,18 @@ const styles = {
     flex: 1,
     padding: "4rem",
   },
+  header: {
+    display: "flex",
+    alignItems: "center",
+  },
   heading: {
     fontWeight: "500",
-    color: colors.darkPurple,
+    color: (props) =>
+      props.isDarkMode ? "rgb(245, 245, 245)" : colors.darkPurple,
+    display: "inline-block",
     "& span": {
-      color: colors.purple,
       fontWeight: "900",
+      color: colors.purple,
       marginRight: "1rem",
     },
   },
@@ -40,18 +48,26 @@ class CovidApp extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, setDarkMode, isDarkMode } = this.props;
 
     return (
       <div className={classes.root}>
         <div className={classes.navBar}>
-          <Navbar />
+          <Navbar isDarkMode={isDarkMode} />
         </div>
         <div className={classes.mainContent}>
-          <h1 className={classes.heading}>
-            <span>Covid-19</span> India Trend
-          </h1>
-          <Overview />
+          <div className={classes.header}>
+            <h1 className={classes.heading}>
+              <span>Covid-19</span> India Trend
+            </h1>
+            <div className="darkModeButton">
+              <label className="switch">
+                <input type="checkbox" onChange={setDarkMode} />
+                <span className="slider round"></span>
+              </label>
+            </div>
+          </div>
+          <Overview isDarkMode={isDarkMode} />
         </div>
       </div>
     );

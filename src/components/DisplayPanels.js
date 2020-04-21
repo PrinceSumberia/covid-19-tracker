@@ -7,7 +7,7 @@ const styles = {
     width: "15%",
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "#fff",
+    backgroundColor: (props) => (props.isDarkMode ? colors.darkPurple : "#fff"),
     marginBottom: "3.5rem",
     marginTop: "3.5rem",
     padding: "1.5rem 3rem",
