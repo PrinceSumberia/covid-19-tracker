@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import DisplayPanels from "./DisplayPanels";
 import axios from "axios";
 import { withStyles } from "@material-ui/styles";
+import colors from "../colors";
 
 const styles = {
   root: {
@@ -11,6 +12,29 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  button: {
+    border: "none",
+    backgroundColor: colors.purple,
+    padding: "1.5rem 3rem",
+    color: "#fff",
+    borderRadius: "10rem",
+    fontFamily: "inherit",
+    fontSize: "1.6rem",
+    marginTop: "6rem",
+    transition: "all .2s",
+    boxShadow: "0 1.5rem 2.5rem rgba(0,0,0,.2)",
+
+    "&:hover": {
+      backgroundColor: colors.darkPurple,
+      boxShadow: "0 .5rem 1rem rgba(0,0,0,.2)",
+      outline: "none",
+      border: "none",
+    },
+    "&:focus": {
+      border: "none",
+      outline: "none",
+    },
   },
 };
 
@@ -96,7 +120,9 @@ class Overview extends Component {
           />
         </div>
 
-        <button onClick={this.fetchData}>Update Results</button>
+        <button className={classes.button} onClick={this.fetchData}>
+          Update Results
+        </button>
       </div>
     );
   }

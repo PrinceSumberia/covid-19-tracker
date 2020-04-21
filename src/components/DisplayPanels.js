@@ -10,13 +10,12 @@ const styles = {
     backgroundColor: "#fff",
     marginBottom: "3.5rem",
     marginTop: "3.5rem",
-    padding: "2rem 3.5rem",
+    padding: "1.5rem 3rem",
     boxShadow: "0 1rem 2rem rgba(0, 0, 0, 0.05)",
+    borderRadius: "2.5rem",
   },
   heading: {
     fontSize: "2rem",
-    // fontWeight: "500",
-    // color: "red",
   },
   number: {
     color: (props) => {
@@ -33,9 +32,9 @@ const styles = {
       }
       return color;
     },
-    fontSize: "4rem",
-    paddingTop: "1rem",
-    paddingBottom: "1rem",
+    fontSize: "3.5rem",
+    paddingTop: ".5rem",
+    paddingBottom: ".5rem",
   },
   dataChange: {
     color: (props) => {

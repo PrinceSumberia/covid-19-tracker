@@ -23,6 +23,7 @@ const styles = {
   },
   heading: {
     fontWeight: "500",
+    color: colors.darkPurple,
     "& span": {
       color: colors.purple,
       fontWeight: "900",
