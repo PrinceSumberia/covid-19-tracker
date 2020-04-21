@@ -7,12 +7,15 @@ export default class DisplayPanels extends Component {
   }
 
   render() {
-    const { dataTitle, patientCount, precentChange } = this.props;
+    const { title, number, dataChange } = this.props;
     return (
       <div>
-        <p>{dataTitle}</p>
-        <p>{patientCount}</p>
-        <p>{precentChange}</p>
+        <p>{title}</p>
+        <p>{number}</p>
+        <p>
+          {dataChange > 0 ? "+" : ""}
+          {dataChange}
+        </p>
       </div>
     );
   }
