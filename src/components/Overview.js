@@ -24,14 +24,21 @@ const styles = {
     fontFamily: "inherit",
     fontSize: "1.6rem",
     marginTop: "6rem",
-    transition: "all .2s",
+    transition: "all .4s",
     boxShadow: "0 1.5rem 2.5rem rgba(0,0,0,.2)",
+    position: "relative",
 
     "&:hover": {
       backgroundColor: colors.darkPurple,
       boxShadow: "0 .5rem 1rem rgba(0,0,0,.2)",
       outline: "none",
       border: "none",
+      transform: "translateY(-.3rem)",
+
+      "&::before": {
+        transform: "scaleX(1.4) scaleY(1.6)",
+        opacity: 0,
+      },
     },
 
     "&:focus": {
@@ -44,6 +51,20 @@ const styles = {
       animationDuration: "1s",
       animationTimingFunction: "linear",
       animationIterationCount: "infinite",
+    },
+
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      display: "inline-block",
+      backgroundColor: colors.purple,
+      width: "100%",
+      height: "100%",
+      top: 0,
+      left: 0,
+      borderRadius: "10rem",
+      transition: "all .4s",
+      zIndex: -1,
     },
   },
 

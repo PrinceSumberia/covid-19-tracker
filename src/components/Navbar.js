@@ -37,11 +37,12 @@ const styles = {
     color: colors.purple,
     position: "relative",
     zIndex: "10",
+    animation: "$float 2s ease infinite",
 
     "&::before": {
       content: '""',
       position: "absolute",
-      width: "160%",
+      width: "165%",
       height: "110%",
       display: "block",
       backgroundColor: "rgb(245, 245, 245)",
@@ -57,9 +58,24 @@ const styles = {
       display: "block",
       top: 0,
       left: 0,
-      backgroundColor: colors.red,
+      backgroundColor: colors.lightPurple,
       transform: "translate(-.9rem, .4rem) skew(10deg, -5deg)",
       borderRadius: "25px",
+    },
+  },
+
+  "@keyframes float": {
+    "0%": {
+      boxShadow: "0 5px 15px 0px rgba(0,0,0,0.6)",
+      transform: "translateY(0px)",
+    },
+    "50%": {
+      boxShadow: "0 25px 15px 0px rgba(0,0,0,0.2)",
+      transform: "translateY(-5px)",
+    },
+    "100%": {
+      boxShadow: "0 5px 15px 0px rgba(0,0,0,0.6)",
+      transform: "translateY(0px)",
     },
   },
 };
