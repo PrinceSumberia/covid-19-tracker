@@ -12,7 +12,7 @@ const styles = {
   navBar: {
     flex: "0 0 10%",
     backgroundColor: colors.darkPurple,
-    color: "#ffffff",
+    color: "rgba(255,255,255,.9)",
     textTransform: "capitalize",
     display: "flex",
     justifyContent: "center",
