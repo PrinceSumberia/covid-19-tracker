@@ -41,7 +41,7 @@ const styles = {
     "&::before": {
       content: '""',
       position: "absolute",
-      width: "165%",
+      width: "160%",
       height: "110%",
       display: "block",
       backgroundColor: "rgb(245, 245, 245)",
