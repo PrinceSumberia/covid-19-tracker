@@ -3,8 +3,6 @@ import Overview from "./Overview";
 import Navbar from "./Navbar";
 import { withStyles } from "@material-ui/styles";
 import colors from "../colors";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 
 const styles = {
   root: {
