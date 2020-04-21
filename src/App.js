@@ -4,7 +4,7 @@ import CovidApp from "./components/CovidApp";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <CovidApp />
     </div>
   );

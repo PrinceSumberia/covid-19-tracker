@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/styles";
+import colors from "../colors";
 
 const styles = {
   panel: {
@@ -22,13 +23,13 @@ const styles = {
       let color;
       let title = props.title.toLowerCase();
       if (title === "recovered") {
-        color = "green";
+        color = colors.green;
       } else if (title === "deceased") {
-        color = "purple";
+        color = colors.purple;
       } else if (title === "active") {
-        color = "orange";
+        color = colors.orange;
       } else if (title === "confirmed") {
-        color = "red";
+        color = colors.red;
       }
       return color;
     },
@@ -41,13 +42,13 @@ const styles = {
       let color;
       let title = props.title.toLowerCase();
       if (title === "recovered") {
-        color = "green";
+        color = colors.green;
       } else if (title === "deceased") {
-        color = "purple";
+        color = colors.purple;
       } else if (title === "active") {
-        color = "orange";
+        color = colors.orange;
       } else if (title === "confirmed") {
-        color = "red";
+        color = colors.red;
       }
       return color;
     },

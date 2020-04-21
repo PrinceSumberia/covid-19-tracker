@@ -5,11 +5,11 @@ import { withStyles } from "@material-ui/styles";
 
 const styles = {
   root: {
-    // display: "flex",
+    textAlign: "center",
   },
   panels: {
     display: "flex",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     alignItems: "center",
   },
 };
