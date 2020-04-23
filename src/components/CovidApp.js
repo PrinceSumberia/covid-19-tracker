@@ -55,6 +55,46 @@ const styles = {
   },
 };
 
+const stateCodes = {
+  "Andhra Pradesh": "AP",
+  "Arunachal Pradesh": "AR",
+  Assam: "AS",
+  Bihar: "BR",
+  Chhattisgarh: "CT",
+  Goa: "GA",
+  Gujarat: "GJ",
+  Haryana: "HR",
+  "Himachal Pradesh": "HP",
+  Jharkhand: "JH",
+  Karnataka: "KA",
+  Kerala: "KL",
+  "Madhya Pradesh": "MP",
+  Maharashtra: "MH",
+  Manipur: "MN",
+  Meghalaya: "ML",
+  Mizoram: "MZ",
+  Nagaland: "NL",
+  Odisha: "OR",
+  Punjab: "PB",
+  Rajasthan: "RJ",
+  Sikkim: "SK",
+  "Tamil Nadu": "TN",
+  Telengana: "TG",
+  Tripura: "TR",
+  Uttarakhand: "UT",
+  "Uttar Pradesh": "UP",
+  "West Bengal": "WB",
+  "Andaman and Nicobar Islands": "AN",
+  Chandigarh: "CH",
+  "Dadra and Nagar Haveli": "DN",
+  "Daman and Diu": "DD",
+  Delhi: "DL",
+  "Jammu and Kashmir": "JK",
+  Ladakh: "LA",
+  Lakshadweep: "LD",
+  Puducherry: "PY",
+};
+
 class CovidApp extends Component {
   constructor(props) {
     super(props);
@@ -62,13 +102,47 @@ class CovidApp extends Component {
     this.state = {
       completeData: [],
       isLoading: false,
+      mapData: [],
     };
     this.getData = this.getData.bind(this);
     this.loadingStatus = this.loadingStatus.bind(this);
+    this.formatData = this.formatData.bind(this);
+    this.findId = this.findId.bind(this);
+    this.handleFormat = this.handleFormat.bind(this);
+  }
+
+  formatData(completeData) {
+    const newArr = completeData.slice(-1).map((data) => data.regional);
+    const formatedData = newArr.flat().map((region, i) => {
+      return {
+        id: this.findId(region.loc),
+        state: region.loc.replace(" and ", " & "),
+        value: region.totalConfirmed,
+      };
+    });
+    return formatedData;
+  }
+
+  findId(location) {
+    for (let [key, value] of Object.entries(stateCodes)) {
+      if (location === key) {
+        return value;
+      }
+    }
   }
 
   getData(data, isLoading) {
-    this.setState({ completeData: data, isLoading: isLoading });
+    this.setState(
+      {
+        completeData: data,
+        isLoading: isLoading,
+      },
+      this.handleFormat
+    );
+  }
+  handleFormat() {
+    const newdata = this.formatData(this.state.completeData);
+    this.setState({ mapData: newdata });
   }
 
   loadingStatus(loadingStatus) {
@@ -77,6 +151,7 @@ class CovidApp extends Component {
 
   render() {
     const { classes, setDarkMode, isDarkMode } = this.props;
+    const { mapData } = this.state;
 
     return (
       <div className={classes.root}>
@@ -104,7 +179,7 @@ class CovidApp extends Component {
           <div className={classes.content}>
             <div className={classes.contentArea}>hello world</div>
             <div className={classes.chartArea}>
-              <Map completeData={this.state.completeData} />
+              <Map mapData={mapData} />
               <Charts
                 data={this.state.completeData}
                 isLoading={this.state.isLoading}
