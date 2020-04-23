@@ -4,11 +4,12 @@ import Navbar from "./Navbar";
 import { withStyles } from "@material-ui/styles";
 import colors from "../colors";
 import "./CodeApp.css";
+import Charts from "./Charts";
 
 const styles = {
   root: {
     display: "flex",
-    height: "100vh",
+    minHeight: "100vh",
   },
   navBar: {
     flex: "0 0 10%",
@@ -44,7 +45,22 @@ class CovidApp extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      completeData: [],
+      isLoading: false,
+    };
+    this.getData = this.getData.bind(this);
+    this.loadingStatus = this.loadingStatus.bind(this);
+  }
+
+  getData(data, isLoading) {
+    console.log("isLoading", isLoading);
+    this.setState({ completeData: data, isLoading: isLoading });
+  }
+
+  loadingStatus(loadingStatus) {
+    console.log("loadingstatus", loadingStatus);
+    this.setState({ isLoading: loadingStatus });
   }
 
   render() {
@@ -67,7 +83,15 @@ class CovidApp extends Component {
               </label>
             </div>
           </div>
-          <Overview isDarkMode={isDarkMode} />
+          <Overview
+            isDarkMode={isDarkMode}
+            getData={this.getData}
+            loadingStatus={this.loadingStatus}
+          />
+          <Charts
+            data={this.state.completeData}
+            isLoading={this.state.isLoading}
+          />
         </div>
       </div>
     );

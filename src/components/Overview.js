@@ -100,6 +100,7 @@ class Overview extends Component {
       currentDay: {},
       previousDay: {},
       dataChanges: {},
+      completeData: {},
       isLoading: false,
     };
     this.calculateChange = this.calculateChange.bind(this);
@@ -111,7 +112,10 @@ class Overview extends Component {
   }
 
   async fetchData() {
-    this.setState({ isLoading: !this.state.isLoading });
+    this.setState(
+      { isLoading: !this.state.isLoading },
+      this.props.loadingStatus(!this.state.isLoading)
+    );
     const response = await axios.get(
       "https://api.rootnet.in/covid19-in/stats/history"
     );
@@ -134,6 +138,7 @@ class Overview extends Component {
           activeCases:
             currentDay.total - (currentDay.discharged + currentDay.deaths),
         },
+        completeData: response.data.data,
       },
       this.calculateChange
     );
@@ -145,7 +150,17 @@ class Overview extends Component {
       a[k] = currentDay[k] - previousDay[k];
       return a;
     }, {});
-    this.setState({ dataChanges: newObj, isLoading: !isLoading });
+    const newState = {
+      ...this.state,
+      dataChanges: newObj,
+      isLoading: !isLoading,
+    };
+    this.setState(
+      {
+        ...newState,
+      },
+      this.props.getData(newState.completeData, newState.isLoading)
+    );
   }
 
   render() {
@@ -192,8 +207,7 @@ class Overview extends Component {
         </div>
 
         <button className={classes.button} onClick={this.fetchData}>
-          {/* <FontAwesomeIcon icon={faSyncAlt} className={classes.refreshIcon} /> */}
-          Update Results
+          Update
         </button>
       </div>
     );
