@@ -27,12 +27,27 @@ export default class Charts extends Component {
     return (
       <div className="charts">
         {!isLoading && (
-          <LineChart width={700} height={500} data={result}>
+          <LineChart
+            width={600}
+            height={300}
+            data={result}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
             <XAxis dataKey="date" />
             <YAxis />
             <CartesianGrid strokeDasharray="3 3" />
             <Tooltip />
-            <Legend />
+            <Legend
+              wrapperStyle={{
+                // padding: "5rem",
+                margin: "-3rem 1rem",
+              }}
+            />
             <Line
               type="monotone"
               dataKey="confirmed"
@@ -43,19 +58,19 @@ export default class Charts extends Component {
               type="monotone"
               dataKey="active"
               stroke={colors.orange}
-              activeDot={{ r: 8 }}
+              // activeDot={{ r: 8 }}
             />
             <Line
               type="monotone"
               dataKey="discharged"
               stroke={colors.green}
-              activeDot={{ r: 8 }}
+              // activeDot={{ r: 8 }}
             />
             <Line
               type="monotone"
               dataKey="deaths"
               stroke={colors.purple}
-              activeDot={{ r: 8 }}
+              // activeDot={{ r: 8 }}
             />
           </LineChart>
         )}

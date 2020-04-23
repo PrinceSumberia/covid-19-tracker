@@ -48,10 +48,15 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    padding: "4rem",
   },
   contentArea: {},
   chartArea: {
     flex: "1",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    // alignItems: "center",
   },
 };
 
@@ -175,17 +180,18 @@ class CovidApp extends Component {
             getData={this.getData}
             loadingStatus={this.loadingStatus}
           />
-
-          <div className={classes.content}>
-            <div className={classes.contentArea}>hello world</div>
-            <div className={classes.chartArea}>
-              <Map mapData={mapData} />
-              <Charts
-                data={this.state.completeData}
-                isLoading={this.state.isLoading}
-              />
+          {!this.state.isLoading && (
+            <div className={classes.content}>
+              <div className={classes.contentArea}></div>
+              <div className={classes.chartArea}>
+                <Map mapData={mapData} />
+                <Charts
+                  data={this.state.completeData}
+                  isLoading={this.state.isLoading}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     );

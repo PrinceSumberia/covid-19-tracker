@@ -3,13 +3,13 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { scaleQuantile } from "d3-scale";
 import ReactTooltip from "react-tooltip";
 import LinearGradient from "./LinearGradient.js";
+import INDIA_TOPO_JSON from "./india.topo.json";
 
 /**
  * Courtesy: https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/india.topo.json
  * Looking topojson for other countries/world?
  * Visit: https://github.com/markmarkoh/datamaps
  */
-const INDIA_TOPO_JSON = require("./india.topo.json");
 
 const PROJECTION_CONFIG = {
   scale: 350,
@@ -71,10 +71,6 @@ class Map extends Component {
 
   onMouseLeave = () => {
     this.setState({ tooltipContent: "" });
-  };
-
-  onChangeButtonClick = () => {
-    this.setState({ data: this.formatData(this.props.completeData) });
   };
 
   render() {
