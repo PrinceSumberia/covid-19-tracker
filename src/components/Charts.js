@@ -16,7 +16,7 @@ export default class Charts extends Component {
     const { data, isLoading } = this.props;
     const result = data.map((dataItem) => {
       return {
-        date: dataItem.day,
+        date: dataItem.day.slice(5),
         ...dataItem.summary,
         confirmed: dataItem.summary.total,
         active:
