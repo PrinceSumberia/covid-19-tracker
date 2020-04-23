@@ -31,6 +31,7 @@ export default class Charts extends Component {
             width={600}
             height={300}
             data={result}
+            dots={false}
             margin={{
               top: 5,
               right: 30,
