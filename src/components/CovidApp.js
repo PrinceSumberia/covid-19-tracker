@@ -25,6 +25,7 @@ const styles = {
     flex: 1,
     padding: "4rem",
     position: "relative",
+    overflow: "hidden",
   },
   header: {
     display: "flex",
