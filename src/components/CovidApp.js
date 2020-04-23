@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/styles";
 import colors from "../colors";
 import "./CodeApp.css";
 import Charts from "./Charts";
+import Map from "./Map/Map";
 
 const styles = {
   root: {
@@ -39,6 +40,18 @@ const styles = {
       color: colors.purple,
       marginRight: "1rem",
     },
+  },
+  content: {
+    backgroundColor: (props) => (props.isDarkMode ? colors.darkPurple : "#fff"),
+    borderRadius: "2rem",
+    marginTop: "3rem",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  contentArea: {},
+  chartArea: {
+    flex: "1",
   },
 };
 
@@ -87,10 +100,17 @@ class CovidApp extends Component {
             getData={this.getData}
             loadingStatus={this.loadingStatus}
           />
-          <Charts
-            data={this.state.completeData}
-            isLoading={this.state.isLoading}
-          />
+
+          <div className={classes.content}>
+            <div className={classes.contentArea}>hello world</div>
+            <div className={classes.chartArea}>
+              <Map completeData={this.state.completeData} />
+              <Charts
+                data={this.state.completeData}
+                isLoading={this.state.isLoading}
+              />
+            </div>
+          </div>
         </div>
       </div>
     );
