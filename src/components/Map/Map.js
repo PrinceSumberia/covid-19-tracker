@@ -4,6 +4,7 @@ import { scaleQuantile } from "d3-scale";
 import ReactTooltip from "react-tooltip";
 import LinearGradient from "./LinearGradient.js";
 import INDIA_TOPO_JSON from "./india.topo.json";
+import "./Map.css";
 
 /**
  * Courtesy: https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/india.topo.json
@@ -31,10 +32,6 @@ const COLOR_RANGE = [
 
 const DEFAULT_COLOR = "#EEE";
 
-const getRandomInt = () => {
-  return parseInt(Math.random() * 100);
-};
-
 const geographyStyle = {
   default: {
     outline: "none",
@@ -55,8 +52,8 @@ class Map extends Component {
     this.state = {
       tooltipContent: "",
       data: [
-        { id: "AP", state: "Andhra Pradesh", value: getRandomInt() },
-        { id: "AR", state: "Arunachal Pradesh", value: getRandomInt() },
+        { id: "AP", state: "Andhra Pradesh", value: 5 },
+        { id: "AR", state: "Arunachal Pradesh", value: 2 },
       ],
     };
   }
@@ -87,7 +84,7 @@ class Map extends Component {
       .range(COLOR_RANGE);
 
     return (
-      <div className="full-width-height container">
+      <div className="container">
         <ReactTooltip>{this.state.tooltipContent}</ReactTooltip>
         <ComposableMap
           projectionConfig={PROJECTION_CONFIG}

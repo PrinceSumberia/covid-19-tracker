@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./LinearGradient.css";
 
 const LinearGradient = (props) => {
   const { data } = props;

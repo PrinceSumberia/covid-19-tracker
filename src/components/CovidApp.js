@@ -50,9 +50,12 @@ const styles = {
     alignItems: "center",
     padding: "4rem",
   },
-  contentArea: {},
+  contentArea: {
+    width: "30vw",
+  },
   chartArea: {
     flex: "1",
+    minWidth: "50vw",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -182,7 +185,9 @@ class CovidApp extends Component {
           />
           {!this.state.isLoading && (
             <div className={classes.content}>
-              <div className={classes.contentArea}></div>
+              <div className={classes.contentArea}>
+                <h1>Hello World</h1>
+              </div>
               <div className={classes.chartArea}>
                 <Map mapData={mapData} />
                 <Charts

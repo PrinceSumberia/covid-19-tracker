@@ -44,7 +44,6 @@ export default class Charts extends Component {
             <Tooltip />
             <Legend
               wrapperStyle={{
-                // padding: "5rem",
                 margin: "-3rem 1rem",
               }}
             />
@@ -54,24 +53,9 @@ export default class Charts extends Component {
               stroke={colors.red}
               activeDot={{ r: 8 }}
             />
-            <Line
-              type="monotone"
-              dataKey="active"
-              stroke={colors.orange}
-              // activeDot={{ r: 8 }}
-            />
-            <Line
-              type="monotone"
-              dataKey="discharged"
-              stroke={colors.green}
-              // activeDot={{ r: 8 }}
-            />
-            <Line
-              type="monotone"
-              dataKey="deaths"
-              stroke={colors.purple}
-              // activeDot={{ r: 8 }}
-            />
+            <Line type="monotone" dataKey="active" stroke={colors.orange} />
+            <Line type="monotone" dataKey="discharged" stroke={colors.green} />
+            <Line type="monotone" dataKey="deaths" stroke={colors.purple} />
           </LineChart>
         )}
       </div>
