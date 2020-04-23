@@ -60,7 +60,7 @@ const styles = {
       top: 0,
       left: 0,
       backgroundColor: (props) =>
-        props.isDarkMode ? "rgba(255,255,255,.6)" : colors.lightPurple,
+        props.isDarkMode ? "rgba(255,255,255,.6)nop" : colors.lightPurple,
       transform: "translate(-.9rem, .4rem) skew(10deg, -5deg)",
       borderRadius: "25px",
     },
