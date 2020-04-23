@@ -15,7 +15,16 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "center",
   },
+  btnBox: {
+    position: "absolute",
+    top: "-1.5%",
+    left: "27%",
+    marginLeft: "2rem",
+    // transform: "translate(-50%, 0)",
+  },
   button: {
+    top: "0",
+    left: "0",
     border: "none",
     backgroundColor: colors.purple,
     padding: "1.5rem 3rem",
@@ -25,15 +34,15 @@ const styles = {
     fontSize: "1.6rem",
     marginTop: "6rem",
     transition: "all .4s",
-    boxShadow: "0 1.5rem 2.5rem rgba(0,0,0,.2)",
+    boxShadow: "0 .5rem 1rem rgba(0,0,0,.2)",
     position: "relative",
 
     "&:hover": {
       backgroundColor: colors.darkPurple,
-      boxShadow: "0 .5rem 1rem rgba(0,0,0,.2)",
+      boxShadow: "0 .25rem .5rem rgba(0,0,0,.2)",
       outline: "none",
       border: "none",
-      transform: "translateY(-.3rem)",
+      // transform: "translateY(-.3rem)",
 
       "&::before": {
         transform: "scaleX(1.4) scaleY(1.6)",
@@ -179,6 +188,13 @@ class Overview extends Component {
 
     return (
       <div className={classes.root}>
+        <div className={classes.btnBox}>
+          <FontAwesomeIcon
+            icon={faSyncAlt}
+            className={classes.button}
+            onClick={this.fetchData}
+          />
+        </div>
         <div className={classes.panels}>
           <DisplayPanels
             title="Confirmed"
@@ -205,10 +221,6 @@ class Overview extends Component {
             dataChange={dataChange.deaths}
           />
         </div>
-
-        <button className={classes.button} onClick={this.fetchData}>
-          Update
-        </button>
       </div>
     );
   }

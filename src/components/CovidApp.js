@@ -23,6 +23,7 @@ const styles = {
   mainContent: {
     flex: 1,
     padding: "4rem",
+    position: "relative",
   },
   header: {
     display: "flex",
@@ -54,12 +55,10 @@ class CovidApp extends Component {
   }
 
   getData(data, isLoading) {
-    console.log("isLoading", isLoading);
     this.setState({ completeData: data, isLoading: isLoading });
   }
 
   loadingStatus(loadingStatus) {
-    console.log("loadingstatus", loadingStatus);
     this.setState({ isLoading: loadingStatus });
   }
 
