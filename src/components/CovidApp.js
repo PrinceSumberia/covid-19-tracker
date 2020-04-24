@@ -95,8 +95,7 @@ const styles = {
     },
   },
   tinych: {
-    backgroundColor: "rgba(129, 124, 155, 0.05)",
-    // boxShadow: "0 1.5rem 2.5rem rgba(#6236FF 0.05)",
+    // backgroundColor: "rgba(129, 124, 155, 0.05)",
     borderRadius: "2rem",
     marginBottom: "2rem",
     padding: "2rem",
@@ -256,7 +255,10 @@ class CovidApp extends Component {
               <div className={classes.chartArea}>
                 <div className={classes.tinyChartArea}>
                   <div className={classes.tinyChart}>
-                    <div className={classes.tinych}>
+                    <div
+                      className={classes.tinych}
+                      style={{ background: "rgba(249, 52, 94,.1)" }}
+                    >
                       <TinyCharts
                         data={this.state.completeData}
                         isLoading={this.state.isLoading}
@@ -267,7 +269,10 @@ class CovidApp extends Component {
                     <h3 style={{ color: colors.red }}>confirmed</h3>
                   </div>
                   <div className={classes.tinyChart}>
-                    <div className={classes.tinych}>
+                    <div
+                      className={classes.tinych}
+                      style={{ background: "rgba(250, 100, 0,.1)" }}
+                    >
                       <TinyCharts
                         data={this.state.completeData}
                         isLoading={this.state.isLoading}
@@ -278,7 +283,10 @@ class CovidApp extends Component {
                     <h3 style={{ color: colors.orange }}>active</h3>
                   </div>
                   <div className={classes.tinyChart}>
-                    <div className={classes.tinych}>
+                    <div
+                      className={classes.tinych}
+                      style={{ background: "rgba(28, 177, 66,.1)" }}
+                    >
                       <TinyCharts
                         data={this.state.completeData}
                         isLoading={this.state.isLoading}
@@ -289,7 +297,10 @@ class CovidApp extends Component {
                     <h3 style={{ color: colors.green }}>Recovered</h3>
                   </div>
                   <div className={classes.tinyChart}>
-                    <div className={classes.tinych}>
+                    <div
+                      className={classes.tinych}
+                      style={{ background: "rgba(98, 54, 255,.1)" }}
+                    >
                       <TinyCharts
                         data={this.state.completeData}
                         isLoading={this.state.isLoading}
