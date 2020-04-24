@@ -17,7 +17,7 @@ class Paper extends Component {
   render() {
     const { isDarkMode, classes } = this.props;
     return (
-      <div className={isDarkMode && classes.darkMode}>
+      <div className={isDarkMode ? classes.darkMode : undefined}>
         {this.props.children}
       </div>
     );

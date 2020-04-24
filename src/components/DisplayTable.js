@@ -36,7 +36,6 @@ const useSortableData = (items, config = null) => {
 };
 
 const DisplayTable = (props) => {
-  console.log(props.tableData);
   const { items, requestSort, sortConfig } = useSortableData(props.tableData);
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
