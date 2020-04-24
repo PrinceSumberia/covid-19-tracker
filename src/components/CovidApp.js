@@ -6,11 +6,11 @@ import colors from "../colors";
 import "./CodeApp.css";
 import Charts from "./Charts";
 import Map from "./Map/Map";
+import DisplayTable from "./Table/DisplayTable";
 
 const styles = {
   root: {
     display: "flex",
-    minHeight: "100vh",
   },
   navBar: {
     flex: "0 0 10%",
@@ -52,11 +52,11 @@ const styles = {
     padding: "4rem",
   },
   contentArea: {
-    width: "30vw",
+    minWidth: "50%",
   },
   chartArea: {
-    flex: "1",
-    minWidth: "50vw",
+    // flex: "1",
+    minWidth: "50%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -112,12 +112,14 @@ class CovidApp extends Component {
       completeData: [],
       isLoading: false,
       mapData: [],
+      tableData: [],
     };
     this.getData = this.getData.bind(this);
     this.loadingStatus = this.loadingStatus.bind(this);
     this.formatData = this.formatData.bind(this);
     this.findId = this.findId.bind(this);
     this.handleFormat = this.handleFormat.bind(this);
+    this.tableData = this.tableData.bind(this);
   }
 
   formatData(completeData) {
@@ -130,6 +132,24 @@ class CovidApp extends Component {
       };
     });
     return formatedData;
+  }
+
+  tableData(completeData) {
+    const newArr = completeData
+      .slice(-1)
+      .map((data) => data.regional)
+      .flat();
+    const data = newArr.map((region, i) => {
+      return {
+        id: region.loc,
+        name: region.loc,
+        deaths: region.deaths,
+        discharged: region.discharged,
+        confirmed: region.totalConfirmed,
+        active: region.totalConfirmed - (region.discharged + region.deaths),
+      };
+    });
+    return data;
   }
 
   findId(location) {
@@ -151,7 +171,9 @@ class CovidApp extends Component {
   }
   handleFormat() {
     const newdata = this.formatData(this.state.completeData);
-    this.setState({ mapData: newdata });
+    const tableData = this.tableData(this.state.completeData);
+    // console.log(tableData);
+    this.setState({ mapData: newdata, tableData: tableData });
   }
 
   loadingStatus(loadingStatus) {
@@ -160,7 +182,7 @@ class CovidApp extends Component {
 
   render() {
     const { classes, setDarkMode, isDarkMode } = this.props;
-    const { mapData } = this.state;
+    const { mapData, tableData } = this.state;
 
     return (
       <div className={classes.root}>
@@ -186,9 +208,7 @@ class CovidApp extends Component {
           />
           {!this.state.isLoading && (
             <div className={classes.content}>
-              <div className={classes.contentArea}>
-                <h1>Hello World</h1>
-              </div>
+              <div className={classes.contentArea}></div>
               <div className={classes.chartArea}>
                 <Map mapData={mapData} />
                 <Charts
@@ -198,6 +218,7 @@ class CovidApp extends Component {
               </div>
             </div>
           )}
+          <DisplayTable tableData={tableData} />
         </div>
       </div>
     );
