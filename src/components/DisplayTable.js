@@ -1,5 +1,5 @@
 import React from "react";
-import "./DisplayTable.css";
+import "../styles/DisplayTable.css";
 
 const useSortableData = (items, config = null) => {
   const [sortConfig, setSortConfig] = React.useState(config);

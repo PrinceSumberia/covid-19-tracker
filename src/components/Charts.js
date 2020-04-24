@@ -8,8 +8,8 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import colors from "../colors";
-import "./Charts.css";
+import colors from "../constants/colors";
+import "../styles/Charts.css";
 
 export default class Charts extends Component {
   render() {

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { LineChart, Line } from "recharts";
-// import "./Charts.css";
 
 export default class TinyCharts extends Component {
   render() {
