@@ -22,7 +22,8 @@ thead button {
   padding: 1rem 2rem;
   text-align: left;
   margin-bottom: 1px;
-  color: #1A1053;
+  background-color: #1A1053;
+  color: #fff;
 
   /* margin: 1rem; */
   transition: all .4s;
@@ -48,7 +49,7 @@ thead button.descending::after {
 
 tbody td {
   padding: 1rem;
-  color: #817C9B;
+  color: #1A1053;
   /* border-radius: 2rem; */
   padding: 1rem 2rem;
   margin-top: 5rem;
@@ -70,4 +71,12 @@ tbody tr:hover {
 
 tbody tr:hover td {
   color: #fff;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(235, 235, 235, 0.541);
+}
+
+tbody tr:nth-child(even):hover {
+  background-color: #1A1053;
 }
