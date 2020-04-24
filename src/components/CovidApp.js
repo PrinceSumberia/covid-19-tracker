@@ -7,6 +7,7 @@ import "./CodeApp.css";
 import Charts from "./Charts";
 import Map from "./Map/Map";
 import DisplayTable from "./Table/DisplayTable";
+import TinyCharts from "./TinyCharts";
 
 const styles = {
   root: {
@@ -72,6 +73,33 @@ const styles = {
     margin: "4rem 0",
     fontSize: "3rem",
     // textTransform: "uppercase",
+  },
+
+  tinyChartArea: {
+    display: "flex",
+    flexWrap: "wrap",
+    padding: "2rem",
+    // flexDirection: "column",
+    justifyContent: "space-around",
+    alignItems: "center",
+    marginTop: "3rem",
+  },
+  tinyChart: {
+    margin: "2rem",
+    // padding: "2rem",
+    "& h3": {
+      textTransform: "capitalize",
+      fontWeight: 500,
+
+      textAlign: "center",
+    },
+  },
+  tinych: {
+    backgroundColor: "rgba(129, 124, 155, 0.05)",
+    // boxShadow: "0 1.5rem 2.5rem rgba(#6236FF 0.05)",
+    borderRadius: "2rem",
+    marginBottom: "2rem",
+    padding: "2rem",
   },
 };
 
@@ -226,10 +254,52 @@ class CovidApp extends Component {
                 <div></div>
               </div>
               <div className={classes.chartArea}>
-                <Charts
-                  data={this.state.completeData}
-                  isLoading={this.state.isLoading}
-                />
+                <div className={classes.tinyChartArea}>
+                  <div className={classes.tinyChart}>
+                    <div className={classes.tinych}>
+                      <TinyCharts
+                        data={this.state.completeData}
+                        isLoading={this.state.isLoading}
+                        dataKey="confirmed"
+                        stroke={colors.red}
+                      />
+                    </div>
+                    <h3 style={{ color: colors.red }}>confirmed</h3>
+                  </div>
+                  <div className={classes.tinyChart}>
+                    <div className={classes.tinych}>
+                      <TinyCharts
+                        data={this.state.completeData}
+                        isLoading={this.state.isLoading}
+                        dataKey="active"
+                        stroke={colors.orange}
+                      />
+                    </div>
+                    <h3 style={{ color: colors.orange }}>active</h3>
+                  </div>
+                  <div className={classes.tinyChart}>
+                    <div className={classes.tinych}>
+                      <TinyCharts
+                        data={this.state.completeData}
+                        isLoading={this.state.isLoading}
+                        dataKey="discharged"
+                        stroke={colors.green}
+                      />
+                    </div>
+                    <h3 style={{ color: colors.green }}>Recovered</h3>
+                  </div>
+                  <div className={classes.tinyChart}>
+                    <div className={classes.tinych}>
+                      <TinyCharts
+                        data={this.state.completeData}
+                        isLoading={this.state.isLoading}
+                        dataKey="deaths"
+                        stroke={colors.purple}
+                      />
+                    </div>
+                    <h3 style={{ color: colors.purple }}>Deceased</h3>
+                  </div>
+                </div>
                 <Charts
                   data={this.state.completeData}
                   isLoading={this.state.isLoading}
