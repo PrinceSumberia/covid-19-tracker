@@ -47,20 +47,31 @@ const styles = {
     borderRadius: "2rem",
     marginTop: "3rem",
     display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
     padding: "4rem",
-  },
-  contentArea: {
-    minWidth: "50%",
-  },
-  chartArea: {
-    // flex: "1",
-    minWidth: "50%",
-    display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    // alignItems: "center",
+  },
+  contentArea: {
+    display: "flex",
+  },
+  mapArea: {
+    flex: "1",
+  },
+  chartArea: {
+    minWidth: "50%",
+    display: "flex",
+    justifyContent: "center",
+  },
+  tableContainer: {
+    padding: "2rem",
+    margin: "5rem 0",
+  },
+
+  tableHeading: {
+    textAlign: "center",
+    margin: "4rem 0",
+    fontSize: "3rem",
+    // textTransform: "uppercase",
   },
 };
 
@@ -208,17 +219,33 @@ class CovidApp extends Component {
           />
           {!this.state.isLoading && (
             <div className={classes.content}>
-              <div className={classes.contentArea}></div>
+              <div className={classes.contentArea}>
+                <div className={classes.mapArea}>
+                  <Map mapData={mapData} />
+                </div>
+                <div></div>
+              </div>
               <div className={classes.chartArea}>
-                <Map mapData={mapData} />
+                <Charts
+                  data={this.state.completeData}
+                  isLoading={this.state.isLoading}
+                />
                 <Charts
                   data={this.state.completeData}
                   isLoading={this.state.isLoading}
                 />
               </div>
+              <div className={classes.tableContainer}>
+                <h2 className={classes.tableHeading}>
+                  State/UT Wise Data (Sortable){" "}
+                </h2>
+                <DisplayTable tableData={tableData} />
+              </div>
             </div>
           )}
-          <DisplayTable tableData={tableData} />
+          {/* {!this.state.isLoading && (
+           
+          )} */}
         </div>
       </div>
     );

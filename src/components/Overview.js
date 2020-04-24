@@ -17,7 +17,7 @@ const styles = {
   },
   btnBox: {
     position: "absolute",
-    top: "-1.5%",
+    top: "-.5%",
     left: "27%",
     marginLeft: "2rem",
     // transform: "translate(-50%, 0)",

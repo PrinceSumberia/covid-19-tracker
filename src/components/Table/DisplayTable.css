@@ -5,36 +5,69 @@ table {
 
 thead th {
   text-align: left;
-  border-bottom: 2px solid black;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  color: #1A1053;
+  /* border-bottom: 2px solid black; */
 }
 
 thead button {
+  font-family: inherit;
+  width: 100%;
   border: 0;
-  border-radius: none;
+  border-radius: 2rem;
   font-family: inherit;
   font-weight: 700;
   font-size: inherit;
-  padding: 0.5em;
+  padding: 1rem 2rem;
+  text-align: left;
   margin-bottom: 1px;
+  color: #1A1053;
+
+  /* margin: 1rem; */
+  transition: all .4s;
+}
+
+thead button:hover,
+thead button:focus {
+  outline: none;
+  border: none;
 }
 
 thead button.ascending::after {
-  content: '👇';
+  content: '\2193';
   display: inline-block;
   margin-left: 1em;
 }
 
 thead button.descending::after {
-  content: '☝️';
+  content: '\2191';
   display: inline-block;
   margin-left: 1em;
 }
 
 tbody td {
-  padding: 0.5em;
-  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+  color: #817C9B;
+  /* border-radius: 2rem; */
+  padding: 1rem 2rem;
+  margin-top: 5rem;
+  /* background-color: #ccc; */
+  /* border-bottom: 1px solid #ccc; */
+
+}
+
+tbody tr {
+  border-radius: 2rem;
+  /* transition: background-color .5s; */
 }
 
 tbody tr:hover {
-  background-color: #eee;
+  background-color: #1A1053;
+  transition: all .3s;
+
+}
+
+tbody tr:hover td {
+  color: #fff;
 }
