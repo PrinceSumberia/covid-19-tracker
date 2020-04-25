@@ -23,6 +23,8 @@ class CovidApp extends Component {
       mapData: [],
       tableData: [],
     };
+
+    this.fetchData = this.fetchData.bind(this);
     this.formatData = this.formatData.bind(this);
     this.findId = this.findId.bind(this);
     this.handleFormat = this.handleFormat.bind(this);
