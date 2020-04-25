@@ -45,21 +45,19 @@ export default {
     textAlign: "center",
     margin: "4rem 0",
     fontSize: "3rem",
-    // textTransform: "uppercase",
   },
 
   tinyChartArea: {
     display: "flex",
     flexWrap: "wrap",
     padding: "2rem",
-    // flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
     marginTop: "3rem",
   },
+
   tinyChart: {
     margin: "2rem",
-    // padding: "2rem",
     "& h3": {
       textTransform: "capitalize",
       fontWeight: 500,
@@ -67,8 +65,8 @@ export default {
       textAlign: "center",
     },
   },
+
   tinych: {
-    // backgroundColor: "rgba(129, 124, 155, 0.05)",
     borderRadius: "2rem",
     marginBottom: "2rem",
     padding: "2rem",
@@ -106,7 +104,6 @@ export default {
     borderRadius: "10rem",
     fontFamily: "inherit",
     fontSize: "1.6rem",
-    // marginTop: "6rem",
     marginLeft: "2rem",
     transition: "all .4s",
     boxShadow: "0 .5rem 1rem rgba(0,0,0,.2)",

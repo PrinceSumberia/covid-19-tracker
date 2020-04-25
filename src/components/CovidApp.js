@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import Overview from "./Overview";
 import { withStyles } from "@material-ui/styles";
 import colors from "../constants/colors";
-import "../styles/DarkModeButton.css";
 import Charts from "./Charts";
-import Map from "./Map/Map";
 import DisplayTable from "./DisplayTable";
 import TinyCharts from "./TinyCharts";
 import styles from "../styles/CovidAppStyles";
@@ -12,6 +10,8 @@ import axios from "axios";
 import stateCodes from "../constants/stateCodes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import "../styles/DarkModeButton.css";
+import MapSection from "./MapSection";
 
 class CovidApp extends Component {
   constructor(props) {
@@ -95,7 +95,7 @@ class CovidApp extends Component {
 
   render() {
     const { classes, setDarkMode, isDarkMode } = this.props;
-    const { mapData, tableData, isLoading } = this.state;
+    const { mapData, tableData, isLoading, data } = this.state;
 
     if (isLoading) {
       return (
@@ -133,7 +133,12 @@ class CovidApp extends Component {
           <div className={classes.content}>
             <div className={classes.contentArea}>
               <div className={classes.mapArea}>
-                <Map mapData={mapData} />
+                {/* <Map mapData={mapData} /> */}
+                <MapSection
+                  mapData={mapData}
+                  data={data}
+                  isDarkMode={isDarkMode}
+                />
               </div>
               <div></div>
             </div>

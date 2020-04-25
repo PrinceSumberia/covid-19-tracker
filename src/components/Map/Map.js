@@ -60,9 +60,12 @@ class Map extends Component {
 
   onMouseEnter = (geo, current = { value: "NA" }) => {
     return () => {
-      this.setState({
-        tooltipContent: `${geo.properties.name}: ${current.value}`,
-      });
+      this.setState(
+        {
+          tooltipContent: `${geo.properties.name}: ${current.value}`,
+        },
+        () => this.props.currentLocation(geo.properties.name)
+      );
     };
   };
 
@@ -84,7 +87,7 @@ class Map extends Component {
       .range(COLOR_RANGE);
 
     return (
-      <div className="container">
+      <div>
         <ReactTooltip>{this.state.tooltipContent}</ReactTooltip>
         <ComposableMap
           projectionConfig={PROJECTION_CONFIG}
