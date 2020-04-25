@@ -12,6 +12,10 @@ const styles = {
   heading: {
     fontSize: "2.5rem",
   },
+  para: {
+    marginBottom: "3rem",
+    color: "#bbb",
+  },
   container: {
     display: "flex",
     justifyContent: "center",
@@ -105,9 +109,10 @@ class MapSection extends Component {
     const { confirmed, deaths, recovered, active, title, changed } = this.state;
     return (
       <div className={classes.mainContainer}>
-        <h4 className={classes.heading}>
-          State/UT: <span>{title}</span>
-        </h4>
+        <h4 className={classes.heading}>State/UT: {title}</h4>
+        <p className={classes.para}>
+          hover over the states in the map to view the stats
+        </p>
         <div className={classes.container}>
           <div className={classes.panelsContainer}>
             <div className={classes.singlePanel}>
