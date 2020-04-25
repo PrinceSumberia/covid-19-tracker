@@ -1,24 +1,6 @@
 import colors from "../constants/colors";
 
 export default {
-  root: {
-    display: "flex",
-  },
-  navBar: {
-    flex: "0 0 10%",
-    backgroundColor: colors.darkPurple,
-    color: (props) =>
-      props.isDarkMode ? "rgba(255,255,255,.87)" : "rgba(255,255,255,.9)",
-    textTransform: "capitalize",
-    display: "flex",
-    justifyContent: "center",
-  },
-  mainContent: {
-    flex: 1,
-    padding: "4rem",
-    position: "relative",
-    overflow: "hidden",
-  },
   header: {
     display: "flex",
     alignItems: "center",

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Overview from "./Overview";
-import Navbar from "./Navbar";
 import { withStyles } from "@material-ui/styles";
 import colors from "../constants/colors";
 import "../styles/DarkModeButton.css";
@@ -131,112 +130,107 @@ class CovidApp extends Component {
     const { mapData, tableData } = this.state;
 
     return (
-      <div className={classes.root}>
-        <div className={classes.navBar}>
-          <Navbar isDarkMode={isDarkMode} />
+      <>
+        <div className={classes.header}>
+          <h1 className={classes.heading}>
+            <span>Covid-19</span> India Trend
+          </h1>
+          <div className="darkModeButton">
+            <label className="switch">
+              <input type="checkbox" onChange={setDarkMode} />
+              <span className="slider round"></span>
+            </label>
+          </div>
         </div>
-        <div className={classes.mainContent}>
-          <div className={classes.header}>
-            <h1 className={classes.heading}>
-              <span>Covid-19</span> India Trend
-            </h1>
-            <div className="darkModeButton">
-              <label className="switch">
-                <input type="checkbox" onChange={setDarkMode} />
-                <span className="slider round"></span>
-              </label>
+        <Overview
+          isDarkMode={isDarkMode}
+          getData={this.getData}
+          loadingStatus={this.loadingStatus}
+        />
+        {!this.state.isLoading && (
+          <div className={classes.content}>
+            <div className={classes.contentArea}>
+              <div className={classes.mapArea}>
+                <Map mapData={mapData} />
+              </div>
+              <div></div>
+            </div>
+            <div className={classes.chartArea}>
+              <div className={classes.tinyChartArea}>
+                <div className={classes.tinyChart}>
+                  <div
+                    className={classes.tinych}
+                    style={{ background: "rgba(249, 52, 94,.1)" }}
+                  >
+                    <TinyCharts
+                      data={this.state.completeData}
+                      isLoading={this.state.isLoading}
+                      dataKey="confirmed"
+                      stroke={colors.red}
+                    />
+                  </div>
+                  <h3 style={{ color: colors.red }}>confirmed</h3>
+                </div>
+                <div className={classes.tinyChart}>
+                  <div
+                    className={classes.tinych}
+                    style={{ background: "rgba(250, 100, 0,.1)" }}
+                  >
+                    <TinyCharts
+                      data={this.state.completeData}
+                      isLoading={this.state.isLoading}
+                      dataKey="active"
+                      stroke={colors.orange}
+                    />
+                  </div>
+                  <h3 style={{ color: colors.orange }}>active</h3>
+                </div>
+                <div className={classes.tinyChart}>
+                  <div
+                    className={classes.tinych}
+                    style={{ background: "rgba(28, 177, 66,.1)" }}
+                  >
+                    <TinyCharts
+                      data={this.state.completeData}
+                      isLoading={this.state.isLoading}
+                      dataKey="discharged"
+                      stroke={colors.green}
+                    />
+                  </div>
+                  <h3 style={{ color: colors.green }}>Recovered</h3>
+                </div>
+                <div className={classes.tinyChart}>
+                  <div
+                    className={classes.tinych}
+                    style={{ background: "rgba(98, 54, 255,.1)" }}
+                  >
+                    <TinyCharts
+                      data={this.state.completeData}
+                      isLoading={this.state.isLoading}
+                      dataKey="deaths"
+                      stroke={colors.purple}
+                    />
+                  </div>
+                  <h3 style={{ color: colors.purple }}>Deceased</h3>
+                </div>
+              </div>
+              <Charts
+                data={this.state.completeData}
+                isLoading={this.state.isLoading}
+              />
+            </div>
+            <div className={classes.tableContainer}>
+              <h2 className={classes.tableHeading}>
+                State/UT Wise Data (Sortable){" "}
+              </h2>
+              <DisplayTable tableData={tableData} />
             </div>
           </div>
-          <Overview
-            isDarkMode={isDarkMode}
-            getData={this.getData}
-            loadingStatus={this.loadingStatus}
-          />
-          {!this.state.isLoading && (
-            <div className={classes.content}>
-              <div className={classes.contentArea}>
-                <div className={classes.mapArea}>
-                  <Map mapData={mapData} />
-                </div>
-                <div></div>
-              </div>
-              <div className={classes.chartArea}>
-                <div className={classes.tinyChartArea}>
-                  <div className={classes.tinyChart}>
-                    <div
-                      className={classes.tinych}
-                      style={{ background: "rgba(249, 52, 94,.1)" }}
-                    >
-                      <TinyCharts
-                        data={this.state.completeData}
-                        isLoading={this.state.isLoading}
-                        dataKey="confirmed"
-                        stroke={colors.red}
-                      />
-                    </div>
-                    <h3 style={{ color: colors.red }}>confirmed</h3>
-                  </div>
-                  <div className={classes.tinyChart}>
-                    <div
-                      className={classes.tinych}
-                      style={{ background: "rgba(250, 100, 0,.1)" }}
-                    >
-                      <TinyCharts
-                        data={this.state.completeData}
-                        isLoading={this.state.isLoading}
-                        dataKey="active"
-                        stroke={colors.orange}
-                      />
-                    </div>
-                    <h3 style={{ color: colors.orange }}>active</h3>
-                  </div>
-                  <div className={classes.tinyChart}>
-                    <div
-                      className={classes.tinych}
-                      style={{ background: "rgba(28, 177, 66,.1)" }}
-                    >
-                      <TinyCharts
-                        data={this.state.completeData}
-                        isLoading={this.state.isLoading}
-                        dataKey="discharged"
-                        stroke={colors.green}
-                      />
-                    </div>
-                    <h3 style={{ color: colors.green }}>Recovered</h3>
-                  </div>
-                  <div className={classes.tinyChart}>
-                    <div
-                      className={classes.tinych}
-                      style={{ background: "rgba(98, 54, 255,.1)" }}
-                    >
-                      <TinyCharts
-                        data={this.state.completeData}
-                        isLoading={this.state.isLoading}
-                        dataKey="deaths"
-                        stroke={colors.purple}
-                      />
-                    </div>
-                    <h3 style={{ color: colors.purple }}>Deceased</h3>
-                  </div>
-                </div>
-                <Charts
-                  data={this.state.completeData}
-                  isLoading={this.state.isLoading}
-                />
-              </div>
-              <div className={classes.tableContainer}>
-                <h2 className={classes.tableHeading}>
-                  State/UT Wise Data (Sortable){" "}
-                </h2>
-                <DisplayTable tableData={tableData} />
-              </div>
-            </div>
-          )}
-          {/* {!this.state.isLoading && (
+        )}
+        {/* {!this.state.isLoading && (
            
           )} */}
-        </div>
-      </div>
+      </>
     );
   }
 }
