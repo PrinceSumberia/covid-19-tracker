@@ -8,67 +8,47 @@ import Map from "./Map/Map";
 import DisplayTable from "./DisplayTable";
 import TinyCharts from "./TinyCharts";
 import styles from "../styles/CovidAppStyles";
-
-const stateCodes = {
-  "Andhra Pradesh": "AP",
-  "Arunachal Pradesh": "AR",
-  Assam: "AS",
-  Bihar: "BR",
-  Chhattisgarh: "CT",
-  Goa: "GA",
-  Gujarat: "GJ",
-  Haryana: "HR",
-  "Himachal Pradesh": "HP",
-  Jharkhand: "JH",
-  Karnataka: "KA",
-  Kerala: "KL",
-  "Madhya Pradesh": "MP",
-  Maharashtra: "MH",
-  Manipur: "MN",
-  Meghalaya: "ML",
-  Mizoram: "MZ",
-  Nagaland: "NL",
-  Odisha: "OR",
-  Punjab: "PB",
-  Rajasthan: "RJ",
-  Sikkim: "SK",
-  "Tamil Nadu": "TN",
-  Telengana: "TG",
-  Tripura: "TR",
-  Uttarakhand: "UT",
-  "Uttar Pradesh": "UP",
-  "West Bengal": "WB",
-  "Andaman and Nicobar Islands": "AN",
-  Chandigarh: "CH",
-  "Dadra and Nagar Haveli": "DN",
-  "Daman and Diu": "DD",
-  Delhi: "DL",
-  "Jammu and Kashmir": "JK",
-  Ladakh: "LA",
-  Lakshadweep: "LD",
-  Puducherry: "PY",
-};
+import axios from "axios";
+import stateCodes from "../constants/stateCodes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 
 class CovidApp extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      completeData: [],
+      data: [],
       isLoading: false,
       mapData: [],
       tableData: [],
     };
-    this.getData = this.getData.bind(this);
-    this.loadingStatus = this.loadingStatus.bind(this);
     this.formatData = this.formatData.bind(this);
     this.findId = this.findId.bind(this);
     this.handleFormat = this.handleFormat.bind(this);
     this.tableData = this.tableData.bind(this);
   }
 
-  formatData(completeData) {
-    const newArr = completeData.slice(-1).map((data) => data.regional);
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  async fetchData() {
+    this.setState({ isLoading: !this.state.isLoading });
+    const response = await axios.get(
+      "https://api.rootnet.in/covid19-in/stats/history"
+    );
+    this.setState(
+      (st) => ({
+        data: response.data.data,
+        isLoading: !st.isLoading,
+      }),
+      this.handleFormat
+    );
+  }
+
+  formatData(data) {
+    const newArr = data.slice(-1).map((data) => data.regional);
     const formatedData = newArr.flat().map((region, i) => {
       return {
         id: this.findId(region.loc),
@@ -79,12 +59,12 @@ class CovidApp extends Component {
     return formatedData;
   }
 
-  tableData(completeData) {
-    const newArr = completeData
+  tableData(data) {
+    const newArr = data
       .slice(-1)
       .map((data) => data.regional)
       .flat();
-    const data = newArr.map((region, i) => {
+    const newData = newArr.map((region, i) => {
       return {
         id: region.loc,
         name: region.loc,
@@ -94,7 +74,7 @@ class CovidApp extends Component {
         active: region.totalConfirmed - (region.discharged + region.deaths),
       };
     });
-    return data;
+    return newData;
   }
 
   findId(location) {
@@ -105,36 +85,36 @@ class CovidApp extends Component {
     }
   }
 
-  getData(data, isLoading) {
-    this.setState(
-      {
-        completeData: data,
-        isLoading: isLoading,
-      },
-      this.handleFormat
-    );
-  }
   handleFormat() {
-    const newdata = this.formatData(this.state.completeData);
-    const tableData = this.tableData(this.state.completeData);
-    // console.log(tableData);
+    const newdata = this.formatData(this.state.data);
+    const tableData = this.tableData(this.state.data);
     this.setState({ mapData: newdata, tableData: tableData });
-  }
-
-  loadingStatus(loadingStatus) {
-    this.setState({ isLoading: loadingStatus });
   }
 
   render() {
     const { classes, setDarkMode, isDarkMode } = this.props;
-    const { mapData, tableData } = this.state;
+    const { mapData, tableData, isLoading } = this.state;
 
+    if (isLoading) {
+      return (
+        <div className={classes.loadingIcon}>
+          <FontAwesomeIcon icon={faSyncAlt} className={classes.refreshIcon} />
+        </div>
+      );
+    }
     return (
       <>
         <div className={classes.header}>
           <h1 className={classes.heading}>
             <span>Covid-19</span> India Trend
           </h1>
+          <div className={classes.btnBox}>
+            <FontAwesomeIcon
+              icon={faSyncAlt}
+              className={classes.button}
+              onClick={this.fetchData}
+            />
+          </div>
           <div className="darkModeButton">
             <label className="switch">
               <input type="checkbox" onChange={setDarkMode} />
@@ -144,7 +124,7 @@ class CovidApp extends Component {
         </div>
         <Overview
           isDarkMode={isDarkMode}
-          getData={this.getData}
+          data={this.state.data}
           loadingStatus={this.loadingStatus}
         />
         {!this.state.isLoading && (
@@ -163,7 +143,7 @@ class CovidApp extends Component {
                     style={{ background: "rgba(249, 52, 94,.1)" }}
                   >
                     <TinyCharts
-                      data={this.state.completeData}
+                      data={this.state.data}
                       isLoading={this.state.isLoading}
                       dataKey="confirmed"
                       stroke={colors.red}
@@ -177,7 +157,7 @@ class CovidApp extends Component {
                     style={{ background: "rgba(250, 100, 0,.1)" }}
                   >
                     <TinyCharts
-                      data={this.state.completeData}
+                      data={this.state.data}
                       isLoading={this.state.isLoading}
                       dataKey="active"
                       stroke={colors.orange}
@@ -191,7 +171,7 @@ class CovidApp extends Component {
                     style={{ background: "rgba(28, 177, 66,.1)" }}
                   >
                     <TinyCharts
-                      data={this.state.completeData}
+                      data={this.state.data}
                       isLoading={this.state.isLoading}
                       dataKey="discharged"
                       stroke={colors.green}
@@ -205,7 +185,7 @@ class CovidApp extends Component {
                     style={{ background: "rgba(98, 54, 255,.1)" }}
                   >
                     <TinyCharts
-                      data={this.state.completeData}
+                      data={this.state.data}
                       isLoading={this.state.isLoading}
                       dataKey="deaths"
                       stroke={colors.purple}
@@ -214,10 +194,7 @@ class CovidApp extends Component {
                   <h3 style={{ color: colors.purple }}>Deceased</h3>
                 </div>
               </div>
-              <Charts
-                data={this.state.completeData}
-                isLoading={this.state.isLoading}
-              />
+              <Charts data={this.state.data} isLoading={this.state.isLoading} />
             </div>
             <div className={classes.tableContainer}>
               <h2 className={classes.tableHeading}>
@@ -227,9 +204,6 @@ class CovidApp extends Component {
             </div>
           </div>
         )}
-        {/* {!this.state.isLoading && (
-           
-          )} */}
       </>
     );
   }

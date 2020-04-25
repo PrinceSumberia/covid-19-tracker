@@ -70,28 +70,4 @@ export default {
       zIndex: -1,
     },
   },
-
-  refreshIcon: {
-    fontSize: "10rem",
-    animationName: "$rotation",
-    animationDuration: "1s",
-    animationTimingFunction: "linear",
-    animationIterationCount: "infinite",
-  },
-
-  loadingIcon: {
-    height: "50vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  "@keyframes rotation": {
-    from: {
-      transform: "rotate(0deg)",
-    },
-    to: {
-      transform: "rotate(359deg)",
-    },
-  },
 };
