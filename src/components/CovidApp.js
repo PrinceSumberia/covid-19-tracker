@@ -207,7 +207,7 @@ class CovidApp extends Component {
               <h2 className={classes.tableHeading}>
                 State/UT Wise Data (Sortable){" "}
               </h2>
-              <DisplayTable tableData={tableData} />
+              <DisplayTable tableData={tableData} isDarkMode={isDarkMode} />
             </div>
           </div>
         )}

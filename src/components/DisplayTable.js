@@ -35,8 +35,11 @@ const useSortableData = (items, config = null) => {
   return { items: sortedItems, requestSort, sortConfig };
 };
 
-const DisplayTable = (props) => {
-  const { items, requestSort, sortConfig } = useSortableData(props.tableData);
+const DisplayTable = ({ tableData, isDarkMode }) => {
+  const { items, requestSort, sortConfig } = useSortableData(tableData);
+  const lightText = {
+    color: isDarkMode && "rgba(255,255,255,.75)",
+  };
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
       return;
@@ -98,11 +101,11 @@ const DisplayTable = (props) => {
       <tbody>
         {items.map((item) => (
           <tr key={item.id}>
-            <td>{item.name}</td>
-            <td>{item.confirmed}</td>
-            <td>{item.active}</td>
-            <td>{item.discharged}</td>
-            <td>{item.deaths}</td>
+            <td style={lightText}>{item.name}</td>
+            <td style={lightText}>{item.confirmed}</td>
+            <td style={lightText}>{item.active}</td>
+            <td style={lightText}>{item.discharged}</td>
+            <td style={lightText}>{item.deaths}</td>
           </tr>
         ))}
       </tbody>

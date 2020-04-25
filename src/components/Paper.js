@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/styles";
 const styles = {
   darkMode: {
     backgroundColor: "#121212",
-    color: "rgba(255,255,255,.87)",
+    color: "rgba(255,255,255,.75)",
   },
 };
 
