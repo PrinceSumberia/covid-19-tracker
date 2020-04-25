@@ -1,5 +1,3 @@
-import colors from "../constants/colors";
-
 export default {
   root: {
     textAlign: "center",

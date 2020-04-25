@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import DisplayPanels from "./DisplayPanels";
 import { withStyles } from "@material-ui/styles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/OverviewStyles";
 
 class Overview extends Component {
