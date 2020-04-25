@@ -75,30 +75,38 @@ class Overview extends Component {
     return (
       <div className={classes.root}>
         <div className={classes.panels}>
-          <DisplayPanels
-            title="Confirmed"
-            number={confirmed}
-            isDarkMode={isDarkMode}
-            dataChange={dataChange.confirmed}
-          />
-          <DisplayPanels
-            title="Active"
-            number={activeCases}
-            isDarkMode={isDarkMode}
-            dataChange={dataChange.activeCases}
-          />
-          <DisplayPanels
-            title="Recovered"
-            number={recovered}
-            isDarkMode={isDarkMode}
-            dataChange={dataChange.recovered}
-          />
-          <DisplayPanels
-            title="Deceased"
-            number={deaths}
-            isDarkMode={isDarkMode}
-            dataChange={dataChange.deaths}
-          />
+          <div className={classes.panelContainer}>
+            <DisplayPanels
+              title="Confirmed"
+              number={confirmed}
+              isDarkMode={isDarkMode}
+              dataChange={dataChange.confirmed}
+            />
+          </div>
+          <div className={classes.panelContainer}>
+            <DisplayPanels
+              title="Active"
+              number={activeCases}
+              isDarkMode={isDarkMode}
+              dataChange={dataChange.activeCases}
+            />
+          </div>
+          <div className={classes.panelContainer}>
+            <DisplayPanels
+              title="Recovered"
+              number={recovered}
+              isDarkMode={isDarkMode}
+              dataChange={dataChange.recovered}
+            />
+          </div>
+          <div className={classes.panelContainer}>
+            <DisplayPanels
+              title="Deceased"
+              number={deaths}
+              isDarkMode={isDarkMode}
+              dataChange={dataChange.deaths}
+            />
+          </div>
         </div>
       </div>
     );

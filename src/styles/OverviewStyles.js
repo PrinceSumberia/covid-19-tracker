@@ -4,7 +4,11 @@ export default {
   },
   panels: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     alignItems: "center",
+  },
+  panelContainer: {
+    width: "20%",
+    // padding: ''
   },
 };

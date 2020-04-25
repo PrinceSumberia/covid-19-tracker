@@ -2,19 +2,21 @@ import colors from "../constants/colors";
 
 export default {
   panel: {
-    width: "15%",
     display: "flex",
     flexDirection: "column",
-    backgroundColor: (props) => (props.isDarkMode ? colors.darkPurple : "#fff"),
     marginBottom: "3.5rem",
     marginTop: "3.5rem",
-    padding: "1.5rem 3rem",
     boxShadow: "0 1rem 2rem rgba(0, 0, 0, 0.05)",
-    borderRadius: "2.5rem",
+    backgroundColor: (props) => (props.isDarkMode ? colors.darkPurple : "#fff"),
+    margin: (props) => (props.isMiniPanel ? "3rem 1rem" : "3.5rem 0"),
+    padding: (props) => (props.isMiniPanel ? "1.5rem 1.5rem" : "1.5rem 3rem"),
+    borderRadius: (props) => (props.isMiniPanel ? "2rem" : "2.5rem"),
   },
+
   heading: {
-    fontSize: "2rem",
+    fontSize: (props) => (props.isMiniPanel ? "1.5rem" : "2rem"),
   },
+
   number: {
     color: (props) => {
       let color;
@@ -30,11 +32,12 @@ export default {
       }
       return color;
     },
-    fontSize: "3.5rem",
+    fontSize: (props) => (props.isMiniPanel ? "2.2rem" : "3.5rem"),
     paddingTop: ".5rem",
     paddingBottom: ".5rem",
   },
   dataChange: {
+    fontSize: (props) => (props.isMiniPanel ? "1.4rem" : "inherit"),
     color: (props) => {
       let color;
       let title = props.title.toLowerCase();
