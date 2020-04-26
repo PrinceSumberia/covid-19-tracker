@@ -19,6 +19,7 @@ body {
   font-size: 1.6rem;
   line-height: 1.7;
   color: #1A1053;
+  /* background-color: #fff; */
   background-color: rgb(245, 245, 245);
   /* background-color: rgba(185, 185, 185, 0.281); */
 }

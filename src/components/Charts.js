@@ -41,7 +41,7 @@ export default class Charts extends Component {
           >
             <XAxis dataKey="date" />
             <YAxis />
-            <CartesianGrid strokeDasharray="3 3" />
+            {/* <CartesianGrid strokeDasharray="3 3" /> */}
             <Tooltip />
             <Legend
               wrapperStyle={{

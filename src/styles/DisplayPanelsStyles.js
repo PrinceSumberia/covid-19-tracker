@@ -16,18 +16,19 @@ export default {
       if (props.isMiniPanel) {
         return null;
       }
-      let color;
-      let title = props.title.toLowerCase();
-      if (title === "recovered") {
-        color = "rgb(28, 177, 66,.2)";
-      } else if (title === "deceased") {
-        color = "rgb(98, 54, 25,.2)";
-      } else if (title === "active") {
-        color = "rgb(250, 100, 0,.2)";
-      } else if (title === "confirmed") {
-        color = "rgb(249, 52, 94,.2)";
-      }
-      return `0 .5rem 3rem ${color}`;
+      return "0 1.5rem 3rem rgba(0, 0, 0, 0.1)";
+      // let color;
+      // let title = props.title.toLowerCase();
+      // if (title === "recovered") {
+      //   color = "rgb(28, 177, 66,.2)";
+      // } else if (title === "deceased") {
+      //   color = "rgb(98, 54, 25,.2)";
+      // } else if (title === "active") {
+      //   color = "rgb(250, 100, 0,.2)";
+      // } else if (title === "confirmed") {
+      //   color = "rgb(249, 52, 94,.2)";
+      // }
+      // return `0 .5rem 3rem ${color}`;
     },
   },
 

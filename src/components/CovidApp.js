@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import "../styles/DarkModeButton.css";
 import MapSection from "./MapSection";
+import Barchart from "./Barchart";
 
 class CovidApp extends Component {
   constructor(props) {
@@ -140,8 +141,13 @@ class CovidApp extends Component {
                   isDarkMode={isDarkMode}
                 />
               </div>
-              <div></div>
             </div>
+            {/* <Barchart
+              data={this.state.data}
+              isLoading={this.state.isLoading}
+              dataKey="confirmed"
+              stroke={colors.red}
+            /> */}
             <div className={classes.chartArea}>
               <div className={classes.tinyChartArea}>
                 <div className={classes.tinyChart}>
@@ -149,56 +155,56 @@ class CovidApp extends Component {
                     className={classes.tinych}
                     style={{ background: "rgba(249, 52, 94,.1)" }}
                   >
-                    <TinyCharts
+                    <h3 style={{ color: colors.red }}>confirmed</h3>
+                    <Barchart
                       data={this.state.data}
                       isLoading={this.state.isLoading}
                       dataKey="confirmed"
                       stroke={colors.red}
                     />
                   </div>
-                  <h3 style={{ color: colors.red }}>confirmed</h3>
                 </div>
                 <div className={classes.tinyChart}>
                   <div
                     className={classes.tinych}
                     style={{ background: "rgba(250, 100, 0,.1)" }}
                   >
-                    <TinyCharts
+                    <h3 style={{ color: colors.orange }}>active</h3>
+                    <Barchart
                       data={this.state.data}
                       isLoading={this.state.isLoading}
                       dataKey="active"
                       stroke={colors.orange}
                     />
                   </div>
-                  <h3 style={{ color: colors.orange }}>active</h3>
                 </div>
                 <div className={classes.tinyChart}>
                   <div
                     className={classes.tinych}
                     style={{ background: "rgba(28, 177, 66,.1)" }}
                   >
-                    <TinyCharts
+                    <h3 style={{ color: colors.green }}>Recovered</h3>
+                    <Barchart
                       data={this.state.data}
                       isLoading={this.state.isLoading}
                       dataKey="discharged"
                       stroke={colors.green}
                     />
                   </div>
-                  <h3 style={{ color: colors.green }}>Recovered</h3>
                 </div>
                 <div className={classes.tinyChart}>
                   <div
                     className={classes.tinych}
                     style={{ background: "rgba(98, 54, 255,.1)" }}
                   >
-                    <TinyCharts
+                    <h3 style={{ color: colors.purple }}>Deceased</h3>
+                    <Barchart
                       data={this.state.data}
                       isLoading={this.state.isLoading}
                       dataKey="deaths"
                       stroke={colors.purple}
                     />
                   </div>
-                  <h3 style={{ color: colors.purple }}>Deceased</h3>
                 </div>
               </div>
               <Charts data={this.state.data} isLoading={this.state.isLoading} />
