@@ -4,7 +4,6 @@ import { withStyles } from "@material-ui/styles";
 import colors from "../constants/colors";
 import Charts from "./Charts";
 import DisplayTable from "./DisplayTable";
-import TinyCharts from "./TinyCharts";
 import styles from "../styles/CovidAppStyles";
 import axios from "axios";
 import stateCodes from "../constants/stateCodes";
@@ -142,13 +141,8 @@ class CovidApp extends Component {
                 />
               </div>
             </div>
-            {/* <Barchart
-              data={this.state.data}
-              isLoading={this.state.isLoading}
-              dataKey="confirmed"
-              stroke={colors.red}
-            /> */}
             <div className={classes.chartArea}>
+              <Charts data={this.state.data} isLoading={this.state.isLoading} />
               <div className={classes.tinyChartArea}>
                 <div className={classes.tinyChart}>
                   <div
@@ -207,7 +201,6 @@ class CovidApp extends Component {
                   </div>
                 </div>
               </div>
-              <Charts data={this.state.data} isLoading={this.state.isLoading} />
             </div>
             <div className={classes.tableContainer}>
               <h2 className={classes.tableHeading}>

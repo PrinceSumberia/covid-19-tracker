@@ -5,6 +5,7 @@ export default {
     display: "flex",
     alignItems: "center",
   },
+
   heading: {
     fontWeight: "500",
     color: (props) =>
@@ -16,6 +17,7 @@ export default {
       marginRight: "1rem",
     },
   },
+
   content: {
     backgroundColor: (props) => (props.isDarkMode ? colors.darkPurple : "#fff"),
     borderRadius: "2rem",
@@ -25,17 +27,22 @@ export default {
     flexDirection: "column",
     justifyContent: "center",
   },
+
   contentArea: {
     display: "flex",
   },
+
   mapArea: {
     flex: "1",
   },
+
   chartArea: {
     minWidth: "50%",
     display: "flex",
     justifyContent: "center",
+    flexDirection: "column",
   },
+
   tableContainer: {
     padding: "2rem",
     margin: "5rem 0",
@@ -50,14 +57,15 @@ export default {
   tinyChartArea: {
     display: "flex",
     flexWrap: "wrap",
-    padding: "2rem",
-    justifyContent: "space-around",
+    padding: "2rem 2rem",
+    justifyContent: "space-evenly",
     alignItems: "center",
-    marginTop: "3rem",
+    marginTop: "5rem",
   },
 
   tinyChart: {
-    margin: "2rem",
+    // width: "50%",
+    margin: "2.5rem",
     "& h3": {
       textTransform: "capitalize",
       fontWeight: 500,
@@ -67,9 +75,9 @@ export default {
   },
 
   tinych: {
-    borderRadius: "2rem",
-    marginBottom: "2rem",
-    padding: "2rem",
+    borderRadius: ".5rem",
+    marginBottom: ".5rem",
+    padding: "1rem",
   },
 
   refreshIcon: {
