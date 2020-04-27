@@ -42,6 +42,7 @@ const useSortableData = (items, config = null) => {
 
 const DisplayTable = ({ tableData, isDarkMode }) => {
   const { items, requestSort, sortConfig } = useSortableData(tableData);
+  // console.log(tableData);
   const [displayDist, setDisplayDist] = useState(false);
   const [distId, setDistId] = useState("");
 
@@ -61,9 +62,7 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
     setDisplayDist(!displayDist);
   };
 
-  useEffect(() => {
-    console.log(distId, displayDist);
-  }, [distId, displayDist]);
+  useEffect(() => {}, [distId, displayDist]);
 
   return (
     <table>
@@ -127,16 +126,25 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
                     ? faArrowCircleDown
                     : faArrowCircleRight
                 }
-                className="but"
                 onClick={() => toggleDistView(item.id)}
               />{" "}
               {item.name}
             </td>
+
             <td style={lightText}>{item.confirmed}</td>
             <td style={lightText}>{item.active}</td>
             <td style={lightText}>{item.discharged}</td>
             <td style={lightText}>{item.deaths}</td>
           </tr>
+          /* {distId === item.id && displayDist ? (
+              <tr>
+                <td style={lightText}>{item.name}</td>
+                <td style={lightText}>{item.confirmed}</td>
+                <td style={lightText}>{item.active}</td>
+                <td style={lightText}>{item.discharged}</td>
+                <td style={lightText}>{item.deaths}</td>
+              </tr>
+            ) : null} */
         ))}
       </tbody>
     </table>

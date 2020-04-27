@@ -28,11 +28,8 @@ class MapSection extends Component {
     const stateName = location.replace(" & ", " and ");
     const data = this.props.data.slice(-1)[0].regional;
     const previousData = this.props.data.slice(-2, -1)[0].regional;
-
-    console.log(data);
-    console.log(previousData);
-
     const updatedData = data.filter((el) => el.loc === stateName);
+
     const previousUpdatedData = previousData.filter(
       (el) => el.loc === stateName
     );
