@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 
 export default class Barchart extends Component {
   render() {

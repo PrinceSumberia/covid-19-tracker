@@ -119,7 +119,11 @@ class CovidApp extends Component {
           </div>
           <div className="darkModeButton">
             <label className="switch">
-              <input type="checkbox" onChange={setDarkMode} />
+              <input
+                type="checkbox"
+                onChange={setDarkMode}
+                checked={isDarkMode}
+              />
               <span className="slider round"></span>
             </label>
           </div>

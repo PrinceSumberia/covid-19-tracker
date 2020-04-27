@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from "recharts";
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend } from "recharts";
 import colors from "../constants/colors";
 import "../styles/Charts.css";
 
