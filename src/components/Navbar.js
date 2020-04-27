@@ -19,7 +19,7 @@ class Navbar extends Component {
           <li className={classes.navItem}>
             <NavLink
               exact
-              to={process.env.PUBLIC_URL + "/"}
+              to="/"
               className={classes.navLinks}
               activeClassName={classes.active}
             >
@@ -32,7 +32,7 @@ class Navbar extends Component {
           <li className={classes.navItem}>
             <NavLink
               exact
-              to={process.env.PUBLIC_URL + "/symptoms"}
+              to="/symptoms"
               className={classes.navLinks}
               activeClassName={classes.active}
             >
@@ -48,7 +48,7 @@ class Navbar extends Component {
           <li className={classes.navItem}>
             <NavLink
               exact
-              to={process.env.PUBLIC_URL + "/stay-safe"}
+              to="/stay-safe"
               className={classes.navLinks}
               activeClassName={classes.active}
             >
@@ -61,7 +61,7 @@ class Navbar extends Component {
           <li className={classes.navItem}>
             <NavLink
               exact
-              to={process.env.PUBLIC_URL + "/help"}
+              to="/help"
               className={classes.navLinks}
               activeClassName={classes.active}
             >

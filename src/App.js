@@ -30,7 +30,7 @@ class App extends Component {
             <Switch>
               <Route
                 exact
-                path={process.env.PUBLIC_URL + "/"}
+                path="/"
                 render={() => (
                   <CovidApp
                     setDarkMode={this.setDarkMode}
@@ -38,23 +38,15 @@ class App extends Component {
                   />
                 )}
               />
+              <Route exact path="/symptoms" render={() => <h1>symptoms</h1>} />
               <Route
                 exact
-                path={process.env.PUBLIC_URL + "/symptoms"}
-                render={() => <h1>symptoms</h1>}
-              />
-              <Route
-                exact
-                path={process.env.PUBLIC_URL + "/stay-safe"}
+                path="/stay-safe"
                 render={() => <h1>Stay Safe</h1>}
               />
+              <Route exact path="/help" render={() => <h1>Help Page</h1>} />
               <Route
-                exact
-                path={process.env.PUBLIC_URL + "/help"}
-                render={() => <h1>Help Page</h1>}
-              />
-              <Route
-                path={process.env.PUBLIC_URL + "/"}
+                path="/"
                 render={() => (
                   <CovidApp
                     setDarkMode={this.setDarkMode}
