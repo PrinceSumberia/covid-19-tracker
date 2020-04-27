@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowCircleRight,
+  faArrowCircleDown,
+} from "@fortawesome/free-solid-svg-icons";
 import "../styles/DisplayTable.css";
 
 const useSortableData = (items, config = null) => {
@@ -37,15 +42,29 @@ const useSortableData = (items, config = null) => {
 
 const DisplayTable = ({ tableData, isDarkMode }) => {
   const { items, requestSort, sortConfig } = useSortableData(tableData);
+  const [displayDist, setDisplayDist] = useState(false);
+  const [distId, setDistId] = useState("");
+
   const lightText = {
     color: isDarkMode && "rgba(255,255,255,.75)",
   };
+
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
       return;
     }
     return sortConfig.key === name ? sortConfig.direction : undefined;
   };
+
+  const toggleDistView = (id) => {
+    setDistId(id);
+    setDisplayDist(!displayDist);
+  };
+
+  useEffect(() => {
+    console.log(distId, displayDist);
+  }, [distId, displayDist]);
+
   return (
     <table>
       {/* <caption>Products</caption> */}
@@ -101,7 +120,18 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
       <tbody>
         {items.map((item) => (
           <tr key={item.id}>
-            <td style={lightText}>{item.name}</td>
+            <td style={lightText}>
+              <FontAwesomeIcon
+                icon={
+                  distId === item.id && displayDist
+                    ? faArrowCircleDown
+                    : faArrowCircleRight
+                }
+                className="but"
+                onClick={() => toggleDistView(item.id)}
+              />{" "}
+              {item.name}
+            </td>
             <td style={lightText}>{item.confirmed}</td>
             <td style={lightText}>{item.active}</td>
             <td style={lightText}>{item.discharged}</td>

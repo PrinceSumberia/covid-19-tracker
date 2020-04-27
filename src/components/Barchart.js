@@ -4,7 +4,6 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 export default class Barchart extends Component {
   render() {
     const { data, isLoading, dataKey, stroke } = this.props;
-    // const updatedData = data.slice(25, -1);
     const result = data.map((dataItem) => {
       return {
         date: dataItem.day.slice(5),
@@ -27,7 +26,6 @@ export default class Barchart extends Component {
             <XAxis dataKey="date" />
             <YAxis />
             <Tooltip />
-            {/* <Legend /> */}
             <Bar dataKey={dataKey} fill={stroke} />
           </BarChart>
         )}
