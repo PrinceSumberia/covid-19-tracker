@@ -1,7 +1,7 @@
 # COVID-19 Tracker
 
-##Project Setup
+## Project Setup
 npm install
 
-##Run Locally
+## Run Locally
 npm start
