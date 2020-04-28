@@ -152,3 +152,4 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
 };
 
 export default DisplayTable;
+
