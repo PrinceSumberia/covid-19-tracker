@@ -56,12 +56,8 @@ class CovidApp extends Component {
         const stateChanges = responses[2].data;
 
         const [data] = countryData.cases_time_series.slice(-1);
-        console.log(data);
 
-        this.setState({ todayData: data });
-        // use/access the results
-        // console.log(data);
-        // console.log(responseOne, responseTwo, responesThree);
+        this.setState({ todayData: data, isLoading: false });
       })
     );
 
@@ -122,45 +118,49 @@ class CovidApp extends Component {
     const { classes, setDarkMode, isDarkMode } = this.props;
     const { mapData, tableData, isLoading, data } = this.state;
 
+    if (isLoading) {
+      return (
+        <div className={classes.loadingIcon}>
+          <FontAwesomeIcon icon={faSyncAlt} className={classes.refreshIcon} />
+        </div>
+      );
+    }
+
     return (
-      <Overview
-        isDarkMode={isDarkMode}
-        data={this.state.todayData}
-        loadingStatus={this.loadingStatus}
-      />
+      <>
+        <div className={classes.header}>
+          <h1 className={classes.heading}>
+            <span>Covid-19</span> India Trend
+          </h1>
+          <div className={classes.btnBox}>
+            <FontAwesomeIcon
+              icon={faSyncAlt}
+              className={classes.button}
+              onClick={this.fetchData}
+            />
+          </div>
+          <div className="darkModeButton">
+            <label className="switch">
+              <input
+                type="checkbox"
+                onChange={setDarkMode}
+                checked={isDarkMode}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+        </div>
+        <Overview
+          isDarkMode={isDarkMode}
+          data={this.state.todayData}
+          loadingStatus={this.loadingStatus}
+        />
+      </>
     );
 
-    // if (isLoading) {
-    //   return (
-    //     <div className={classes.loadingIcon}>
-    //       <FontAwesomeIcon icon={faSyncAlt} className={classes.refreshIcon} />
-    //     </div>
-    //   );
-    // }
     // return (
     //   <>
-    //     <div className={classes.header}>
-    //       <h1 className={classes.heading}>
-    //         <span>Covid-19</span> India Trend
-    //       </h1>
-    //       <div className={classes.btnBox}>
-    //         <FontAwesomeIcon
-    //           icon={faSyncAlt}
-    //           className={classes.button}
-    //           onClick={this.fetchData}
-    //         />
-    //       </div>
-    //       <div className="darkModeButton">
-    //         <label className="switch">
-    //           <input
-    //             type="checkbox"
-    //             onChange={setDarkMode}
-    //             checked={isDarkMode}
-    //           />
-    //           <span className="slider round"></span>
-    //         </label>
-    //       </div>
-    //     </div>
+
     //     <Overview
     //       isDarkMode={isDarkMode}
     //       data={this.state.data}
