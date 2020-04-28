@@ -19,6 +19,7 @@ class CovidApp extends Component {
 
     this.state = {
       data: [],
+      todayData: {},
       isLoading: false,
       mapData: [],
       tableData: [],
@@ -50,12 +51,17 @@ class CovidApp extends Component {
 
     axios.all([countryData, districtLevel, stateChanges]).then(
       axios.spread((...responses) => {
-        const responseOne = responses[0].data;
-        const responseTwo = responses[1].data;
-        const responesThree = responses[2].data;
+        const countryData = responses[0].data;
+        const districtLevel = responses[1].data;
+        const stateChanges = responses[2].data;
 
+        const [data] = countryData.cases_time_series.slice(-1);
+        console.log(data);
+
+        this.setState({ todayData: data });
         // use/access the results
-        console.log(responseOne, responseTwo, responesThree);
+        // console.log(data);
+        // console.log(responseOne, responseTwo, responesThree);
       })
     );
 
@@ -116,7 +122,13 @@ class CovidApp extends Component {
     const { classes, setDarkMode, isDarkMode } = this.props;
     const { mapData, tableData, isLoading, data } = this.state;
 
-    return null;
+    return (
+      <Overview
+        isDarkMode={isDarkMode}
+        data={this.state.todayData}
+        loadingStatus={this.loadingStatus}
+      />
+    );
 
     // if (isLoading) {
     //   return (
