@@ -57,6 +57,8 @@ class CovidApp extends Component {
 
         const [data] = countryData.cases_time_series.slice(-1);
 
+        console.log(countryData.statewise.slice(1, -1));
+
         this.setState({ todayData: data, isLoading: false });
       })
     );
@@ -70,13 +72,25 @@ class CovidApp extends Component {
     // );
   }
 
+  // active: "22569";
+  // confirmed: "31324";
+  // deaths: "1008";
+  // deltaconfirmed: "1866";
+  // deltadeaths: "69";
+  // deltarecovered: "610";
+  // lastupdatedtime: "29/04/2020 02:50:45";
+  // recovered: "7747";
+  // state: "Total";
+  // statecode: "TT";
+  // statenotes: "";
+
   formatData(data) {
     const newArr = data.slice(-1).map((data) => data.regional);
     const formatedData = newArr.flat().map((region, i) => {
       return {
-        id: this.findId(region.loc),
+        id: this.findId(region.state),
         state: region.loc.replace(" and ", " & "),
-        value: region.totalConfirmed,
+        value: region.confirmed,
       };
     });
     return formatedData;
@@ -155,100 +169,86 @@ class CovidApp extends Component {
           data={this.state.todayData}
           loadingStatus={this.loadingStatus}
         />
+        <div className={classes.content}>
+          {/* <div className={classes.contentArea}>
+            <div className={classes.mapArea}>
+              <MapSection
+                mapData={mapData}
+                data={data}
+                isDarkMode={isDarkMode}
+              />
+            </div>
+          </div> */}
+          {/* <div className={classes.chartArea}>
+            <Charts data={this.state.data} isLoading={this.state.isLoading} />
+            <div className={classes.tinyChartArea}>
+              <div className={classes.tinyChart}>
+                <div
+                  className={classes.tinych}
+                  style={{ background: "rgba(249, 52, 94,.1)" }}
+                >
+                  <h3 style={{ color: colors.red }}>confirmed</h3>
+                  <Barchart
+                    data={this.state.data}
+                    isLoading={this.state.isLoading}
+                    dataKey="confirmed"
+                    stroke={colors.red}
+                  />
+                </div>
+              </div>
+              <div className={classes.tinyChart}>
+                <div
+                  className={classes.tinych}
+                  style={{ background: "rgba(250, 100, 0,.1)" }}
+                >
+                  <h3 style={{ color: colors.orange }}>active</h3>
+                  <Barchart
+                    data={this.state.data}
+                    isLoading={this.state.isLoading}
+                    dataKey="active"
+                    stroke={colors.orange}
+                  />
+                </div>
+              </div>
+              <div className={classes.tinyChart}>
+                <div
+                  className={classes.tinych}
+                  style={{ background: "rgba(28, 177, 66,.1)" }}
+                >
+                  <h3 style={{ color: colors.green }}>Recovered</h3>
+                  <Barchart
+                    data={this.state.data}
+                    isLoading={this.state.isLoading}
+                    dataKey="discharged"
+                    stroke={colors.green}
+                  />
+                </div>
+              </div>
+              <div className={classes.tinyChart}>
+                <div
+                  className={classes.tinych}
+                  style={{ background: "rgba(98, 54, 255,.1)" }}
+                >
+                  <h3 style={{ color: colors.purple }}>Deceased</h3>
+                  <Barchart
+                    data={this.state.data}
+                    isLoading={this.state.isLoading}
+                    dataKey="deaths"
+                    stroke={colors.purple}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={classes.tableContainer}>
+            <h2 className={classes.tableHeading}>
+              State/UT Wise Data (Sortable){" "}
+            </h2>
+            <DisplayTable tableData={tableData} isDarkMode={isDarkMode} />
+          </div> */}
+        </div>
       </>
     );
-
-    // return (
-    //   <>
-
-    //     <Overview
-    //       isDarkMode={isDarkMode}
-    //       data={this.state.data}
-    //       loadingStatus={this.loadingStatus}
-    //     />
-    //     {!this.state.isLoading && (
-    //       <div className={classes.content}>
-    //         <div className={classes.contentArea}>
-    //           <div className={classes.mapArea}>
-    //             {/* <Map mapData={mapData} /> */}
-    //             <MapSection
-    //               mapData={mapData}
-    //               data={data}
-    //               isDarkMode={isDarkMode}
-    //             />
-    //           </div>
-    //         </div>
-    //         <div className={classes.chartArea}>
-    //           <Charts data={this.state.data} isLoading={this.state.isLoading} />
-    //           <div className={classes.tinyChartArea}>
-    //             <div className={classes.tinyChart}>
-    //               <div
-    //                 className={classes.tinych}
-    //                 style={{ background: "rgba(249, 52, 94,.1)" }}
-    //               >
-    //                 <h3 style={{ color: colors.red }}>confirmed</h3>
-    //                 <Barchart
-    //                   data={this.state.data}
-    //                   isLoading={this.state.isLoading}
-    //                   dataKey="confirmed"
-    //                   stroke={colors.red}
-    //                 />
-    //               </div>
-    //             </div>
-    //             <div className={classes.tinyChart}>
-    //               <div
-    //                 className={classes.tinych}
-    //                 style={{ background: "rgba(250, 100, 0,.1)" }}
-    //               >
-    //                 <h3 style={{ color: colors.orange }}>active</h3>
-    //                 <Barchart
-    //                   data={this.state.data}
-    //                   isLoading={this.state.isLoading}
-    //                   dataKey="active"
-    //                   stroke={colors.orange}
-    //                 />
-    //               </div>
-    //             </div>
-    //             <div className={classes.tinyChart}>
-    //               <div
-    //                 className={classes.tinych}
-    //                 style={{ background: "rgba(28, 177, 66,.1)" }}
-    //               >
-    //                 <h3 style={{ color: colors.green }}>Recovered</h3>
-    //                 <Barchart
-    //                   data={this.state.data}
-    //                   isLoading={this.state.isLoading}
-    //                   dataKey="discharged"
-    //                   stroke={colors.green}
-    //                 />
-    //               </div>
-    //             </div>
-    //             <div className={classes.tinyChart}>
-    //               <div
-    //                 className={classes.tinych}
-    //                 style={{ background: "rgba(98, 54, 255,.1)" }}
-    //               >
-    //                 <h3 style={{ color: colors.purple }}>Deceased</h3>
-    //                 <Barchart
-    //                   data={this.state.data}
-    //                   isLoading={this.state.isLoading}
-    //                   dataKey="deaths"
-    //                   stroke={colors.purple}
-    //                 />
-    //               </div>
-    //             </div>
-    //           </div>
-    //         </div>
-    //         <div className={classes.tableContainer}>
-    //           <h2 className={classes.tableHeading}>
-    //             State/UT Wise Data (Sortable){" "}
-    //           </h2>
-    //           <DisplayTable tableData={tableData} isDarkMode={isDarkMode} />
-    //         </div>
-    //       </div>
-    //     )}
-    //   </>
-    // );
   }
 }
 
