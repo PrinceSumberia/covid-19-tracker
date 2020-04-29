@@ -65,6 +65,13 @@ class MapSection extends Component {
         deaths: "NA",
         recovered: "NA",
         active: "NA",
+        changed: {
+          title: "",
+          confirmed: "-",
+          deaths: "-",
+          recovered: "-",
+          active: "-",
+        },
       });
     }
   }
