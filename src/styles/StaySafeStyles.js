@@ -8,8 +8,9 @@ export default {
   },
   cardsBox: {
     display: "flex",
+    width: "100%",
     flexWrap: "wrap",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "space-around",
+    alignItems: "stretch",
   },
 };

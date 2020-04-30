@@ -54,7 +54,7 @@ class Navbar extends Component {
             >
               <div className={classes.iconBox}>
                 <FontAwesomeIcon icon={faFlask} className={classes.icons} />
-                <p>Test Yourself</p>
+                <p>Prevention</p>
               </div>
             </NavLink>
           </li>
