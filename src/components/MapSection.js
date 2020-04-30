@@ -59,9 +59,7 @@ class MapSection extends Component {
                   previousUpdatedData[0].deaths)),
           },
         });
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     } else {
       this.setState({
         title: stateName,
