@@ -35,29 +35,33 @@ class MapSection extends Component {
     );
 
     if (updatedData[0]) {
-      this.setState({
-        title: stateName,
-        confirmed: updatedData[0].totalConfirmed,
-        deaths: updatedData[0].deaths,
-        recovered: updatedData[0].discharged,
-        active:
-          updatedData[0].totalConfirmed -
-          (updatedData[0].discharged + updatedData[0].deaths),
-        changed: {
-          confirmed:
-            updatedData[0].totalConfirmed -
-            previousUpdatedData[0].totalConfirmed,
-          deaths: updatedData[0].deaths - previousUpdatedData[0].deaths,
-          recovered:
-            updatedData[0].discharged - previousUpdatedData[0].discharged,
+      try {
+        this.setState({
+          title: stateName,
+          confirmed: updatedData[0].totalConfirmed,
+          deaths: updatedData[0].deaths,
+          recovered: updatedData[0].discharged,
           active:
             updatedData[0].totalConfirmed -
-            (updatedData[0].discharged + updatedData[0].deaths) -
-            (previousUpdatedData[0].totalConfirmed -
-              (previousUpdatedData[0].discharged +
-                previousUpdatedData[0].deaths)),
-        },
-      });
+            (updatedData[0].discharged + updatedData[0].deaths),
+          changed: {
+            confirmed:
+              updatedData[0].totalConfirmed -
+              previousUpdatedData[0].totalConfirmed,
+            deaths: updatedData[0].deaths - previousUpdatedData[0].deaths,
+            recovered:
+              updatedData[0].discharged - previousUpdatedData[0].discharged,
+            active:
+              updatedData[0].totalConfirmed -
+              (updatedData[0].discharged + updatedData[0].deaths) -
+              (previousUpdatedData[0].totalConfirmed -
+                (previousUpdatedData[0].discharged +
+                  previousUpdatedData[0].deaths)),
+          },
+        });
+      } catch (err) {
+        console.log(err);
+      }
     } else {
       this.setState({
         title: stateName,
