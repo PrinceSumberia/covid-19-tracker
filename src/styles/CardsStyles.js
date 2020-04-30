@@ -1,5 +1,6 @@
 export default {
   card: {
+    width: "100%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
