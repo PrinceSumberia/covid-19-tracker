@@ -13,77 +13,57 @@ class MapSection extends Component {
       deaths: "-",
       recovered: "-",
       active: "-",
-      changed: {
-        title: "",
-        confirmed: "-",
-        deaths: "-",
-        recovered: "-",
-        active: "-",
-      },
     };
     this.currentLocation = this.currentLocation.bind(this);
   }
 
+  // active: "390";
+  // confirmed: "614";
+  // deaths: "8";
+  // deltaconfirmed: "0";
+  // deltadeaths: "0";
+  // deltarecovered: "0";
+  // lastupdatedtime: "30/04/2020 19:12:47";
+  // recovered: "216";
+  // state: "Jammu and Kashmir";
+  // statecode: "JK";
+  // statenotes: "";
+
   currentLocation(location) {
     const stateName = location.replace(" & ", " and ");
-    const data = this.props.data.slice(-1)[0].regional;
-    const previousData = this.props.data.slice(-2, -1)[0].regional;
-    const updatedData = data.filter((el) => el.loc === stateName);
 
-    const previousUpdatedData = previousData.filter(
-      (el) => el.loc === stateName
+    const [updatedData] = this.props.data.filter(
+      (el) => el.state === stateName
     );
 
-    if (updatedData[0]) {
-      try {
-        this.setState({
-          title: stateName,
-          confirmed: updatedData[0].totalConfirmed,
-          deaths: updatedData[0].deaths,
-          recovered: updatedData[0].discharged,
-          active:
-            updatedData[0].totalConfirmed -
-            (updatedData[0].discharged + updatedData[0].deaths),
-          changed: {
-            confirmed:
-              updatedData[0].totalConfirmed -
-              previousUpdatedData[0].totalConfirmed,
-            deaths: updatedData[0].deaths - previousUpdatedData[0].deaths,
-            recovered:
-              updatedData[0].discharged - previousUpdatedData[0].discharged,
-            active:
-              updatedData[0].totalConfirmed -
-              (updatedData[0].discharged + updatedData[0].deaths) -
-              (previousUpdatedData[0].totalConfirmed -
-                (previousUpdatedData[0].discharged +
-                  previousUpdatedData[0].deaths)),
-          },
-        });
-      } catch (err) {}
-    } else {
+    try {
       this.setState({
-        title: stateName,
-        confirmed: "NA",
-        deaths: "NA",
-        recovered: "NA",
-        active: "NA",
-        changed: {
-          title: "",
-          confirmed: "-",
-          deaths: "-",
-          recovered: "-",
-          active: "-",
-        },
+        ...updatedData,
+        deltaactive:
+          Number(updatedData.deltaconfirmed) -
+          (Number(updatedData.deltarecovered) +
+            Number(updatedData.deltadeaths)),
       });
-    }
+    } catch (error) {}
   }
 
   render() {
     const { classes, mapData, isDarkMode } = this.props;
-    const { confirmed, deaths, recovered, active, title, changed } = this.state;
+    const {
+      confirmed,
+      deaths,
+      recovered,
+      active,
+      state,
+      deltaconfirmed,
+      deltadeaths,
+      deltarecovered,
+      deltaactive,
+    } = this.state;
+
     return (
       <div className={classes.mainContainer}>
-        <h4 className={classes.heading}>State/UT: {title}</h4>
+        <h4 className={classes.heading}>State/UT: {state}</h4>
         <p className={classes.para}>
           hover over the states in the map to view the stats
         </p>
@@ -94,7 +74,7 @@ class MapSection extends Component {
                 title="Confirmed"
                 number={confirmed}
                 isDarkMode={isDarkMode}
-                dataChange={changed.confirmed}
+                dataChange={deltaconfirmed}
                 isMiniPanel={true}
               />
             </div>
@@ -103,7 +83,7 @@ class MapSection extends Component {
                 title="Active"
                 number={active}
                 isDarkMode={isDarkMode}
-                dataChange={changed.active}
+                dataChange={deltaactive}
                 isMiniPanel={true}
               />
             </div>
@@ -112,7 +92,7 @@ class MapSection extends Component {
                 title="Recovered"
                 number={recovered}
                 isDarkMode={isDarkMode}
-                dataChange={changed.recovered}
+                dataChange={deltarecovered}
                 isMiniPanel={true}
               />
             </div>
@@ -121,7 +101,7 @@ class MapSection extends Component {
                 title="Deceased"
                 number={deaths}
                 isDarkMode={isDarkMode}
-                dataChange={changed.deaths}
+                dataChange={deltadeaths}
                 isMiniPanel={true}
               />
             </div>

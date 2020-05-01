@@ -22,7 +22,7 @@ export default {
   Rajasthan: "RJ",
   Sikkim: "SK",
   "Tamil Nadu": "TN",
-  Telengana: "TG",
+  Telangana: "TG",
   Tripura: "TR",
   Uttarakhand: "UT",
   "Uttar Pradesh": "UP",

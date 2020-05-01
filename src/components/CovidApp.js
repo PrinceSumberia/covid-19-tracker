@@ -6,12 +6,12 @@ import Charts from "./Charts";
 import DisplayTable from "./DisplayTable";
 import styles from "../styles/CovidAppStyles";
 import axios from "axios";
-import stateCodes from "../constants/stateCodes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import "../styles/DarkModeButton.css";
 import MapSection from "./MapSection";
 import Barchart from "./Barchart";
+import stateCodes from "../constants/stateCodes";
 
 class CovidApp extends Component {
   constructor(props) {
@@ -54,12 +54,16 @@ class CovidApp extends Component {
         const countryData = responses[0].data;
         const districtLevel = responses[1].data;
         const stateChanges = responses[2].data;
+        // console.log(districtLevel);
 
-        const [data] = countryData.cases_time_series.slice(-1);
+        const [todayData] = countryData.cases_time_series.slice(-1);
 
-        console.log(countryData.statewise.slice(1, -1));
+        const data = countryData.statewise.slice(1, -1);
 
-        this.setState({ todayData: data, isLoading: false });
+        this.setState(
+          { data: data, todayData: todayData, isLoading: false },
+          this.handleFormat
+        );
       })
     );
 
@@ -85,15 +89,22 @@ class CovidApp extends Component {
   // statenotes: "";
 
   formatData(data) {
-    const newArr = data.slice(-1).map((data) => data.regional);
-    const formatedData = newArr.flat().map((region, i) => {
+    const formatedData = data.map((state, i) => {
       return {
-        id: this.findId(region.state),
-        state: region.loc.replace(" and ", " & "),
-        value: region.confirmed,
+        id: this.findId(state.state),
+        state: state.state.replace(" and ", " & "),
+        value: state.confirmed,
       };
     });
     return formatedData;
+  }
+
+  findId(location) {
+    for (let [key, value] of Object.entries(stateCodes)) {
+      if (location === key) {
+        return value;
+      }
+    }
   }
 
   tableData(data) {
@@ -114,18 +125,11 @@ class CovidApp extends Component {
     return newData;
   }
 
-  findId(location) {
-    for (let [key, value] of Object.entries(stateCodes)) {
-      if (location === key) {
-        return value;
-      }
-    }
-  }
-
   handleFormat() {
     const newdata = this.formatData(this.state.data);
-    const tableData = this.tableData(this.state.data);
-    this.setState({ mapData: newdata, tableData: tableData });
+    // const tableData = this.tableData(this.state.data);
+    // this.setState({ mapData: newdata, tableData: tableData });
+    this.setState({ mapData: newdata });
   }
 
   render() {
@@ -170,15 +174,15 @@ class CovidApp extends Component {
           loadingStatus={this.loadingStatus}
         />
         <div className={classes.content}>
-          {/* <div className={classes.contentArea}>
+          <div className={classes.contentArea}>
             <div className={classes.mapArea}>
               <MapSection
-                mapData={mapData}
                 data={data}
+                mapData={mapData}
                 isDarkMode={isDarkMode}
               />
             </div>
-          </div> */}
+          </div>
           {/* <div className={classes.chartArea}>
             <Charts data={this.state.data} isLoading={this.state.isLoading} />
             <div className={classes.tinyChartArea}>
