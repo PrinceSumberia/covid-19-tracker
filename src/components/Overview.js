@@ -6,19 +6,17 @@ import styles from "../styles/OverviewStyles";
 function Overview(props) {
   const { classes, isDarkMode } = props;
   const {
-    totalconfirmed,
-    totaldeceased,
-    totalrecovered,
-    dailyrecovered,
-    dailydeceased,
-    dailyconfirmed,
+    active,
+    confirmed,
+    deaths,
+    recovered,
+    deltaconfirmed,
+    deltadeaths,
+    deltarecovered,
   } = props.data;
 
-  const active =
-    Number(totalconfirmed) - (Number(totaldeceased) + Number(totalrecovered));
-
-  const dailyactive =
-    Number(dailyconfirmed) - (Number(dailydeceased) + Number(dailyrecovered));
+  const deltaActive =
+    Number(deltaconfirmed) - (Number(deltadeaths) + Number(deltarecovered));
 
   return (
     <div className={classes.root}>
@@ -26,9 +24,9 @@ function Overview(props) {
         <div className={classes.panelContainer}>
           <DisplayPanels
             title="Confirmed"
-            number={totalconfirmed}
+            number={confirmed}
             isDarkMode={isDarkMode}
-            dataChange={dailyconfirmed}
+            dataChange={deltaconfirmed}
           />
         </div>
         <div className={classes.panelContainer}>
@@ -36,23 +34,23 @@ function Overview(props) {
             title="Active"
             number={active}
             isDarkMode={isDarkMode}
-            dataChange={dailyactive}
+            dataChange={deltaActive}
           />
         </div>
         <div className={classes.panelContainer}>
           <DisplayPanels
             title="Recovered"
-            number={totalrecovered}
+            number={recovered}
             isDarkMode={isDarkMode}
-            dataChange={dailyrecovered}
+            dataChange={deltarecovered}
           />
         </div>
         <div className={classes.panelContainer}>
           <DisplayPanels
             title="Deceased"
-            number={totaldeceased}
+            number={deaths}
             isDarkMode={isDarkMode}
-            dataChange={dailydeceased}
+            dataChange={deltadeaths}
           />
         </div>
       </div>

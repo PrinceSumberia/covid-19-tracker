@@ -45,20 +45,22 @@ class CovidApp extends Component {
     const stateChanges = axios.get(
       "https://api.covid19india.org/states_daily.json"
     );
-    const response = await axios.get(
-      "https://api.rootnet.in/covid19-in/stats/history"
-    );
+    // const response = await axios.get(
+    //   "https://api.rootnet.in/covid19-in/stats/history"
+    // );
 
     axios.all([countryData, districtLevel, stateChanges]).then(
       axios.spread((...responses) => {
         const countryData = responses[0].data;
         const districtLevel = responses[1].data;
         const stateChanges = responses[2].data;
-        // console.log(districtLevel);
 
-        const [todayData] = countryData.cases_time_series.slice(-1);
+        const [todayData] = countryData.statewise.slice(0, 1);
 
         const data = countryData.statewise.slice(1, -1);
+
+        const todayActive = data.active;
+        const previousActive = countryData.cases_time_series;
 
         this.setState(
           { data: data, todayData: todayData, isLoading: false },
@@ -66,27 +68,7 @@ class CovidApp extends Component {
         );
       })
     );
-
-    // this.setState(
-    //   (st) => ({
-    //     data: response.data.data,
-    //     isLoading: !st.isLoading,
-    //   }),
-    //   this.handleFormat
-    // );
   }
-
-  // active: "22569";
-  // confirmed: "31324";
-  // deaths: "1008";
-  // deltaconfirmed: "1866";
-  // deltadeaths: "69";
-  // deltarecovered: "610";
-  // lastupdatedtime: "29/04/2020 02:50:45";
-  // recovered: "7747";
-  // state: "Total";
-  // statecode: "TT";
-  // statenotes: "";
 
   formatData(data) {
     const formatedData = data.map((state, i) => {
