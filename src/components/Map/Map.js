@@ -21,7 +21,7 @@ const PROJECTION_CONFIG = {
 const COLOR_RANGE = [
   "#ffedea",
   "#ffcec5",
-  "#ffbec5",
+  "#ffdec5",
   "#ffad9f",
   "#ff8a75",
   "#ff5533",

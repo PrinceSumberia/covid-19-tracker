@@ -45,9 +45,6 @@ class CovidApp extends Component {
     const stateChanges = axios.get(
       "https://api.covid19india.org/states_daily.json"
     );
-    // const response = await axios.get(
-    //   "https://api.rootnet.in/covid19-in/stats/history"
-    // );
 
     axios.all([countryData, districtLevel, stateChanges]).then(
       axios.spread((...responses) => {
@@ -56,14 +53,17 @@ class CovidApp extends Component {
         const stateChanges = responses[2].data;
 
         const [todayData] = countryData.statewise.slice(0, 1);
+        const casesTimeline = countryData.cases_time_series;
 
         const data = countryData.statewise.slice(1, -1);
 
-        const todayActive = data.active;
-        const previousActive = countryData.cases_time_series;
-
         this.setState(
-          { data: data, todayData: todayData, isLoading: false },
+          {
+            data: data,
+            todayData: todayData,
+            casesTimeline: casesTimeline,
+            isLoading: false,
+          },
           this.handleFormat
         );
       })
@@ -165,9 +165,12 @@ class CovidApp extends Component {
               />
             </div>
           </div>
-          {/* <div className={classes.chartArea}>
-            <Charts data={this.state.data} isLoading={this.state.isLoading} />
-            <div className={classes.tinyChartArea}>
+          <div className={classes.chartArea}>
+            <Charts
+              data={this.state.casesTimeline}
+              isLoading={this.state.isLoading}
+            />
+            {/* <div className={classes.tinyChartArea}>
               <div className={classes.tinyChart}>
                 <div
                   className={classes.tinych}
@@ -224,9 +227,9 @@ class CovidApp extends Component {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
-          <div className={classes.tableContainer}>
+          {/* <div className={classes.tableContainer}>
             <h2 className={classes.tableHeading}>
               State/UT Wise Data (Sortable){" "}
             </h2>

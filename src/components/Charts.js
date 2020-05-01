@@ -5,26 +5,28 @@ import "../styles/Charts.css";
 
 export default class Charts extends Component {
   render() {
-    const { data, isLoading } = this.props;
-    const result = data.map((dataItem) => {
-      return {
-        date: dataItem.day.slice(5),
-        ...dataItem.summary,
-        confirmed: dataItem.summary.total,
-        active:
-          dataItem.summary.total -
-          (dataItem.summary.discharged + dataItem.summary.deaths),
-      };
-    });
-    console.log(result);
+    const { isLoading, data } = this.props;
+    let result;
+    try {
+      result = data.map((dataItem) => {
+        return {
+          ...dataItem,
+          totalactive: String(
+            Number(dataItem.totalconfirmed) -
+              (Number(dataItem.totalrecovered) + Number(dataItem.totaldeceased))
+          ),
+        };
+      });
+    } catch (err) {}
+
     return (
       <div className="charts">
         {!isLoading && (
           <LineChart
+            dots={false}
             width={600}
             height={300}
             data={result}
-            dots={false}
             margin={{
               top: 5,
               right: 30,
@@ -34,7 +36,6 @@ export default class Charts extends Component {
           >
             <XAxis dataKey="date" />
             <YAxis />
-            {/* <CartesianGrid strokeDasharray="3 3" /> */}
             <Tooltip />
             <Legend
               wrapperStyle={{
@@ -43,13 +44,25 @@ export default class Charts extends Component {
             />
             <Line
               type="monotone"
-              dataKey="confirmed"
+              dataKey="totalconfirmed"
               stroke={colors.red}
               activeDot={{ r: 8 }}
             />
-            <Line type="monotone" dataKey="active" stroke={colors.orange} />
-            <Line type="monotone" dataKey="discharged" stroke={colors.green} />
-            <Line type="monotone" dataKey="deaths" stroke={colors.purple} />
+            <Line
+              type="monotone"
+              dataKey="totalactive"
+              stroke={colors.orange}
+            />
+            <Line
+              type="monotone"
+              dataKey="totalrecovered"
+              stroke={colors.green}
+            />
+            <Line
+              type="monotone"
+              dataKey="totaldeceased"
+              stroke={colors.purple}
+            />
           </LineChart>
         )}
       </div>
