@@ -16,6 +16,7 @@ export default class Charts extends Component {
           (dataItem.summary.discharged + dataItem.summary.deaths),
       };
     });
+    console.log(result);
     return (
       <div className="charts">
         {!isLoading && (

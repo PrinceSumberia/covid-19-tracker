@@ -7,6 +7,7 @@ class Help extends Component {
     return (
       <div>
         <h1>Help Page</h1>
+        <p>For Help Please Contact</p>
       </div>
     );
   }
