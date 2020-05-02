@@ -33,7 +33,6 @@ export default class Charts extends Component {
           <LineChart
             width={600}
             height={300}
-            dots={false}
             data={result}
             margin={{
               top: 5,
@@ -54,22 +53,26 @@ export default class Charts extends Component {
               type="monotone"
               dataKey="totalconfirmed"
               stroke={colors.red}
+              dot={false}
               activeDot={{ r: 8 }}
             />
             <Line
               type="monotone"
               dataKey="totalactive"
               stroke={colors.orange}
+              dot={false}
             />
             <Line
               type="monotone"
               dataKey="totalrecovered"
               stroke={colors.green}
+              dot={false}
             />
             <Line
               type="monotone"
               dataKey="totaldeceased"
               stroke={colors.purple}
+              dot={false}
             />
           </LineChart>
         )}
