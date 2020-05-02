@@ -17,18 +17,6 @@ class MapSection extends Component {
     this.currentLocation = this.currentLocation.bind(this);
   }
 
-  // active: "390";
-  // confirmed: "614";
-  // deaths: "8";
-  // deltaconfirmed: "0";
-  // deltadeaths: "0";
-  // deltarecovered: "0";
-  // lastupdatedtime: "30/04/2020 19:12:47";
-  // recovered: "216";
-  // state: "Jammu and Kashmir";
-  // statecode: "JK";
-  // statenotes: "";
-
   currentLocation(location) {
     const stateName = location.replace(" & ", " and ");
 
