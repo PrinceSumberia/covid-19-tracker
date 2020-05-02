@@ -41,8 +41,39 @@ const useSortableData = (items, config = null) => {
 };
 
 const DisplayTable = ({ tableData, isDarkMode }) => {
-  const { items, requestSort, sortConfig } = useSortableData(tableData);
-  // console.log(tableData);
+  let result;
+  // active: "2510";
+  // confirmed: "3738";
+  // deaths: "61";
+  // deltaconfirmed: "0";
+  // deltadeaths: "0";
+  // deltarecovered: "0";
+  // lastupdatedtime: "01/05/2020 21:22:46";
+  // recovered: "1167";
+  // state: "Delhi";
+  // statecode: "DL";
+  // statenotes: "";
+  try {
+    result = tableData.map((dataItem) => {
+      let newObject = {};
+      for (let [key, value] of Object.entries(dataItem)) {
+        if (
+          key === "lastupdatedtime" ||
+          key === "state" ||
+          key === "statecode" ||
+          key === "statenotes"
+        ) {
+          newObject[key] = value;
+        } else {
+          newObject[key] = Number(value);
+        }
+      }
+
+      return newObject;
+    });
+  } catch (err) {}
+
+  const { items, requestSort, sortConfig } = useSortableData(result);
   const [displayDist, setDisplayDist] = useState(false);
   const [distId, setDistId] = useState("");
 
