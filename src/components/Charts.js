@@ -26,7 +26,6 @@ export default class Charts extends Component {
         };
       });
     } catch (err) {}
-    console.log(result);
 
     return (
       <div className="charts">

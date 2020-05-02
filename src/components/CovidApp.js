@@ -29,7 +29,6 @@ class CovidApp extends Component {
     this.formatData = this.formatData.bind(this);
     this.findId = this.findId.bind(this);
     this.handleFormat = this.handleFormat.bind(this);
-    this.tableData = this.tableData.bind(this);
   }
 
   componentDidMount() {
@@ -49,8 +48,8 @@ class CovidApp extends Component {
     axios.all([countryData, districtLevel, stateChanges]).then(
       axios.spread((...responses) => {
         const countryData = responses[0].data;
-        const districtLevel = responses[1].data;
-        const stateChanges = responses[2].data;
+        // const districtLevel = responses[1].data;
+        // const stateChanges = responses[2].data;
 
         const [todayData] = countryData.statewise.slice(0, 1);
         const casesTimeline = countryData.cases_time_series;
@@ -89,35 +88,14 @@ class CovidApp extends Component {
     }
   }
 
-  tableData(data) {
-    const newArr = data
-      .slice(-1)
-      .map((data) => data.regional)
-      .flat();
-    const newData = newArr.map((region, i) => {
-      return {
-        id: region.loc,
-        name: region.loc,
-        deaths: region.deaths,
-        discharged: region.discharged,
-        confirmed: region.totalConfirmed,
-        active: region.totalConfirmed - (region.discharged + region.deaths),
-      };
-    });
-    return newData;
-  }
-
   handleFormat() {
     const newdata = this.formatData(this.state.data);
-    // const tableData = this.tableData(this.state.data);
-    // this.setState({ mapData: newdata, tableData: tableData });
     this.setState({ mapData: newdata });
   }
 
   render() {
     const { classes, setDarkMode, isDarkMode } = this.props;
-    const { mapData, tableData, isLoading, data } = this.state;
-    console.log(this.state.casesTimeline);
+    const { mapData, isLoading, data } = this.state;
 
     if (isLoading) {
       return (
@@ -230,12 +208,12 @@ class CovidApp extends Component {
               </div>
             </div>
           </div>
-          {/* <div className={classes.tableContainer}>
+          <div className={classes.tableContainer}>
             <h2 className={classes.tableHeading}>
               State/UT Wise Data (Sortable){" "}
             </h2>
-            <DisplayTable tableData={tableData} isDarkMode={isDarkMode} />
-          </div> */}
+            <DisplayTable tableData={data} isDarkMode={isDarkMode} />
+          </div>
         </div>
       </>
     );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowCircleRight,
@@ -62,8 +62,6 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
     setDisplayDist(!displayDist);
   };
 
-  useEffect(() => {}, [distId, displayDist]);
-
   return (
     <table>
       {/* <caption>Products</caption> */}
@@ -72,8 +70,8 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
           <th>
             <button
               type="button"
-              onClick={() => requestSort("name")}
-              className={getClassNamesFor("name")}
+              onClick={() => requestSort("state")}
+              className={getClassNamesFor("state")}
             >
               Name
             </button>
@@ -99,8 +97,8 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
           <th>
             <button
               type="button"
-              onClick={() => requestSort("discharged")}
-              className={getClassNamesFor("discharged")}
+              onClick={() => requestSort("recovered")}
+              className={getClassNamesFor("recovered")}
             >
               Recovered
             </button>
@@ -118,22 +116,23 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
       </thead>
       <tbody>
         {items.map((item) => (
-          <tr key={item.id}>
+          <tr key={item.statecode}>
             <td style={lightText}>
               <FontAwesomeIcon
                 icon={
-                  distId === item.id && displayDist
+                  distId === item.statecode && displayDist
                     ? faArrowCircleDown
                     : faArrowCircleRight
                 }
-                onClick={() => toggleDistView(item.id)}
+                className=""
+                onClick={() => toggleDistView(item.statecode)}
               />{" "}
-              {item.name}
+              {item.state}
             </td>
 
             <td style={lightText}>{item.confirmed}</td>
             <td style={lightText}>{item.active}</td>
-            <td style={lightText}>{item.discharged}</td>
+            <td style={lightText}>{item.recovered}</td>
             <td style={lightText}>{item.deaths}</td>
           </tr>
           /* {distId === item.id && displayDist ? (
@@ -152,4 +151,3 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
 };
 
 export default DisplayTable;
-
