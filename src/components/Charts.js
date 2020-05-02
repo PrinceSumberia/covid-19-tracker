@@ -8,24 +8,33 @@ export default class Charts extends Component {
     const { isLoading, data } = this.props;
     let result;
     try {
-      result = data.map((dataItem) => {
+      const updatedData = data.slice(1).slice(-50);
+      result = updatedData.map((dataItem) => {
+        let newObject = {};
+        for (let [key, value] of Object.entries(dataItem)) {
+          if (key === "date") {
+            newObject[key] = value;
+          } else {
+            newObject[key] = Number(value);
+          }
+        }
         return {
-          ...dataItem,
-          totalactive: String(
-            Number(dataItem.totalconfirmed) -
-              (Number(dataItem.totalrecovered) + Number(dataItem.totaldeceased))
-          ),
+          ...newObject,
+          totalactive:
+            newObject.totalconfirmed -
+            (newObject.totalrecovered + newObject.totaldeceased),
         };
       });
     } catch (err) {}
+    console.log(result);
 
     return (
       <div className="charts">
         {!isLoading && (
           <LineChart
-            dots={false}
             width={600}
             height={300}
+            dots={false}
             data={result}
             margin={{
               top: 5,

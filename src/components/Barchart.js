@@ -4,16 +4,27 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 export default class Barchart extends Component {
   render() {
     const { data, isLoading, dataKey, stroke } = this.props;
-    const result = data.map((dataItem) => {
-      return {
-        date: dataItem.day.slice(5),
-        ...dataItem.summary,
-        confirmed: dataItem.summary.total,
-        active:
-          dataItem.summary.total -
-          (dataItem.summary.discharged + dataItem.summary.deaths),
-      };
-    });
+    let result;
+    try {
+      const updatedData = data.slice(1).slice(-50);
+      result = updatedData.map((dataItem) => {
+        let newObject = {};
+        for (let [key, value] of Object.entries(dataItem)) {
+          if (key === "date") {
+            newObject[key] = value;
+          } else {
+            newObject[key] = Number(value);
+          }
+        }
+        return {
+          ...newObject,
+          totalactive:
+            newObject.totalconfirmed -
+            (newObject.totalrecovered + newObject.totaldeceased),
+        };
+      });
+    } catch (err) {}
+
     return (
       <div className="charts">
         {!isLoading && (

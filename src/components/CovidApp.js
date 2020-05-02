@@ -117,6 +117,7 @@ class CovidApp extends Component {
   render() {
     const { classes, setDarkMode, isDarkMode } = this.props;
     const { mapData, tableData, isLoading, data } = this.state;
+    console.log(this.state.casesTimeline);
 
     if (isLoading) {
       return (
@@ -170,7 +171,7 @@ class CovidApp extends Component {
               data={this.state.casesTimeline}
               isLoading={this.state.isLoading}
             />
-            {/* <div className={classes.tinyChartArea}>
+            <div className={classes.tinyChartArea}>
               <div className={classes.tinyChart}>
                 <div
                   className={classes.tinych}
@@ -178,9 +179,9 @@ class CovidApp extends Component {
                 >
                   <h3 style={{ color: colors.red }}>confirmed</h3>
                   <Barchart
-                    data={this.state.data}
+                    data={this.state.casesTimeline}
                     isLoading={this.state.isLoading}
-                    dataKey="confirmed"
+                    dataKey="totalconfirmed"
                     stroke={colors.red}
                   />
                 </div>
@@ -192,9 +193,9 @@ class CovidApp extends Component {
                 >
                   <h3 style={{ color: colors.orange }}>active</h3>
                   <Barchart
-                    data={this.state.data}
+                    data={this.state.casesTimeline}
                     isLoading={this.state.isLoading}
-                    dataKey="active"
+                    dataKey="totalactive"
                     stroke={colors.orange}
                   />
                 </div>
@@ -206,9 +207,9 @@ class CovidApp extends Component {
                 >
                   <h3 style={{ color: colors.green }}>Recovered</h3>
                   <Barchart
-                    data={this.state.data}
+                    data={this.state.casesTimeline}
                     isLoading={this.state.isLoading}
-                    dataKey="discharged"
+                    dataKey="totalrecovered"
                     stroke={colors.green}
                   />
                 </div>
@@ -220,14 +221,14 @@ class CovidApp extends Component {
                 >
                   <h3 style={{ color: colors.purple }}>Deceased</h3>
                   <Barchart
-                    data={this.state.data}
+                    data={this.state.casesTimeline}
                     isLoading={this.state.isLoading}
-                    dataKey="deaths"
+                    dataKey="totaldeceased"
                     stroke={colors.purple}
                   />
                 </div>
               </div>
-            </div> */}
+            </div>
           </div>
           {/* <div className={classes.tableContainer}>
             <h2 className={classes.tableHeading}>
