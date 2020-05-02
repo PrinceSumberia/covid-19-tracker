@@ -12,6 +12,17 @@ import "../styles/DarkModeButton.css";
 import MapSection from "./MapSection";
 import Barchart from "./Barchart";
 import stateCodes from "../constants/stateCodes";
+import Lottie from "react-lottie";
+import * as animationData from "../assets/loading.json";
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData.default,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 
 class CovidApp extends Component {
   constructor(props) {
@@ -61,7 +72,6 @@ class CovidApp extends Component {
             data: data,
             todayData: todayData,
             casesTimeline: casesTimeline,
-            isLoading: false,
           },
           this.handleFormat
         );
@@ -90,6 +100,9 @@ class CovidApp extends Component {
 
   handleFormat() {
     const newdata = this.formatData(this.state.data);
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 1000);
     this.setState({ mapData: newdata });
   }
 
@@ -100,7 +113,7 @@ class CovidApp extends Component {
     if (isLoading) {
       return (
         <div className={classes.loadingIcon}>
-          <FontAwesomeIcon icon={faSyncAlt} className={classes.refreshIcon} />
+          <Lottie options={defaultOptions} height={500} width={500} />
         </div>
       );
     }
