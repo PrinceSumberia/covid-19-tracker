@@ -14,6 +14,7 @@ import Barchart from "./Barchart";
 import stateCodes from "../constants/stateCodes";
 import Lottie from "react-lottie";
 import * as animationData from "../assets/loading.json";
+import FadeIn from "react-fade-in";
 
 const defaultOptions = {
   loop: true,
@@ -119,7 +120,7 @@ class CovidApp extends Component {
     }
 
     return (
-      <>
+      <FadeIn>
         <div className={classes.header}>
           <h1 className={classes.heading}>
             <span>Covid-19</span> India Trend
@@ -228,7 +229,7 @@ class CovidApp extends Component {
             <DisplayTable tableData={data} isDarkMode={isDarkMode} />
           </div>
         </div>
-      </>
+      </FadeIn>
     );
   }
 }
