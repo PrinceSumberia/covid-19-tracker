@@ -3,7 +3,7 @@ table {
   border-collapse: collapse;
 }
 
-thead th {
+.tableHead {
   text-align: left;
   margin-right: 1rem;
   margin-left: 1rem;
@@ -11,7 +11,7 @@ thead th {
   /* border-bottom: 2px solid black; */
 }
 
-thead button {
+.tableHead-Button {
   font-family: inherit;
   width: 100%;
   border: 0;
@@ -29,59 +29,64 @@ thead button {
   transition: all .4s;
 }
 
-thead button:hover,
-thead button:focus {
+.tableHead-Button:hover,
+.tableHead-Button:focus {
   outline: none;
   border: none;
 }
 
-thead button.ascending::after {
+.tableHead-Button.ascending::after {
   content: '\2193';
   display: inline-block;
   margin-left: 1em;
 }
 
-thead button.descending::after {
+.tableHead-Button.descending::after {
   content: '\2191';
   display: inline-block;
   margin-left: 1em;
 }
 
-tbody td {
-  padding: 1rem;
+.state-td {
   color: #1A1053;
-  /* border-radius: 2rem; */
   padding: 1rem 2rem;
   margin-top: 5rem;
-  /* background-color: #ccc; */
-  /* border-bottom: 1px solid #ccc; */
-
 }
 
-tbody tr {
+.state-tr {
   border-radius: 2rem;
-  /* transition: background-color .5s; */
 }
 
-tbody tr:hover {
+.state-tr:hover {
   background-color: #1A1053;
   transition: all .3s;
 
 }
 
-tbody tr:hover td {
+.state-tr:hover td {
   color: #fff;
 }
 
-tbody tr:nth-child(even) {
+.state-tr:nth-child(even) {
   background: rgba(235, 235, 235, 0.541);
 }
 
-tbody tr:nth-child(even):hover {
+.state-tr:nth-child(even):hover {
   background-color: #1A1053;
 }
 
+.districtHead {
+  margin: 1.5rem 1rem;
+  background-color: #1A1053;
+  padding: 1rem 3rem;
+  color: #fff
+}
 
-.districtData {
-  /* padding: 2rem; */
+.district-td {
+  padding: 1rem 3rem;
+  margin-bottom: 1rem;
+}
+
+.district-tr {
+  border: 1px solid #1A1053;
 }

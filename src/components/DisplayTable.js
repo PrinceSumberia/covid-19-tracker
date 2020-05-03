@@ -98,22 +98,26 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
       (state) => state.statecode === statecode
     );
     const districtData = stateWithDist.districtData.map((dist) => (
-      <tr className="districtData">
-        <td style={lightText}>{dist.district}</td>
-        <td style={lightText}>
+      <tr className="district-tr">
+        <td className="district-td" style={lightText}>
+          {dist.district}
+        </td>
+        <td className="district-td" style={lightText}>
           {dist.delta.confirmed > 0 && (
             <span className="delta-confirmed">[{dist.delta.confirmed}] </span>
           )}
           {dist.confirmed}
         </td>
-        <td style={lightText}>{dist.active}</td>
-        <td style={lightText}>
+        <td className="district-td" style={lightText}>
+          {dist.active}
+        </td>
+        <td className="district-td" style={lightText}>
           {dist.delta.recovered > 0 && (
             <span className="delta-recovered">[{dist.delta.recovered}] </span>
           )}
           {dist.recovered}
         </td>
-        <td style={lightText}>
+        <td className="district-td" style={lightText}>
           {dist.delta.deceased > 0 && (
             <span className="delta-deceased">[{dist.delta.deceased}] </span>
           )}
@@ -121,7 +125,19 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
         </td>
       </tr>
     ));
-    return districtData;
+    const markup = (
+      <>
+        <tr>
+          <th className="tableHead districtHead">District</th>
+          <th className="tableHead districtHead">Confirmed</th>
+          <th className="tableHead districtHead">Active</th>
+          <th className="tableHead districtHead">Recovered</th>
+          <th className="tableHead districtHead">Deceased</th>
+        </tr>
+        {districtData}
+      </>
+    );
+    return markup;
   };
 
   const { items, requestSort, sortConfig } = useSortableData(result);
@@ -144,13 +160,6 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
     setDisplayDist(!displayDist);
   };
 
-  //   active: 97
-  // confirmed: 99
-  // deceased: 1
-  // delta: {confirmed: 0, deceased: 0, recovered: 0}
-  // district: "Anantnag"
-  // notes: ""
-  // recovered: 1
   return (
     <table>
       <caption
@@ -162,47 +171,47 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
       </caption>
       <thead>
         <tr>
-          <th>
+          <th className="tableHead">
             <button
               type="button"
               onClick={() => requestSort("state")}
-              className={getClassNamesFor("state")}
+              className={`tableHead-Button ${getClassNamesFor("state")}`}
             >
               Name
             </button>
           </th>
-          <th>
+          <th className="tableHead">
             <button
               type="button"
               onClick={() => requestSort("confirmed")}
-              className={getClassNamesFor("confirmed")}
+              className={`tableHead-Button ${getClassNamesFor("confirmed")}`}
             >
               Confirmed
             </button>
           </th>
-          <th>
+          <th className="tableHead">
             <button
               type="button"
               onClick={() => requestSort("active")}
-              className={getClassNamesFor("active")}
+              className={`tableHead-Button ${getClassNamesFor("active")}`}
             >
               Active
             </button>
           </th>
-          <th>
+          <th className="tableHead">
             <button
               type="button"
               onClick={() => requestSort("recovered")}
-              className={getClassNamesFor("recovered")}
+              className={`tableHead-Button ${getClassNamesFor("recovered")}`}
             >
               Recovered
             </button>
           </th>
-          <th>
+          <th className="tableHead">
             <button
               type="button"
               onClick={() => requestSort("deaths")}
-              className={getClassNamesFor("deaths")}
+              className={`tableHead-Button ${getClassNamesFor("deaths")}`}
             >
               Deceased
             </button>
@@ -212,8 +221,8 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
       <tbody>
         {items.map((item) => (
           <>
-            <tr key={item.statecode}>
-              <td style={lightText}>
+            <tr key={item.statecode} className="state-tr">
+              <td className="state-td" style={lightText}>
                 <FontAwesomeIcon
                   icon={
                     distId === item.statecode && displayDist
@@ -226,10 +235,18 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
                 {item.state}
               </td>
 
-              <td style={lightText}>{item.confirmed}</td>
-              <td style={lightText}>{item.active}</td>
-              <td style={lightText}>{item.recovered}</td>
-              <td style={lightText}>{item.deaths}</td>
+              <td className="state-td" style={lightText}>
+                {item.confirmed}
+              </td>
+              <td className="state-td" style={lightText}>
+                {item.active}
+              </td>
+              <td className="state-td" style={lightText}>
+                {item.recovered}
+              </td>
+              <td className="state-td" style={lightText}>
+                {item.deaths}
+              </td>
             </tr>
             {distId === item.statecode && displayDist
               ? getDistrictData(item.statecode)
@@ -242,11 +259,3 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
 };
 
 export default DisplayTable;
-
-//  <tr>
-//    distId === item.id && displayDist ? (<td style={lightText}>{item.name}</td>
-//    <td style={lightText}>{item.confirmed}</td>
-//    <td style={lightText}>{item.active}</td>
-//    <td style={lightText}>{item.discharged}</td>
-//    <td style={lightText}>{item.deaths}</td>) : null
-//  </tr>;
