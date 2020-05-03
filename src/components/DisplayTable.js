@@ -8,7 +8,6 @@ import "../styles/DisplayTable.css";
 
 const useSortableData = (items, config = null) => {
   const [sortConfig, setSortConfig] = React.useState(config);
-
   const sortedItems = React.useMemo(() => {
     let sortableItems = [...items];
     if (sortConfig !== null) {
@@ -40,7 +39,7 @@ const useSortableData = (items, config = null) => {
   return { items: sortedItems, requestSort, sortConfig };
 };
 
-const DisplayTable = ({ tableData, isDarkMode }) => {
+const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
   let result;
   // active: "2510";
   // confirmed: "3738";
@@ -53,6 +52,27 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
   // state: "Delhi";
   // statecode: "DL";
   // statenotes: "";
+
+  //   districtData: Array(14)
+  // 0: {district: "Other State", notes: "Case tranferred from Nagaland", active: 0, confirmed: 1, deceased: 0, …}
+  // 1: {district: "Bongaigaon", notes: "", active: 5, confirmed: 5, deceased: 0, …}
+  // 2: {district: "Cachar", notes: "", active: 0, confirmed: 1, deceased: 0, …}
+  // 3: {district: "Dhubri", notes: "", active: 1, confirmed: 5, deceased: 0, …}
+  // 4: {district: "Goalpara", notes: "", active: 1, confirmed: 5, deceased: 0, …}
+  // 5: {district: "Golaghat", notes: "", active: 0, confirmed: 9, deceased: 0, …}
+  // 6: {district: "Hailakandi", notes: "", active: 0, confirmed: 1, deceased: 1, …}
+  // 7: {district: "Kamrup", notes: "", active: 0, confirmed: 1, deceased: 0, …}
+  // 8: {district: "Kamrup Metropolitan", notes: "", active: 0, confirmed: 1, deceased: 0, …}
+  // 9: {district: "Karimganj", notes: "", active: 2, confirmed: 2, deceased: 0, …}
+  // 10: {district: "Lakhimpur", notes: "", active: 0, confirmed: 1, deceased: 0, …}
+  // 11: {district: "Morigaon", notes: "", active: 0, confirmed: 6, deceased: 0, …}
+  // 12: {district: "Nalbari", notes: "", active: 0, confirmed: 4, deceased: 0, …}
+  // 13: {district: "South Salmara Mankachar", notes: "", active: 0, confirmed: 1, deceased: 0, …}
+  // length: 14
+  // __proto__: Array(0)
+  // state: "Assam"
+  // statecode: "AS"
+
   try {
     result = tableData.map((dataItem) => {
       let newObject = {};
@@ -72,6 +92,37 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
       return newObject;
     });
   } catch (err) {}
+
+  const getDistrictData = (statecode) => {
+    const stateWithDist = districtLevel.find(
+      (state) => state.statecode === statecode
+    );
+    const districtData = stateWithDist.districtData.map((dist) => (
+      <tr className="districtData">
+        <td style={lightText}>{dist.district}</td>
+        <td style={lightText}>
+          {dist.delta.confirmed > 0 && (
+            <span className="delta-confirmed">[{dist.delta.confirmed}] </span>
+          )}
+          {dist.confirmed}
+        </td>
+        <td style={lightText}>{dist.active}</td>
+        <td style={lightText}>
+          {dist.delta.recovered > 0 && (
+            <span className="delta-recovered">[{dist.delta.recovered}] </span>
+          )}
+          {dist.recovered}
+        </td>
+        <td style={lightText}>
+          {dist.delta.deceased > 0 && (
+            <span className="delta-deceased">[{dist.delta.deceased}] </span>
+          )}
+          {dist.deceased}
+        </td>
+      </tr>
+    ));
+    return districtData;
+  };
 
   const { items, requestSort, sortConfig } = useSortableData(result);
   const [displayDist, setDisplayDist] = useState(false);
@@ -93,9 +144,22 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
     setDisplayDist(!displayDist);
   };
 
+  //   active: 97
+  // confirmed: 99
+  // deceased: 1
+  // delta: {confirmed: 0, deceased: 0, recovered: 0}
+  // district: "Anantnag"
+  // notes: ""
+  // recovered: 1
   return (
     <table>
-      {/* <caption>Products</caption> */}
+      <caption
+        style={{
+          marginBottom: "2rem",
+        }}
+      >
+        Exapnd to get district wise data
+      </caption>
       <thead>
         <tr>
           <th>
@@ -147,34 +211,30 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
       </thead>
       <tbody>
         {items.map((item) => (
-          <tr key={item.statecode}>
-            <td style={lightText}>
-              <FontAwesomeIcon
-                icon={
-                  distId === item.statecode && displayDist
-                    ? faArrowCircleDown
-                    : faArrowCircleRight
-                }
-                className=""
-                onClick={() => toggleDistView(item.statecode)}
-              />{" "}
-              {item.state}
-            </td>
+          <>
+            <tr key={item.statecode}>
+              <td style={lightText}>
+                <FontAwesomeIcon
+                  icon={
+                    distId === item.statecode && displayDist
+                      ? faArrowCircleDown
+                      : faArrowCircleRight
+                  }
+                  className=""
+                  onClick={() => toggleDistView(item.statecode)}
+                />{" "}
+                {item.state}
+              </td>
 
-            <td style={lightText}>{item.confirmed}</td>
-            <td style={lightText}>{item.active}</td>
-            <td style={lightText}>{item.recovered}</td>
-            <td style={lightText}>{item.deaths}</td>
-          </tr>
-          /* {distId === item.id && displayDist ? (
-              <tr>
-                <td style={lightText}>{item.name}</td>
-                <td style={lightText}>{item.confirmed}</td>
-                <td style={lightText}>{item.active}</td>
-                <td style={lightText}>{item.discharged}</td>
-                <td style={lightText}>{item.deaths}</td>
-              </tr>
-            ) : null} */
+              <td style={lightText}>{item.confirmed}</td>
+              <td style={lightText}>{item.active}</td>
+              <td style={lightText}>{item.recovered}</td>
+              <td style={lightText}>{item.deaths}</td>
+            </tr>
+            {distId === item.statecode && displayDist
+              ? getDistrictData(item.statecode)
+              : null}
+          </>
         ))}
       </tbody>
     </table>
@@ -182,3 +242,11 @@ const DisplayTable = ({ tableData, isDarkMode }) => {
 };
 
 export default DisplayTable;
+
+//  <tr>
+//    distId === item.id && displayDist ? (<td style={lightText}>{item.name}</td>
+//    <td style={lightText}>{item.confirmed}</td>
+//    <td style={lightText}>{item.active}</td>
+//    <td style={lightText}>{item.discharged}</td>
+//    <td style={lightText}>{item.deaths}</td>) : null
+//  </tr>;

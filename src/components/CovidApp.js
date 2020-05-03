@@ -60,7 +60,7 @@ class CovidApp extends Component {
     axios.all([countryData, districtLevel, stateChanges]).then(
       axios.spread((...responses) => {
         const countryData = responses[0].data;
-        // const districtLevel = responses[1].data;
+        const districtLevel = responses[1].data;
         // const stateChanges = responses[2].data;
 
         const [todayData] = countryData.statewise.slice(0, 1);
@@ -73,6 +73,7 @@ class CovidApp extends Component {
             data: data,
             todayData: todayData,
             casesTimeline: casesTimeline,
+            districtLevel: districtLevel,
           },
           this.handleFormat
         );
@@ -109,7 +110,7 @@ class CovidApp extends Component {
 
   render() {
     const { classes, setDarkMode, isDarkMode } = this.props;
-    const { mapData, isLoading, data } = this.state;
+    const { mapData, isLoading, data, districtLevel } = this.state;
 
     if (isLoading) {
       return (
@@ -226,7 +227,11 @@ class CovidApp extends Component {
             <h2 className={classes.tableHeading}>
               State/UT Wise Data (Sortable){" "}
             </h2>
-            <DisplayTable tableData={data} isDarkMode={isDarkMode} />
+            <DisplayTable
+              tableData={data}
+              districtLevel={districtLevel}
+              isDarkMode={isDarkMode}
+            />
           </div>
         </div>
       </FadeIn>

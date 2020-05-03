@@ -80,3 +80,8 @@ tbody tr:nth-child(even) {
 tbody tr:nth-child(even):hover {
   background-color: #1A1053;
 }
+
+
+.districtData {
+  /* padding: 2rem; */
+}
