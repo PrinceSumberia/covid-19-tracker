@@ -41,38 +41,6 @@ const useSortableData = (items, config = null) => {
 
 const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
   let result;
-  // active: "2510";
-  // confirmed: "3738";
-  // deaths: "61";
-  // deltaconfirmed: "0";
-  // deltadeaths: "0";
-  // deltarecovered: "0";
-  // lastupdatedtime: "01/05/2020 21:22:46";
-  // recovered: "1167";
-  // state: "Delhi";
-  // statecode: "DL";
-  // statenotes: "";
-
-  //   districtData: Array(14)
-  // 0: {district: "Other State", notes: "Case tranferred from Nagaland", active: 0, confirmed: 1, deceased: 0, …}
-  // 1: {district: "Bongaigaon", notes: "", active: 5, confirmed: 5, deceased: 0, …}
-  // 2: {district: "Cachar", notes: "", active: 0, confirmed: 1, deceased: 0, …}
-  // 3: {district: "Dhubri", notes: "", active: 1, confirmed: 5, deceased: 0, …}
-  // 4: {district: "Goalpara", notes: "", active: 1, confirmed: 5, deceased: 0, …}
-  // 5: {district: "Golaghat", notes: "", active: 0, confirmed: 9, deceased: 0, …}
-  // 6: {district: "Hailakandi", notes: "", active: 0, confirmed: 1, deceased: 1, …}
-  // 7: {district: "Kamrup", notes: "", active: 0, confirmed: 1, deceased: 0, …}
-  // 8: {district: "Kamrup Metropolitan", notes: "", active: 0, confirmed: 1, deceased: 0, …}
-  // 9: {district: "Karimganj", notes: "", active: 2, confirmed: 2, deceased: 0, …}
-  // 10: {district: "Lakhimpur", notes: "", active: 0, confirmed: 1, deceased: 0, …}
-  // 11: {district: "Morigaon", notes: "", active: 0, confirmed: 6, deceased: 0, …}
-  // 12: {district: "Nalbari", notes: "", active: 0, confirmed: 4, deceased: 0, …}
-  // 13: {district: "South Salmara Mankachar", notes: "", active: 0, confirmed: 1, deceased: 0, …}
-  // length: 14
-  // __proto__: Array(0)
-  // state: "Assam"
-  // statecode: "AS"
-
   try {
     result = tableData.map((dataItem) => {
       let newObject = {};
@@ -94,51 +62,53 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
   } catch (err) {}
 
   const getDistrictData = (statecode) => {
-    const stateWithDist = districtLevel.find(
-      (state) => state.statecode === statecode
-    );
-    const districtData = stateWithDist.districtData.map((dist) => (
-      <tr className="district-tr">
-        <td className="district-td" style={lightText}>
-          {dist.district}
-        </td>
-        <td className="district-td" style={lightText}>
-          {dist.confirmed}
-          {dist.delta.confirmed > 0 && (
-            <span className="delta-confirmed">[{dist.delta.confirmed}] </span>
-          )}
-        </td>
-        <td className="district-td" style={lightText}>
-          {dist.active}
-        </td>
-        <td className="district-td" style={lightText}>
-          {dist.recovered}
-          {dist.delta.recovered > 0 && (
-            <span className="delta-recovered">[{dist.delta.recovered}] </span>
-          )}
-        </td>
-        <td className="district-td" style={lightText}>
-          {dist.deceased}
-          {dist.delta.deceased > 0 && (
-            <span className="delta-deceased">[{dist.delta.deceased}] </span>
-          )}
-        </td>
-      </tr>
-    ));
-    const markup = (
-      <>
+    try {
+      const stateWithDist = districtLevel.find(
+        (state) => state.statecode === statecode
+      );
+      const districtData = stateWithDist.districtData.map((dist) => (
         <tr className="district-tr">
-          <th className="tableHead districtHead">District</th>
-          <th className="tableHead districtHead">Confirmed</th>
-          <th className="tableHead districtHead">Active</th>
-          <th className="tableHead districtHead">Recovered</th>
-          <th className="tableHead districtHead">Deceased</th>
+          <td className="district-td" style={lightText}>
+            {dist.district}
+          </td>
+          <td className="district-td" style={lightText}>
+            {dist.confirmed}
+            {dist.delta.confirmed > 0 && (
+              <span className="delta-confirmed">[{dist.delta.confirmed}] </span>
+            )}
+          </td>
+          <td className="district-td" style={lightText}>
+            {dist.active}
+          </td>
+          <td className="district-td" style={lightText}>
+            {dist.recovered}
+            {dist.delta.recovered > 0 && (
+              <span className="delta-recovered">[{dist.delta.recovered}] </span>
+            )}
+          </td>
+          <td className="district-td" style={lightText}>
+            {dist.deceased}
+            {dist.delta.deceased > 0 && (
+              <span className="delta-deceased">[{dist.delta.deceased}] </span>
+            )}
+          </td>
         </tr>
-        {districtData}
-        <tr class="spacer-bottom"></tr>
-      </>
-    );
-    return markup;
+      ));
+      const markup = (
+        <>
+          <tr className="district-tr">
+            <th className="tableHead districtHead">District</th>
+            <th className="tableHead districtHead">Confirmed</th>
+            <th className="tableHead districtHead">Active</th>
+            <th className="tableHead districtHead">Recovered</th>
+            <th className="tableHead districtHead">Deceased</th>
+          </tr>
+          {districtData}
+          <tr className="spacer-bottom"></tr>
+        </>
+      );
+      return markup;
+    } catch (err) {}
   };
 
   const { items, requestSort, sortConfig } = useSortableData(result);
@@ -165,10 +135,11 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
     <table>
       <caption
         style={{
-          marginBottom: "2rem",
+          marginTop: "1rem",
+          marginBottom: "4rem",
         }}
       >
-        Exapnd to get district wise data
+        Expand to get district wise data
       </caption>
       <thead>
         <tr>

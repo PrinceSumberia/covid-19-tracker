@@ -50,7 +50,7 @@ export default {
 
   tableHeading: {
     textAlign: "center",
-    margin: "4rem 0",
+    marginTop: "2.5rem",
     fontSize: "3rem",
   },
 
