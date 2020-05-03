@@ -103,31 +103,31 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
           {dist.district}
         </td>
         <td className="district-td" style={lightText}>
+          {dist.confirmed}
           {dist.delta.confirmed > 0 && (
             <span className="delta-confirmed">[{dist.delta.confirmed}] </span>
           )}
-          {dist.confirmed}
         </td>
         <td className="district-td" style={lightText}>
           {dist.active}
         </td>
         <td className="district-td" style={lightText}>
+          {dist.recovered}
           {dist.delta.recovered > 0 && (
             <span className="delta-recovered">[{dist.delta.recovered}] </span>
           )}
-          {dist.recovered}
         </td>
         <td className="district-td" style={lightText}>
+          {dist.deceased}
           {dist.delta.deceased > 0 && (
             <span className="delta-deceased">[{dist.delta.deceased}] </span>
           )}
-          {dist.deceased}
         </td>
       </tr>
     ));
     const markup = (
       <>
-        <tr>
+        <tr className="district-tr">
           <th className="tableHead districtHead">District</th>
           <th className="tableHead districtHead">Confirmed</th>
           <th className="tableHead districtHead">Active</th>
@@ -135,6 +135,7 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
           <th className="tableHead districtHead">Deceased</th>
         </tr>
         {districtData}
+        <tr class="spacer-bottom"></tr>
       </>
     );
     return markup;
