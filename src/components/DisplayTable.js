@@ -67,7 +67,7 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
         (state) => state.statecode === statecode
       );
       const districtData = stateWithDist.districtData.map((dist) => (
-        <tr className="district-tr">
+        <tr className="district-tr" key={dist.district}>
           <td className="district-td" style={lightText}>
             {dist.district}
           </td>
@@ -96,7 +96,7 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
       ));
       const markup = (
         <>
-          <tr className="district-tr">
+          <tr className="district-tr" key={`${statecode} Dist`}>
             <th className="tableHead districtHead">District</th>
             <th className="tableHead districtHead">Confirmed</th>
             <th className="tableHead districtHead">Active</th>
@@ -192,8 +192,8 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
       </thead>
       <tbody>
         {items.map((item) => (
-          <>
-            <tr key={item.statecode} className="state-tr">
+          <React.Fragment key={item.statecode}>
+            <tr className="state-tr">
               <td className="state-td" style={lightText}>
                 <FontAwesomeIcon
                   icon={
@@ -223,7 +223,7 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
             {distId === item.statecode && displayDist
               ? getDistrictData(item.statecode)
               : null}
-          </>
+          </React.Fragment>
         ))}
       </tbody>
     </table>
