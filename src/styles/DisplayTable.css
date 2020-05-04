@@ -11,6 +11,7 @@ table {
   /* border-bottom: 2px solid black; */
 }
 
+
 .tableHead-Button {
   font-family: inherit;
   width: 100%;
@@ -26,6 +27,16 @@ table {
   color: #fff;
 
   transition: all .4s;
+}
+
+@media (max-width: 600px) {
+  .tableHead {
+    margin: 0;
+  }
+
+  .tableHead-Button {
+    padding: 1rem;
+  }
 }
 
 .tableHead-Button:hover,

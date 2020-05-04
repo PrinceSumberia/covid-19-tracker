@@ -43,6 +43,10 @@ export default {
       marginTop: "2.5rem",
       padding: "1.5rem",
     },
+    [sizes.down("xs")]: {
+      marginTop: "2.5rem",
+      padding: "0",
+    },
   },
 
   contentArea: {
@@ -71,7 +75,7 @@ export default {
 
     [sizes.down("sm")]: {
       margin: "1.2rem 0",
-      padding: "1rem",
+      padding: "0",
     },
   },
 
