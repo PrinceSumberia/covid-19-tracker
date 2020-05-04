@@ -19,3 +19,15 @@
    position: relative;
    overflow: hidden;
  }
+
+ @media (max-width: 991.98px) {
+   .root {
+     flex-direction: column;
+   }
+
+   .navBar {
+     min-height: 10vh;
+     justify-content: space-around;
+     align-items: center;
+   }
+ }

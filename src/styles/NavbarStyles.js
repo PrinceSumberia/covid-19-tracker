@@ -4,14 +4,27 @@ import sizes from "./sizes";
 export default {
   nav: {
     marginTop: "12rem",
+    [sizes.down("md")]: {
+      marginTop: "2.5rem",
+      width: "100%",
+    },
   },
   navItems: {
     listStyle: "none",
+    [sizes.down("md")]: {
+      display: "flex",
+      justifyContent: "space-evenly",
+    },
   },
   navItem: {
     marginBottom: "5rem",
     fontWeight: "500",
     position: "relative",
+
+    [sizes.down("md")]: {
+      display: "inline-block",
+      marginBottom: "2.5rem",
+    },
   },
   navLinks: {
     textDecoration: "none",
@@ -33,6 +46,10 @@ export default {
     fontSize: "2.5rem",
     zIndex: "50",
     padding: "1rem 0",
+
+    [sizes.down("md")]: {
+      display: "none",
+    },
   },
 
   active: {
@@ -65,6 +82,12 @@ export default {
           padding: ".5rem 2.5rem",
           height: "100%",
           transform: "translateX(0) skewX(0)",
+        },
+
+        [sizes.down("md")]: {
+          borderRadius: "10px",
+          width: "100%",
+          padding: ".5rem 1.5rem",
         },
       },
 
