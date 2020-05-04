@@ -26,7 +26,7 @@ export default class Barchart extends Component {
     } catch (err) {}
 
     return (
-      <div className="charts">
+      <div className="barcharts">
         {!isLoading && (
           <BarChart
             width={350}

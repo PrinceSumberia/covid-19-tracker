@@ -5,6 +5,7 @@ export default {
   header: {
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
   },
 
   heading: {
@@ -21,6 +22,12 @@ export default {
     [sizes.down("md")]: {
       fontSize: "2.8rem",
       padding: "3rem",
+    },
+
+    [sizes.down("xs")]: {
+      fontSize: "2rem",
+      padding: "3rem",
+      // paddingBottom: "1.5rem",
     },
   },
 
@@ -61,6 +68,11 @@ export default {
       margin: "3.5rem 0",
       padding: "1.5rem",
     },
+
+    [sizes.down("sm")]: {
+      margin: "1.2rem 0",
+      padding: "1rem",
+    },
   },
 
   tableHeading: {
@@ -76,6 +88,18 @@ export default {
     [sizes.down("md")]: {
       marginTop: ".5rem",
     },
+
+    [sizes.down("sm")]: {
+      marginTop: ".2rem",
+      fontSize: "1.3rem",
+    },
+  },
+
+  chartRes: {
+    // margin: "0 auto",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   tinyChartArea: {
@@ -152,6 +176,10 @@ export default {
       borderRadius: "100px",
       marginLeft: 0,
       padding: "1rem",
+    },
+
+    [sizes.down("xs")]: {
+      fontSize: "1rem",
     },
 
     "&:hover": {

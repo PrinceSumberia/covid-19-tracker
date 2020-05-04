@@ -8,6 +8,14 @@ export default {
       marginTop: "2.5rem",
       width: "100%",
     },
+
+    [sizes.down("sm")]: {
+      marginTop: "2rem",
+    },
+
+    [sizes.down("xs")]: {
+      marginTop: "1.7rem",
+    },
   },
 
   navItems: {
@@ -26,6 +34,10 @@ export default {
     [sizes.down("md")]: {
       display: "inline-block",
       marginBottom: "2.5rem",
+    },
+
+    [sizes.down("xs")]: {
+      marginBottom: "1.7rem",
     },
   },
 
@@ -93,6 +105,11 @@ export default {
           borderRadius: "10px",
           width: "100%",
           padding: ".5rem 1.5rem",
+        },
+
+        [sizes.down("sm")]: {
+          padding: "2rem 1rem",
+          borderRadius: "0",
         },
       },
 

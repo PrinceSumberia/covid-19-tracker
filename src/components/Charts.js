@@ -1,11 +1,19 @@
 import React, { Component } from "react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend } from "recharts";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import colors from "../constants/colors";
 import "../styles/Charts.css";
 
 export default class Charts extends Component {
   render() {
-    const { isLoading, data } = this.props;
+    const { data } = this.props;
     let result;
     try {
       const updatedData = data.slice(1).slice(-50);
@@ -29,7 +37,7 @@ export default class Charts extends Component {
 
     return (
       <div className="charts">
-        {!isLoading && (
+        <ResponsiveContainer>
           <LineChart
             width={600}
             height={300}
@@ -75,7 +83,7 @@ export default class Charts extends Component {
               dot={false}
             />
           </LineChart>
-        )}
+        </ResponsiveContainer>
       </div>
     );
   }

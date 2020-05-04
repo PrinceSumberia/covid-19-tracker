@@ -160,10 +160,12 @@ class CovidApp extends Component {
             </div>
           </div>
           <div className={classes.chartArea}>
-            <Charts
-              data={this.state.casesTimeline}
-              isLoading={this.state.isLoading}
-            />
+            <div className={classes.chartRes}>
+              <Charts
+                data={this.state.casesTimeline}
+                isLoading={this.state.isLoading}
+              />
+            </div>
             <div className={classes.tinyChartArea}>
               <div className={classes.tinyChart}>
                 <div

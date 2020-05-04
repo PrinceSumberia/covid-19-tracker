@@ -25,8 +25,15 @@ export default {
     },
 
     [sizes.down("md")]: {
-      marginBottom: ".5rem",
-      marginTop: "1.5rem",
+      marginTop: "1.7rem",
+    },
+
+    [sizes.down("sm")]: {
+      marginTop: "1rem",
+    },
+    [sizes.down("xs")]: {
+      marginBottom: ".2rem",
+      marginTop: ".1rem",
     },
   },
 
