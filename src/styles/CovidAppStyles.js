@@ -1,4 +1,5 @@
 import colors from "../constants/colors";
+import sizes from "./sizes";
 
 export default {
   header: {
@@ -52,6 +53,11 @@ export default {
     textAlign: "center",
     marginTop: "2.5rem",
     fontSize: "3rem",
+
+    [sizes.down("lg")]: {
+      fontSize: "2.5rem",
+      marginTop: "1.5rem",
+    },
   },
 
   tinyChartArea: {
@@ -64,7 +70,6 @@ export default {
   },
 
   tinyChart: {
-    // width: "50%",
     margin: "2.5rem",
     "& h3": {
       textTransform: "capitalize",

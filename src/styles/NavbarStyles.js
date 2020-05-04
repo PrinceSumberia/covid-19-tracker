@@ -1,9 +1,9 @@
 import colors from "../constants/colors";
+import sizes from "./sizes";
 
 export default {
   nav: {
     marginTop: "12rem",
-    // padding: "2rem 5rem",
   },
   navItems: {
     listStyle: "none",
@@ -42,6 +42,11 @@ export default {
       zIndex: "10",
       position: "relative",
       animation: "$float 2s ease infinite",
+      transition: "all .5s",
+
+      [sizes.down("lg")]: {
+        animation: "none",
+      },
 
       "&::before": {
         content: '""',
@@ -49,12 +54,20 @@ export default {
         width: "155%",
         height: "110%",
         display: "block",
+        borderRadius: "25px",
+        transform: "translateX(2rem) skewX(10deg)",
         backgroundColor: (props) =>
           props.isDarkMode ? colors.lightPurple : "rgb(245, 245, 245)",
-        transform: "translateX(2rem) skewX(10deg)",
-        borderRadius: "25px",
         zIndex: 10,
+
+        [sizes.down("lg")]: {
+          width: "120%",
+          padding: ".5rem 2.5rem",
+          height: "100%",
+          transform: "translateX(0) skewX(0)",
+        },
       },
+
       "&::after": {
         content: '""',
         position: "absolute",
@@ -67,6 +80,10 @@ export default {
           props.isDarkMode ? "rgba(255,255,255,.6)nop" : colors.lightPurple,
         transform: "translate(-1rem, .1rem) skew(10deg, -5deg)",
         borderRadius: "25px",
+
+        [sizes.down("lg")]: {
+          content: "none",
+        },
       },
     },
   },
