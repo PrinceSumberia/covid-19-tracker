@@ -30,4 +30,8 @@
      justify-content: space-around;
      align-items: center;
    }
+
+   .mainContent {
+     padding: 0;
+   }
  }

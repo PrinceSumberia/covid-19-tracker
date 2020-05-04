@@ -1,3 +1,5 @@
+import sizes from "./sizes";
+
 export default {
   root: {
     textAlign: "center",
@@ -6,9 +8,16 @@ export default {
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
+
+    [sizes.down("sm")]: {
+      flexWrap: "wrap",
+      padding: "0 1rem",
+    },
   },
   panelContainer: {
     width: "20%",
-    // padding: ''
+    [sizes.down("sm")]: {
+      width: "40%",
+    },
   },
 };

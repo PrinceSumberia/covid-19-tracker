@@ -9,6 +9,7 @@ export default {
       width: "100%",
     },
   },
+
   navItems: {
     listStyle: "none",
     [sizes.down("md")]: {
@@ -16,6 +17,7 @@ export default {
       justifyContent: "space-evenly",
     },
   },
+
   navItem: {
     marginBottom: "5rem",
     fontWeight: "500",
@@ -26,10 +28,12 @@ export default {
       marginBottom: "2.5rem",
     },
   },
+
   navLinks: {
     textDecoration: "none",
     color: "inherit",
   },
+
   iconBox: {
     display: "flex",
     zIndex: "50",
@@ -42,6 +46,7 @@ export default {
       zIndex: "50",
     },
   },
+
   icons: {
     fontSize: "2.5rem",
     zIndex: "50",

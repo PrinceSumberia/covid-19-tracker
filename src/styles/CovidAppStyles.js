@@ -17,6 +17,11 @@ export default {
       color: colors.purple,
       marginRight: "1rem",
     },
+
+    [sizes.down("md")]: {
+      fontSize: "2.8rem",
+      padding: "3rem",
+    },
   },
 
   content: {
@@ -24,9 +29,13 @@ export default {
     borderRadius: "2rem",
     marginTop: "3rem",
     display: "flex",
-    padding: "4rem",
     flexDirection: "column",
     justifyContent: "center",
+
+    [sizes.down("md")]: {
+      marginTop: "2.5rem",
+      padding: "1.5rem",
+    },
   },
 
   contentArea: {
@@ -47,6 +56,11 @@ export default {
   tableContainer: {
     padding: "2rem",
     margin: "5rem 0",
+
+    [sizes.down("md")]: {
+      margin: "3.5rem 0",
+      padding: "1.5rem",
+    },
   },
 
   tableHeading: {
@@ -57,6 +71,10 @@ export default {
     [sizes.down("lg")]: {
       fontSize: "2.5rem",
       marginTop: "1.5rem",
+    },
+
+    [sizes.down("md")]: {
+      marginTop: ".5rem",
     },
   },
 
@@ -91,6 +109,10 @@ export default {
     animationDuration: "1s",
     animationTimingFunction: "linear",
     animationIterationCount: "infinite",
+
+    [sizes.down("md")]: {
+      fontSize: "3rem",
+    },
   },
 
   loadingIcon: {
@@ -110,6 +132,9 @@ export default {
   },
 
   button: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     border: "none",
     backgroundColor: colors.purple,
     padding: "1.5rem 3rem",
@@ -121,6 +146,13 @@ export default {
     transition: "all .4s",
     boxShadow: "0 .5rem 1rem rgba(0,0,0,.2)",
     position: "relative",
+
+    [sizes.down("md")]: {
+      fontSize: "1.5rem",
+      borderRadius: "100px",
+      marginLeft: 0,
+      padding: "1rem",
+    },
 
     "&:hover": {
       backgroundColor: colors.darkPurple,

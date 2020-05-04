@@ -23,12 +23,20 @@ export default {
       marginBottom: ".5rem",
       marginTop: "2.5rem",
     },
+
+    [sizes.down("md")]: {
+      marginBottom: ".5rem",
+      marginTop: "1.5rem",
+    },
   },
 
   heading: {
     fontSize: (props) => (props.isMiniPanel ? "1.5rem" : "2rem"),
     [sizes.down("lg")]: {
       fontSize: (props) => (props.isMiniPanel ? "1.2rem" : "1.7rem"),
+    },
+    [sizes.down("md")]: {
+      fontSize: (props) => (props.isMiniPanel ? "1rem" : "1.5rem"),
     },
   },
 
@@ -50,8 +58,13 @@ export default {
     fontSize: (props) => (props.isMiniPanel ? "2.2rem" : "3.5rem"),
     paddingTop: ".5rem",
     paddingBottom: ".5rem",
+
     [sizes.down("lg")]: {
       fontSize: (props) => (props.isMiniPanel ? "1.5rem" : "3rem"),
+    },
+
+    [sizes.down("md")]: {
+      fontSize: (props) => (props.isMiniPanel ? "1.5rem" : "2rem"),
     },
   },
 
