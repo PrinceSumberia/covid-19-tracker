@@ -21,7 +21,6 @@ export default {
 
   navItems: {
     listStyle: "none",
-    height: "100%",
     [sizes.down("md")]: {
       display: "flex",
       justifyContent: "space-evenly",
