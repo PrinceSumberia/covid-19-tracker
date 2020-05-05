@@ -6,7 +6,6 @@ import Navbar from "./components/Navbar";
 import { Switch, Route } from "react-router-dom";
 import StaySafe from "./components/StaySafe";
 import Help from "./components/Help";
-import Footer from "./components/Footer";
 
 class App extends Component {
   constructor(props) {
