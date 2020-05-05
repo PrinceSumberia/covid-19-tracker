@@ -15,6 +15,7 @@ import stateCodes from "../constants/stateCodes";
 import Lottie from "react-lottie";
 import * as animationData from "../assets/loading.json";
 import FadeIn from "react-fade-in";
+import Footer from "./Footer";
 
 const defaultOptions = {
   loop: true,
@@ -236,6 +237,7 @@ class CovidApp extends Component {
             />
           </div>
         </div>
+        <Footer />
       </FadeIn>
     );
   }

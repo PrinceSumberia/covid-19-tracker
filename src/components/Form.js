@@ -23,7 +23,6 @@ export default class Form extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <p>{this.state.area}</p>
         <input
           name="area"
           type="text"
