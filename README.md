@@ -1,7 +1,7 @@
 # COVID-19 Tracker
 
 <p align="center">
-<img src="./src/assets/covid-19-tracker-dashboard.png" width="100%">
+<img src="./src/assets/covid-app-tracker-dashboard.png" width="100%">
 </p>
 
 <p align="center">
