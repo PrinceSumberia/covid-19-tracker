@@ -15,6 +15,7 @@ export default {
     transition: "all .3s",
     transform: "translateY(-.5rem)",
     boxShadow: "0 .5rem 2rem rgba(0,0,0,.5)",
+    textDecoration: "none",
 
     "&:hover": {
       transform: "translateY(0)",
