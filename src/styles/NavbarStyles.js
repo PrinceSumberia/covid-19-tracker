@@ -25,6 +25,7 @@ export default {
       display: "flex",
       justifyContent: "space-evenly",
     },
+    
   },
 
   navItem: {
