@@ -5,7 +5,7 @@ export default class Form extends Component {
     super(props);
 
     this.state = {
-      area: "",
+      location: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,18 +17,20 @@ export default class Form extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({ area: "" });
+    this.props.handleQuery(this.state.location);
+    this.setState({ location: "" });
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <input
-          name="area"
+          name="location"
           type="text"
-          value={this.state.area}
-          placeholder="Enter any area"
+          value={this.state.location}
+          placeholder="Enter any location"
           onChange={this.handleChange}
+          required
         />
         <button>Get Help</button>
       </form>
