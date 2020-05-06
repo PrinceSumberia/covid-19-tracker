@@ -10,6 +10,7 @@ class Help extends Component {
     this.state = {
       query: "",
       data: {},
+      currentResources: [],
     };
     this.handleQuery = this.handleQuery.bind(this);
     this.getData = this.getData.bind(this);
@@ -47,33 +48,63 @@ class Help extends Component {
   }
 
   getData() {
-    let resources = {};
-    let locationType;
+    let resources = [];
     for (const key of Object.keys(this.state.data)) {
       if (key === this.state.query) {
-        resources = this.state.data[key];
-        locationType = "multiple";
+        resources.push({ ...this.state.data[key] });
       } else {
         for (const dist of Object.keys(this.state.data[key])) {
           if (dist === this.state.query) {
-            resources = this.state.data[key][dist];
-            locationType = "single";
+            resources.push({ [key]: this.state.data[key][dist] });
           }
         }
       }
     }
-    this.setState({ currentResources: resources, locationType: locationType });
+    this.setState({ currentResources: resources });
   }
 
   render() {
+    const res = this.state.currentResources.map((object) => {
+      for (const key in object) {
+        if (object.hasOwnProperty(key)) {
+          for (const key2 in object[key]) {
+            if (object[key].hasOwnProperty(key2)) {
+              const result = object[key][key2].map((resource) => (
+                <div>
+                  <h3>{resource.category}</h3>
+                  <p>Organization: {resource.nameoftheorganisation}</p>
+                  <a href={resource.contact}>Link</a>
+                  <p>Contact: {resource.phonenumber}</p>
+                </div>
+              ));
+              return result;
+            }
+          }
+        }
+      }
+      return null;
+    });
     return (
       <div>
         <h1>Help Page</h1>
         <p>For Help Please Contact</p>
         <Form handleQuery={this.handleQuery} />
+        {res}
       </div>
     );
   }
 }
 
 export default withStyles(styles)(Help);
+
+// 0:
+// Gangtok:
+// CoVID-19 Testing Lab: Array(1)
+// 0:
+// category: "CoVID-19 Testing Lab"
+// city: "Gangtok"
+// contact: "https://covid.icmr.org.in/index.php/testing-labs-deatails#"
+// descriptionandorserviceprovided: "Collection Site Only"
+// nameoftheorganisation: "Sir Thutob Namgyal Memorial (STNM)"
+// phonenumber: "9845562399"
+// state: "Sikkim"
