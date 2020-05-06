@@ -1,6 +1,12 @@
 export default {
+  help: {
+    textAlign: "center",
+  },
+  mainHeading: {
+    marginBottom: "2rem",
+  },
   container: {
-    marginTop: "2rem",
+    marginTop: "3rem",
     display: "flex",
     justifyContent: "space-between",
     flexWrap: "wrap",
@@ -28,7 +34,6 @@ export default {
   cardHeading: {
     textTransform: "uppercase",
     display: "inline-block",
-    // marginBottom: ".5rem",
   },
 
   text: {

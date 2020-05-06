@@ -109,9 +109,8 @@ class Help extends Component {
       return null;
     });
     return (
-      <div>
-        <h1>Help Page</h1>
-        <p>For Help Please Contact</p>
+      <div className={classes.help}>
+        <h1 className={classes.mainHeading}>Help Page</h1>
         <Form handleQuery={this.handleQuery} />
         <div className={classes.container}>{res}</div>
       </div>
