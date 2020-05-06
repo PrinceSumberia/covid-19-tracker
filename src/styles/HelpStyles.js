@@ -20,6 +20,7 @@ export default {
     display: "flex",
     margin: "2rem 0",
     flexDirection: "column",
+    textAlign: "left",
   },
 
   header: {

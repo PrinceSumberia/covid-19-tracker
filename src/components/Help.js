@@ -5,6 +5,7 @@ import Form from "./Form";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import FadeIn from "react-fade-in";
 
 class Help extends Component {
   constructor(props) {
@@ -62,7 +63,7 @@ class Help extends Component {
         }
       }
     }
-    this.setState({ currentResources: resources });
+    this.setState({ currentResources: resources, isLoading: false });
   }
 
   render() {
@@ -73,7 +74,7 @@ class Help extends Component {
           for (const key2 in object[key]) {
             if (object[key].hasOwnProperty(key2)) {
               const result = object[key][key2].map((resource) => (
-                <div
+                <FadeIn
                   key={resource.phonenumber.split(0, 5)}
                   className={classes.card}
                 >
@@ -99,7 +100,7 @@ class Help extends Component {
                       Contact: {resource.phonenumber}
                     </p>
                   </div>
-                </div>
+                </FadeIn>
               ));
               return result;
             }
@@ -119,15 +120,3 @@ class Help extends Component {
 }
 
 export default withStyles(styles)(Help);
-
-// 0:
-// Gangtok:
-// CoVID-19 Testing Lab: Array(1)
-// 0:
-// category: "CoVID-19 Testing Lab"
-// city: "Gangtok"
-// contact: "https://covid.icmr.org.in/index.php/testing-labs-deatails#"
-// descriptionandorserviceprovided: "Collection Site Only"
-// nameoftheorganisation: "Sir Thutob Namgyal Memorial (STNM)"
-// phonenumber: "9845562399"
-// state: "Sikkim"

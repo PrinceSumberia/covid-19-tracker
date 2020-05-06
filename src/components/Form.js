@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { withStyles } from "@material-ui/styles";
+import styles from "../styles/FormStyles";
 
-export default class Form extends Component {
+class Form extends Component {
   constructor(props) {
     super(props);
 
@@ -22,9 +24,11 @@ export default class Form extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <input
+          className={classes.input}
           name="location"
           type="text"
           value={this.state.location}
@@ -32,8 +36,10 @@ export default class Form extends Component {
           onChange={this.handleChange}
           required
         />
-        <button>Get Help</button>
+        <button className={classes.btn}>Get Help</button>
       </form>
     );
   }
 }
+
+export default withStyles(styles)(Form);
