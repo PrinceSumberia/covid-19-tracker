@@ -3,6 +3,8 @@ import { withStyles } from "@material-ui/styles";
 import styles from "../styles/HelpStyles";
 import Form from "./Form";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
 class Help extends Component {
   constructor(props) {
@@ -64,17 +66,39 @@ class Help extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     const res = this.state.currentResources.map((object) => {
       for (const key in object) {
         if (object.hasOwnProperty(key)) {
           for (const key2 in object[key]) {
             if (object[key].hasOwnProperty(key2)) {
               const result = object[key][key2].map((resource) => (
-                <div>
-                  <h3>{resource.category}</h3>
-                  <p>Organization: {resource.nameoftheorganisation}</p>
-                  <a href={resource.contact}>Link</a>
-                  <p>Contact: {resource.phonenumber}</p>
+                <div
+                  key={resource.phonenumber.split(0, 5)}
+                  className={classes.card}
+                >
+                  <div className={classes.header}>
+                    <h3 className={classes.cardHeading}>{resource.category}</h3>
+                    <a
+                      className={classes.cardLink}
+                      href={resource.contact}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon
+                        icon={faExternalLinkAlt}
+                        className={classes.icons}
+                      />
+                    </a>
+                  </div>
+                  <div className={classes.content}>
+                    <p className={classes.text}>
+                      Organization: {resource.nameoftheorganisation}
+                    </p>
+                    <p className={classes.text}>
+                      Contact: {resource.phonenumber}
+                    </p>
+                  </div>
                 </div>
               ));
               return result;
@@ -89,7 +113,7 @@ class Help extends Component {
         <h1>Help Page</h1>
         <p>For Help Please Contact</p>
         <Form handleQuery={this.handleQuery} />
-        {res}
+        <div className={classes.container}>{res}</div>
       </div>
     );
   }
