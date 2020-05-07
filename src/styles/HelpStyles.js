@@ -2,15 +2,18 @@ export default {
   help: {
     textAlign: "center",
   },
+
   mainHeading: {
     marginBottom: "2rem",
   },
+
   container: {
     marginTop: "3rem",
     display: "flex",
     justifyContent: "space-between",
     flexWrap: "wrap",
   },
+
   card: {
     boxShadow: "0 1.5rem 3.5rem rgba(0,0,0,0.1)",
     backgroundColor: "#fff",
@@ -43,11 +46,18 @@ export default {
       marginBottom: ".5rem",
     },
   },
+
   icons: {
     transition: "all .2s",
     "&:hover": {
       color: "#000",
       transform: "scale(1.02)",
+    },
+  },
+
+  cardLink: {
+    "&, &:visited": {
+      color: "#6236FF",
     },
   },
 };

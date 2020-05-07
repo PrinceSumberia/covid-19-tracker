@@ -71,7 +71,7 @@ class Help extends Component {
       }
     }
     this.setState({ currentResources: resources });
-    setTimeout(() => this.setState({ loadingStatus: "completeLoading" }), 1500);
+    setTimeout(() => this.setState({ loadingStatus: "completeLoading" }), 2000);
   }
 
   render() {
