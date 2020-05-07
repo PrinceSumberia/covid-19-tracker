@@ -5,7 +5,7 @@ import {
   faHome,
   faHeadSideCough,
   faFlask,
-  faQuestionCircle,
+  faBox,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/NavbarStyles";
 import { NavLink } from "react-router-dom";
@@ -61,16 +61,13 @@ class Navbar extends Component {
           <li className={classes.navItem}>
             <NavLink
               exact
-              to="/help"
+              to="/essentials"
               className={classes.navLinks}
               activeClassName={classes.active}
             >
               <div className={classes.iconBox}>
-                <FontAwesomeIcon
-                  icon={faQuestionCircle}
-                  className={classes.icons}
-                />
-                <p>Help</p>
+                <FontAwesomeIcon icon={faBox} className={classes.icons} />
+                <p>Essentials</p>
               </div>
             </NavLink>
           </li>

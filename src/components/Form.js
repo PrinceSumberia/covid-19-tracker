@@ -20,7 +20,7 @@ class Form extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.handleQuery(this.state.location);
-    this.setState({ location: "" });
+    this.setState({ location: "" }, this.props.handleLoading);
   }
 
   render() {
@@ -36,7 +36,7 @@ class Form extends Component {
           onChange={this.handleChange}
           required
         />
-        <button className={classes.btn}>Get Help</button>
+        <button className={classes.btn}>Search</button>
       </form>
     );
   }

@@ -15,6 +15,7 @@
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "react": "^16.13.1",
+    "react-content-loader": "^5.0.4",
     "react-dom": "^16.13.1",
     "react-fade-in": "^1.0.0",
     "react-lottie": "^1.2.3",

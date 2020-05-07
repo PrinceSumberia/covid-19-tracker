@@ -42,7 +42,7 @@ class App extends Component {
               />
               <Route exact path="/symptoms" render={() => <h1>symptoms</h1>} />
               <Route exact path="/stay-safe" render={() => <StaySafe />} />
-              <Route exact path="/help" render={() => <Help />} />
+              <Route exact path="/essentials" render={() => <Help />} />
               <Route
                 path="/"
                 render={() => (

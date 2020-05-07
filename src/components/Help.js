@@ -6,6 +6,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import FadeIn from "react-fade-in";
+import Placeholder from "./Placeholder";
 
 class Help extends Component {
   constructor(props) {
@@ -14,8 +15,10 @@ class Help extends Component {
       query: "",
       data: {},
       currentResources: [],
+      loadingStatus: null,
     };
     this.handleQuery = this.handleQuery.bind(this);
+    this.handleLoading = this.handleLoading.bind(this);
     this.getData = this.getData.bind(this);
   }
 
@@ -50,20 +53,25 @@ class Help extends Component {
     this.setState({ query: query }, this.getData);
   }
 
+  handleLoading() {
+    this.setState({ loadingStatus: "loading" });
+  }
+
   getData() {
     let resources = [];
     for (const key of Object.keys(this.state.data)) {
-      if (key === this.state.query) {
+      if (key.toLowerCase() === this.state.query.toLowerCase()) {
         resources.push({ ...this.state.data[key] });
       } else {
         for (const dist of Object.keys(this.state.data[key])) {
-          if (dist === this.state.query) {
+          if (dist.toLowerCase() === this.state.query.toLowerCase()) {
             resources.push({ [key]: this.state.data[key][dist] });
           }
         }
       }
     }
-    this.setState({ currentResources: resources, isLoading: false });
+    this.setState({ currentResources: resources });
+    setTimeout(() => this.setState({ loadingStatus: "completeLoading" }), 1500);
   }
 
   render() {
@@ -111,9 +119,23 @@ class Help extends Component {
     });
     return (
       <div className={classes.help}>
-        <h1 className={classes.mainHeading}>Help Page</h1>
-        <Form handleQuery={this.handleQuery} />
-        <div className={classes.container}>{res}</div>
+        <h1 className={classes.mainHeading}>
+          Search for Essentials and Services
+        </h1>
+        <Form
+          handleQuery={this.handleQuery}
+          handleLoading={this.handleLoading}
+        />
+        {this.state.loadingStatus === "loading" && (
+          <div className={classes.container}>
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+          </div>
+        )}
+        {this.state.loadingStatus === "completeLoading" && (
+          <div className={classes.container}>{res}</div>
+        )}
       </div>
     );
   }
