@@ -3,7 +3,7 @@
  }
 
  .navBar {
-   flex: 0 0 10%;
+   flex: 0 0 8%;
    min-height: 100vh;
    background-color: #1A1053;
    color: rgba(255, 255, 255, .9);
