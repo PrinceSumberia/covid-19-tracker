@@ -25,13 +25,15 @@ export default {
     fontFamily: "inherit",
     border: "none",
     fontSize: "1.7rem",
-    borderRadius: "2rem",
+    borderRadius: "1.5rem",
     color: "white",
     transition: "all .3s",
-    transform: "translateY(-.5rem)",
+    transform: "translateY(-.3rem)",
+    boxShadow: "0 1rem 3rem rgba(0,0,0,.24)",
     textDecoration: "none",
 
     [sizes.down("md")]: {
+      boxShadow: "none",
       padding: "1rem 2.5rem",
       fontSize: "1.6rem",
     },

@@ -1,11 +1,22 @@
+import sizes from "./sizes";
+
 export default {
   symptoms: {
     padding: ".2rem 1rem",
+
+    [sizes.down("md")]: {
+      marginTop: "1.5rem",
+      padding: "1.5rem",
+    },
   },
 
   content: {
     padding: "1rem",
     display: "flex",
+
+    [sizes.down("lg")]: {
+      flexDirection: "column",
+    },
   },
 
   mainContent: {
@@ -19,12 +30,23 @@ export default {
   sidebar: {
     padding: ".5rem 1rem",
     flex: "0 0 30%",
+
+    [sizes.down("lg")]: {
+      padding: "1.5rem 1rem",
+    },
   },
 
   video: {
     height: "25rem",
     borderRadius: "1rem",
     marginBottom: "5rem",
+
+    [sizes.down("lg")]: {
+      width: "55%",
+      height: "auto",
+      margin: "1.75rem auto",
+    },
+
     "& iframe": {
       display: "block",
       overflow: "hidden",
@@ -34,8 +56,13 @@ export default {
 
   heading: {
     marginBottom: "2rem",
+
     "& span": {
       color: "#6236FF",
+    },
+
+    [sizes.down("lg")]: {
+      textAlign: "center",
     },
   },
 
@@ -89,4 +116,8 @@ export default {
   },
 
   info: {},
+
+  footer: {
+    width: "100%",
+  },
 };
