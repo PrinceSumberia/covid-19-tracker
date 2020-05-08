@@ -42,8 +42,8 @@ export default {
     marginBottom: "5rem",
 
     [sizes.down("lg")]: {
-      width: "55%",
-      height: "auto",
+      width: "65%",
+      height: "20rem",
       margin: "1.75rem auto",
     },
 
