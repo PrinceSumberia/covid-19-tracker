@@ -116,12 +116,16 @@ export default {
   },
 
   tinyChart: {
+    width: "30%",
     margin: "2.5rem",
     "& h3": {
       textTransform: "capitalize",
       fontWeight: 500,
 
       textAlign: "center",
+    },
+    [sizes.down("lg")]: {
+      width: "auto",
     },
   },
 
