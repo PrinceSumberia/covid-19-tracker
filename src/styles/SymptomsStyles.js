@@ -25,6 +25,11 @@ export default {
     border: "1px solid #ccc",
     borderRadius: "1rem",
     marginRight: "2rem",
+
+    [sizes.down("md")]: {
+      border: "0",
+      padding: "1rem",
+    },
   },
 
   sidebar: {
@@ -42,8 +47,8 @@ export default {
     marginBottom: "5rem",
 
     [sizes.down("lg")]: {
-      width: "65%",
-      height: "20rem",
+      width: "80%",
+      height: "25rem",
       margin: "1.75rem auto",
     },
 
