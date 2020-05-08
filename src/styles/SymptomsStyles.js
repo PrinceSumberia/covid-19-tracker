@@ -24,7 +24,7 @@ export default {
   video: {
     height: "25rem",
     borderRadius: "1rem",
-    marginBottom: "4rem",
+    marginBottom: "5rem",
     "& iframe": {
       display: "block",
       overflow: "hidden",
@@ -71,14 +71,20 @@ export default {
   },
 
   link: {
-    transition: "all .2s",
+    transition: "all .3s",
     "&, &:visited": {
       textDecoration: "none",
     },
 
+    "& span": {
+      marginLeft: ".25rem",
+    },
+
     "&:hover": {
       color: "#000",
-      marginRight: "2rem",
+      "& span": {
+        marginLeft: ".5rem",
+      },
     },
   },
 

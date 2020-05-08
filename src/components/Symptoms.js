@@ -69,11 +69,12 @@ class Symptoms extends Component {
               ></iframe>
             </div>
             <div>
-              <h4>Useful Links</h4>
+              <h3>Useful Links</h3>
               <ul className={classes.helpfulLinks}>
                 <li>
                   <Link className={classes.link} to="/stay-safe">
                     Prevention of Coronavirus.
+                    <span>&rarr;</span>
                   </Link>
                 </li>
                 <li>
@@ -84,6 +85,7 @@ class Symptoms extends Component {
                     rel="noopener noreferrer"
                   >
                     Learn more on who.int
+                    <span>&rarr;</span>
                   </a>
                 </li>
               </ul>
