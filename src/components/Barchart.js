@@ -1,18 +1,9 @@
 import React, { Component } from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
-import { withStyles } from "@material-ui/styles";
-import styles from "../styles/BarchartStyles";
+import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 
-class Barchart extends Component {
+export default class Barchart extends Component {
   render() {
-    const { data, isLoading, dataKey, stroke, classes } = this.props;
+    const { data, isLoading, dataKey, stroke } = this.props;
     let result;
     try {
       const updatedData = data.slice(1).slice(-50);
@@ -35,25 +26,21 @@ class Barchart extends Component {
     } catch (err) {}
 
     return (
-      <div className={classes.barcharts}>
-        <ResponsiveContainer>
-          {!isLoading && (
-            <BarChart
-              width={350}
-              height={150}
-              data={result}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey={dataKey} fill={stroke} />
-            </BarChart>
-          )}
-        </ResponsiveContainer>
+      <div className="barcharts">
+        {!isLoading && (
+          <BarChart
+            width={350}
+            height={150}
+            data={result}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <XAxis dataKey="date" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey={dataKey} fill={stroke} />
+          </BarChart>
+        )}
       </div>
     );
   }
 }
-
-export default withStyles(styles)(Barchart);
