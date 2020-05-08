@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/styles";
 import styles from "../styles/SymptomsStyles";
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 class Symptoms extends Component {
   render() {
@@ -91,6 +92,9 @@ class Symptoms extends Component {
               </ul>
             </div>
           </div>
+        </div>
+        <div className={classes.footer}>
+          <Footer />
         </div>
       </div>
     );
