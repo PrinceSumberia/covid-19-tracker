@@ -1,7 +1,7 @@
 # COVID-19 Tracker
 
 <p align="center">
-<img src="./src/assets/screesnhot.png" width="80%">
+<img src="./src/assets/screesnhot.png" width="100%">
 </p>
 
 <p align="center">
