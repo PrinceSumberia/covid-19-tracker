@@ -1,11 +1,22 @@
+import sizes from "./sizes";
+
 export default {
   symptoms: {
     padding: ".2rem 1rem",
+
+    [sizes.down("md")]: {
+      marginTop: "1.5rem",
+      padding: "1.5rem",
+    },
   },
 
   content: {
     padding: "1rem",
     display: "flex",
+
+    [sizes.down("lg")]: {
+      flexDirection: "column",
+    },
   },
 
   mainContent: {
