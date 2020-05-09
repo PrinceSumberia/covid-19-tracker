@@ -10,15 +10,11 @@ export default {
       padding: "0 3rem",
       width: "100%",
       flexDirection: "row",
-      // alignItems: "center",
       justifyContent: "space-between",
     },
   },
   logo: {
-    // width: "100%",
-
     "& img": {
-      // width: "50%",
       [sizes.down("md")]: {
         width: "50%",
       },
@@ -44,7 +40,6 @@ export default {
 
     [sizes.down("md")]: {
       marginTop: "2.5rem",
-      // width: "50%",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
@@ -73,9 +68,6 @@ export default {
       maxHeight: 0,
       display: "flex",
       flexDirection: "column",
-      // justifyContent: "center",
-      // alignItems: "center",
-      // justifyContent: "space-evenly",
     },
 
     [sizes.down("xs")]: {
@@ -168,7 +160,6 @@ export default {
 
         [sizes.down("sm")]: {
           height: "100%",
-          // padding: "2rem 1rem",
           borderRadius: "0",
         },
 
