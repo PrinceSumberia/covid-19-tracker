@@ -96,7 +96,7 @@ table {
 .delta-confirmed,
 .delta-recovered,
 .delta-deceased {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   margin-left: .5rem;
 }
 
@@ -123,6 +123,14 @@ table {
 }
 
 @media (max-width: 600px) {
+
+  .delta-confirmed,
+  .delta-recovered,
+  .delta-deceased {
+    font-size: 1.2rem;
+    margin-left: .5rem;
+  }
+
   .tableHead {
     margin: 0;
   }
