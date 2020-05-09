@@ -35,6 +35,7 @@ export default {
     [sizes.down("md")]: {
       display: "inline-block",
       marginBottom: "1.5rem",
+      fontSize: "1.8rem",
     },
   },
 
