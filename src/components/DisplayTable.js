@@ -40,6 +40,7 @@ const useSortableData = (items, config = null) => {
 };
 
 const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
+  console.log(tableData);
   let result;
   try {
     result = tableData.map((dataItem) => {
@@ -56,7 +57,6 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
           newObject[key] = Number(value);
         }
       }
-
       return newObject;
     });
   } catch (err) {}
@@ -209,15 +209,28 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
 
               <td className="state-td" style={lightText}>
                 {item.confirmed}
+                {item.deltaconfirmed > 0 && (
+                  <span className="delta-confirmed">
+                    [{item.deltaconfirmed}]{" "}
+                  </span>
+                )}
               </td>
               <td className="state-td" style={lightText}>
                 {item.active}
               </td>
               <td className="state-td" style={lightText}>
                 {item.recovered}
+                {item.deltarecovered > 0 && (
+                  <span className="delta-recovered">
+                    [{item.deltarecovered}]{" "}
+                  </span>
+                )}
               </td>
               <td className="state-td" style={lightText}>
                 {item.deaths}
+                {item.deltadeaths > 0 && (
+                  <span className="delta-deceased">[{item.deltadeaths}] </span>
+                )}
               </td>
             </tr>
             {distId === item.statecode && displayDist
