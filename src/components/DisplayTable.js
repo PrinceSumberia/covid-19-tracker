@@ -40,7 +40,6 @@ const useSortableData = (items, config = null) => {
 };
 
 const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
-  console.log(tableData);
   let result;
   try {
     result = tableData.map((dataItem) => {
