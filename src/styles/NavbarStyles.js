@@ -2,30 +2,85 @@ import colors from "../constants/colors";
 import sizes from "./sizes";
 
 export default {
-  nav: {
-    paddingTop: "12rem",
+  navbar: {
+    display: "flex",
+    flexDirection: "column",
 
     [sizes.down("md")]: {
-      paddingTop: "2.5rem",
+      padding: "0 3rem",
       width: "100%",
+      flexDirection: "row",
+      // alignItems: "center",
+      justifyContent: "space-between",
     },
+  },
+  logo: {
+    // width: "100%",
 
-    [sizes.down("sm")]: {
-      paddingTop: "2rem",
-    },
+    "& img": {
+      // width: "50%",
+      [sizes.down("md")]: {
+        width: "50%",
+      },
 
-    [sizes.down("xs")]: {
-      paddingTop: "1rem",
+      [sizes.down("xs")]: {
+        width: "30%",
+      },
     },
   },
 
+  hamburger: {
+    display: "none",
+
+    [sizes.down("md")]: {
+      display: "inline-block",
+      marginBottom: "1.5rem",
+    },
+  },
+
+  nav: {
+    marginTop: "7rem",
+
+    [sizes.down("md")]: {
+      marginTop: "2.5rem",
+      // width: "50%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+
+    [sizes.down("sm")]: {
+      marginTop: "2rem",
+    },
+
+    [sizes.down("xs")]: {
+      marginTop: "1rem",
+    },
+  },
+
+  expand: {
+    maxHeight: "25rem !important",
+  },
+
   navItems: {
+    transition: "all .5s",
     listStyle: "none",
     [sizes.down("md")]: {
+      fontSize: "1.5rem",
+      overflow: "hidden",
+      maxHeight: 0,
       display: "flex",
-      justifyContent: "space-evenly",
+      flexDirection: "column",
+      // justifyContent: "center",
+      // alignItems: "center",
+      // justifyContent: "space-evenly",
     },
-    
+
+    [sizes.down("xs")]: {
+      fontSize: "1.2rem",
+      marginBottom: ".5rem",
+    },
   },
 
   navItem: {
@@ -114,6 +169,10 @@ export default {
           height: "100%",
           // padding: "2rem 1rem",
           borderRadius: "0",
+        },
+
+        [sizes.down("xs")]: {
+          content: "none",
         },
       },
 
