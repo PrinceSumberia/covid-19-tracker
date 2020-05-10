@@ -1,3 +1,5 @@
+import sizes from "./sizes";
+
 export default {
   help: {
     textAlign: "center",
@@ -24,6 +26,10 @@ export default {
     margin: "2rem 0",
     flexDirection: "column",
     textAlign: "left",
+
+    [sizes.down("md")]: {
+      padding: "2rem",
+    },
   },
 
   header: {
