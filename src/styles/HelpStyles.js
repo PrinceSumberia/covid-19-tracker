@@ -37,6 +37,10 @@ export default {
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: "2rem",
+
+    [sizes.down("md")]: {
+      marginBottom: "1.5rem",
+    },
   },
 
   content: {},
