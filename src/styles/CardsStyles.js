@@ -1,3 +1,5 @@
+import sizes from "./sizes";
+
 export default {
   card: {
     width: "100%",
@@ -24,6 +26,10 @@ export default {
 
   cardTitle: {
     textTransform: "capitalize",
+
+    [sizes.down("sm")]: {
+      fontSize: "1.6rem",
+    },
   },
   cardImage: {
     display: "block",
