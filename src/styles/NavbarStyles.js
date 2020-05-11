@@ -71,7 +71,6 @@ export default {
     },
 
     [sizes.down("xs")]: {
-      fontSize: "1.2rem",
       marginBottom: ".5rem",
     },
   },

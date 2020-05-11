@@ -127,7 +127,7 @@ table {
   .delta-confirmed,
   .delta-recovered,
   .delta-deceased {
-    font-size: 1.2rem;
+    font-size: .9rem;
     margin-left: .5rem;
   }
 
