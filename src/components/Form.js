@@ -26,7 +26,7 @@ class Form extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className={classes.form}>
         <input
           className={classes.input}
           name="location"

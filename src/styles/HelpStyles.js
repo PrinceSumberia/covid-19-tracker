@@ -7,12 +7,19 @@ export default {
 
   mainHeading: {
     marginBottom: "2rem",
+
+    [sizes.down("md")]: {
+      margin: "2rem",
+    },
+    [sizes.down("sm")]: {
+      fontSize: "2rem",
+    },
   },
 
   container: {
     marginTop: "3rem",
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     flexWrap: "wrap",
   },
 
@@ -21,14 +28,22 @@ export default {
     backgroundColor: "#fff",
     borderRadius: "1rem",
     padding: "3.5rem",
-    width: "25%",
+    width: "20%",
     display: "flex",
-    margin: "2rem 0",
+    margin: "2rem 1rem",
     flexDirection: "column",
     textAlign: "left",
 
-    [sizes.down("md")]: {
+    [sizes.down("sm")]: {
       padding: "2rem",
+      margin: "1rem",
+      width: "30%",
+    },
+
+    [sizes.down("xs")]: {
+      padding: "2rem",
+      margin: "1rem",
+      width: "50%",
     },
   },
 

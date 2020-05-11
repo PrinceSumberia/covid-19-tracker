@@ -1,4 +1,15 @@
+import sizes from "./sizes";
+
 export default {
+  form: {
+    // [sizes.down("xs")]: {
+    //   display: "flex",
+    //   flexDirection: "column",
+    //   justifyContent: "center",
+    //   alignItems: "center",
+    // },
+  },
+
   input: {
     fontFamily: "inherit",
     fontSize: "1.6rem",
@@ -9,9 +20,21 @@ export default {
     margin: "1.5rem",
     transition: "all .4s",
 
+    [sizes.down("md")]: {
+      width: "35%",
+      fontSize: "1.4rem",
+      padding: "1rem 2rem",
+    },
+
+    [sizes.down("xs")]: {},
+
     "&:focus": {
       width: "22%",
       outline: "none",
+
+      [sizes.down("md")]: {
+        width: "45%",
+      },
     },
 
     "&::placeholder": {
@@ -32,6 +55,11 @@ export default {
       transition: "all .4s",
       transform: "translateY(-2px)",
       boxShadow: "0 .5rem 1rem rgba(0,0,0,0.2)",
+
+      [sizes.down("md")]: {
+        fontSize: "1.4rem",
+        padding: "1rem 1.5rem",
+      },
     },
 
     "&:hover": {
