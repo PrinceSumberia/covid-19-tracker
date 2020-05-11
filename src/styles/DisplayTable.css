@@ -40,13 +40,13 @@ table {
 .tableHead-Button.ascending::after {
   content: '\2193';
   display: inline-block;
-  margin-left: 1em;
+  margin-left: 1rem;
 }
 
 .tableHead-Button.descending::after {
   content: '\2191';
   display: inline-block;
-  margin-left: 1em;
+  margin-left: 1rem;
 }
 
 .state-td {
@@ -147,6 +147,17 @@ table {
   .districtHead {
     padding: .2rem;
     margin: 0;
-    /* font-size: 1rem; */
   }
+}
+
+@media (max-width: 575px) {
+  .state-td {
+    padding: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .state-tr {
+    border-radius: 1rem;
+  }
+
 }
