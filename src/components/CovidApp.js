@@ -31,6 +31,21 @@ const defaultOptions = {
   },
 };
 
+const months = {
+  "01": "Jan",
+  "02": "Feb",
+  "03": "Mar",
+  "04": "Apr",
+  "05": "May",
+  "06": "Jun",
+  "07": "Jul",
+  "08": "Aug",
+  "09": "Sep",
+  "10": "Oct",
+  "11": "Nov",
+  "12": "Dec",
+};
+
 class CovidApp extends Component {
   constructor(props) {
     super(props);
@@ -73,6 +88,8 @@ class CovidApp extends Component {
         const districtLevel = responses[1].data;
         // const stateChanges = responses[2].data;
         const updates = responses[3].data;
+
+        // console.log(countryData.statewise[0].lastupdatedtime);
 
         const [todayData] = countryData.statewise.slice(0, 1);
         const casesTimeline = countryData.cases_time_series;
@@ -123,6 +140,15 @@ class CovidApp extends Component {
 
   handleNotification() {
     this.setState({ expanded: !this.state.expanded });
+  }
+
+  formatDate(date) {
+    try {
+      const day = date.slice(0, 2);
+      const month = date.slice(3, 5);
+      const time = date.slice(11);
+      return `${day} ${months[month]}, ${time.slice(0, 5)} IST`;
+    } catch (err) {}
   }
 
   render() {
@@ -181,6 +207,10 @@ class CovidApp extends Component {
               className={classes.button}
               onClick={this.fetchData}
             />
+          </div>
+          <div className={classes.lastUpdatedTime}>
+            Last Updated:{" "}
+            {this.formatDate(this.state.todayData.lastupdatedtime)}
           </div>
           <div className={classes.updates}>
             <div className={classes.notification}>

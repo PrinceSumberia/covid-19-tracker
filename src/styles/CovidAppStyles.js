@@ -62,6 +62,11 @@ export default {
     },
   },
 
+  lastUpdatedTime: {
+    marginLeft: "1.5rem",
+    fontSize: "1.5rem",
+  },
+
   update: {
     fontSize: "1.5rem",
     display: "block",
