@@ -40,6 +40,10 @@ export default {
     color: colors.darkPurple,
     position: "relative",
     transition: "all .5s ease",
+  },
+
+  notificationBell: {
+    position: "relative",
 
     "&::before": {
       content: '""',

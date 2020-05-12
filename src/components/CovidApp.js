@@ -189,10 +189,12 @@ class CovidApp extends Component {
                   onClick={this.handleNotification}
                 />
               ) : (
-                <FontAwesomeIcon
-                  icon={faBell}
-                  onClick={this.handleNotification}
-                />
+                <div className={classes.notificationBell}>
+                  <FontAwesomeIcon
+                    icon={faBell}
+                    onClick={this.handleNotification}
+                  />
+                </div>
               )}
             </div>
             <div className={classes.update}>{expanded && displayUpdates}</div>
