@@ -27,8 +27,68 @@ export default {
     [sizes.down("xs")]: {
       fontSize: "2rem",
       padding: "3rem",
-      // paddingBottom: "1.5rem",
     },
+  },
+
+  updates: {
+    marginLeft: "auto",
+    position: "relative",
+  },
+
+  notification: {
+    fontSize: "3rem",
+    color: colors.darkPurple,
+    position: "relative",
+    transition: "all .4s ease",
+
+    "&:hover": {
+      transform: "scale(1.15)",
+      color: "#000",
+    },
+  },
+
+  notificationBell: {
+    position: "relative",
+
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      width: "1rem",
+      height: "1rem",
+      backgroundColor: "red",
+      borderRadius: "10rem",
+      top: "1rem",
+      right: 0,
+    },
+  },
+
+  lastUpdatedTime: {
+    marginLeft: "1.5rem",
+    fontSize: "1.5rem",
+  },
+
+  update: {
+    fontSize: "1.5rem",
+    display: "block",
+    position: "absolute",
+    left: "-25rem",
+    backgroundColor: "rgba(255,255,255,.95)",
+    borderRadius: "2rem",
+    boxShadow: "0 1rem 2rem rgba(0,0,0,.15)",
+    padding: "3rem",
+    zIndex: "1",
+    transition: "all .5s",
+  },
+
+  updateBox: {
+    marginBottom: "1.5rem",
+  },
+
+  updateHeading: {
+    textTransform: "capitalize",
+  },
+  updateText: {
+    fontWeight: "400",
   },
 
   content: {

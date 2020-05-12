@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { formatDistance } from "date-fns";
 import Overview from "./Overview";
 import { withStyles } from "@material-ui/styles";
 import colors from "../constants/colors";
@@ -7,14 +8,18 @@ import DisplayTable from "./DisplayTable";
 import styles from "../styles/CovidAppStyles";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSyncAlt,
+  faBell,
+  faBellSlash,
+} from "@fortawesome/free-solid-svg-icons";
 import "../styles/DarkModeButton.css";
 import MapSection from "./MapSection";
 import Barchart from "./Barchart";
 import stateCodes from "../constants/stateCodes";
 import Lottie from "react-lottie";
 import * as animationData from "../assets/loading.json";
-import FadeIn from "react-fade-in";
+// import FadeIn from "react-fade-in";
 import Footer from "./Footer";
 
 const defaultOptions = {
@@ -24,6 +29,21 @@ const defaultOptions = {
   rendererSettings: {
     preserveAspectRatio: "xMidYMid slice",
   },
+};
+
+const months = {
+  "01": "Jan",
+  "02": "Feb",
+  "03": "Mar",
+  "04": "Apr",
+  "05": "May",
+  "06": "Jun",
+  "07": "Jul",
+  "08": "Aug",
+  "09": "Sep",
+  "10": "Oct",
+  "11": "Nov",
+  "12": "Dec",
 };
 
 class CovidApp extends Component {
@@ -42,6 +62,7 @@ class CovidApp extends Component {
     this.formatData = this.formatData.bind(this);
     this.findId = this.findId.bind(this);
     this.handleFormat = this.handleFormat.bind(this);
+    this.handleNotification = this.handleNotification.bind(this);
   }
 
   componentDidMount() {
@@ -57,12 +78,18 @@ class CovidApp extends Component {
     const stateChanges = axios.get(
       "https://api.covid19india.org/states_daily.json"
     );
+    const updates = axios.get(
+      "https://api.covid19india.org/updatelog/log.json"
+    );
 
-    axios.all([countryData, districtLevel, stateChanges]).then(
+    axios.all([countryData, districtLevel, stateChanges, updates]).then(
       axios.spread((...responses) => {
         const countryData = responses[0].data;
         const districtLevel = responses[1].data;
         // const stateChanges = responses[2].data;
+        const updates = responses[3].data;
+
+        // console.log(countryData.statewise[0].lastupdatedtime);
 
         const [todayData] = countryData.statewise.slice(0, 1);
         const casesTimeline = countryData.cases_time_series;
@@ -75,6 +102,8 @@ class CovidApp extends Component {
             todayData: todayData,
             casesTimeline: casesTimeline,
             districtLevel: districtLevel,
+            updates: updates,
+            expanded: false,
           },
           this.handleFormat
         );
@@ -109,9 +138,29 @@ class CovidApp extends Component {
     this.setState({ mapData: newdata });
   }
 
+  handleNotification() {
+    this.setState({ expanded: !this.state.expanded });
+  }
+
+  formatDate(date) {
+    try {
+      const day = date.slice(0, 2);
+      const month = date.slice(3, 5);
+      const time = date.slice(11);
+      return `${day} ${months[month]}, ${time.slice(0, 5)} IST`;
+    } catch (err) {}
+  }
+
   render() {
     const { classes, setDarkMode, isDarkMode } = this.props;
-    const { mapData, isLoading, data, districtLevel } = this.state;
+    const {
+      mapData,
+      isLoading,
+      data,
+      districtLevel,
+      expanded,
+      updates,
+    } = this.state;
 
     if (isLoading) {
       return (
@@ -120,9 +169,34 @@ class CovidApp extends Component {
         </div>
       );
     }
+    let displayUpdates;
+    try {
+      displayUpdates = updates
+        .slice(-5)
+        .reverse()
+        .map(({ update, timestamp }, i) => {
+          update = update.replace("\n", "<br/>");
+          return (
+            <div className={classes.updateBox} key={i}>
+              <h5 className={classes.updateHeading}>
+                {`${formatDistance(
+                  new Date(timestamp * 1000),
+                  new Date()
+                )} ago`}
+              </h5>
+              <h4
+                className={classes.updateText}
+                dangerouslySetInnerHTML={{
+                  __html: update,
+                }}
+              ></h4>
+            </div>
+          );
+        });
+    } catch (err) {}
 
     return (
-      <FadeIn>
+      <>
         <div className={classes.header}>
           <h1 className={classes.heading}>
             <span>Covid-19</span> India Trend
@@ -133,6 +207,28 @@ class CovidApp extends Component {
               className={classes.button}
               onClick={this.fetchData}
             />
+          </div>
+          <div className={classes.lastUpdatedTime}>
+            Last Updated:{" "}
+            {this.formatDate(this.state.todayData.lastupdatedtime)}
+          </div>
+          <div className={classes.updates}>
+            <div className={classes.notification}>
+              {expanded ? (
+                <FontAwesomeIcon
+                  icon={faBellSlash}
+                  onClick={this.handleNotification}
+                />
+              ) : (
+                <div className={classes.notificationBell}>
+                  <FontAwesomeIcon
+                    icon={faBell}
+                    onClick={this.handleNotification}
+                  />
+                </div>
+              )}
+            </div>
+            {expanded && <div className={classes.update}>{displayUpdates}</div>}
           </div>
           <div className="darkModeButton">
             <label className="switch">
@@ -145,11 +241,13 @@ class CovidApp extends Component {
             </label>
           </div>
         </div>
-        <Overview
-          isDarkMode={isDarkMode}
-          data={this.state.todayData}
-          loadingStatus={this.loadingStatus}
-        />
+        <div>
+          <Overview
+            isDarkMode={isDarkMode}
+            data={this.state.todayData}
+            loadingStatus={this.loadingStatus}
+          />
+        </div>
         <div className={classes.content}>
           <div className={classes.contentArea}>
             <div className={classes.mapArea}>
@@ -238,7 +336,7 @@ class CovidApp extends Component {
           </div>
         </div>
         <Footer />
-      </FadeIn>
+      </>
     );
   }
 }
