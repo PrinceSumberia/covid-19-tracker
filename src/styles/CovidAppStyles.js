@@ -27,8 +27,38 @@ export default {
     [sizes.down("xs")]: {
       fontSize: "2rem",
       padding: "3rem",
-      // paddingBottom: "1.5rem",
     },
+  },
+
+  updates: {
+    marginLeft: "auto",
+    position: "relative",
+  },
+
+  notification: {
+    fontSize: "3rem",
+    color: colors.darkPurple,
+    position: "relative",
+    transition: "all .5s ease",
+
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      width: "1rem",
+      height: "1rem",
+      backgroundColor: "red",
+      borderRadius: "10rem",
+      top: "1rem",
+      right: 0,
+    },
+  },
+
+  update: {
+    display: "block",
+    position: "absolute",
+    left: "-25rem",
+    backgroundColor: "red",
+    zIndex: "99999999",
   },
 
   content: {
