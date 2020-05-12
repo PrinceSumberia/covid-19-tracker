@@ -26,7 +26,7 @@ export default {
 
     [sizes.down("xs")]: {
       fontSize: "2rem",
-      padding: "3rem",
+      padding: "3rem 1.5rem",
     },
   },
 
@@ -38,6 +38,7 @@ export default {
   notification: {
     fontSize: "3rem",
     color: colors.darkPurple,
+    margin: "1rem",
     position: "relative",
     transition: "all .4s ease",
 
@@ -65,6 +66,10 @@ export default {
   lastUpdatedTime: {
     marginLeft: "1.5rem",
     fontSize: "1.5rem",
+
+    [sizes.down("sm")]: {
+      display: "none",
+    },
   },
 
   update: {
@@ -78,6 +83,11 @@ export default {
     padding: "3rem",
     zIndex: "1",
     transition: "all .5s",
+
+    [sizes.down("sm")]: {
+      left: "-18rem",
+      padding: "1.5rem",
+    },
   },
 
   updateBox: {
