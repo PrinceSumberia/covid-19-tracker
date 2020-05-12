@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { formatDistance, format } from "date-fns";
+import { formatDistance } from "date-fns";
 import Overview from "./Overview";
 import { withStyles } from "@material-ui/styles";
 import colors from "../constants/colors";
@@ -19,7 +19,7 @@ import Barchart from "./Barchart";
 import stateCodes from "../constants/stateCodes";
 import Lottie from "react-lottie";
 import * as animationData from "../assets/loading.json";
-import FadeIn from "react-fade-in";
+// import FadeIn from "react-fade-in";
 import Footer from "./Footer";
 
 const defaultOptions = {
@@ -151,26 +151,27 @@ class CovidApp extends Component {
         .map(({ update, timestamp }, i) => {
           update = update.replace("\n", "<br/>");
           return (
-            <React.Fragment key={i}>
-              <h5>
+            <div className={classes.updateBox} key={i}>
+              <h5 className={classes.updateHeading}>
                 {`${formatDistance(
                   new Date(timestamp * 1000),
                   new Date()
                 )} ago`}
               </h5>
               <h4
+                className={classes.updateText}
                 dangerouslySetInnerHTML={{
                   __html: update,
                 }}
               ></h4>
-            </React.Fragment>
+            </div>
           );
         });
     } catch (err) {}
 
     return (
       <>
-        <div className={classes.header} style={{ zIndex: "999" }}>
+        <div className={classes.header}>
           <h1 className={classes.heading}>
             <span>Covid-19</span> India Trend
           </h1>
@@ -197,7 +198,7 @@ class CovidApp extends Component {
                 </div>
               )}
             </div>
-            <div className={classes.update}>{expanded && displayUpdates}</div>
+            {expanded && <div className={classes.update}>{displayUpdates}</div>}
           </div>
           <div className="darkModeButton">
             <label className="switch">
@@ -210,7 +211,7 @@ class CovidApp extends Component {
             </label>
           </div>
         </div>
-        <div style={{ position: "relative", zIndex: "-1" }}>
+        <div>
           <Overview
             isDarkMode={isDarkMode}
             data={this.state.todayData}

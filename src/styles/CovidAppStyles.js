@@ -39,7 +39,12 @@ export default {
     fontSize: "3rem",
     color: colors.darkPurple,
     position: "relative",
-    transition: "all .5s ease",
+    transition: "all .4s ease",
+
+    "&:hover": {
+      transform: "scale(1.15)",
+      color: "#000",
+    },
   },
 
   notificationBell: {
@@ -58,11 +63,27 @@ export default {
   },
 
   update: {
+    fontSize: "1.5rem",
     display: "block",
     position: "absolute",
     left: "-25rem",
-    backgroundColor: "red",
-    zIndex: "99999999",
+    backgroundColor: "rgba(255,255,255,.95)",
+    borderRadius: "2rem",
+    boxShadow: "0 1rem 2rem rgba(0,0,0,.15)",
+    padding: "3rem",
+    zIndex: "1",
+    transition: "all .5s",
+  },
+
+  updateBox: {
+    marginBottom: "1.5rem",
+  },
+
+  updateHeading: {
+    textTransform: "capitalize",
+  },
+  updateText: {
+    fontWeight: "400",
   },
 
   content: {
