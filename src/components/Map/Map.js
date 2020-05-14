@@ -60,7 +60,6 @@ class Map extends Component {
   }
 
   onMouseEnter = (geo, current = { value: "NA" }) => {
-    console.log(current);
     return () => {
       this.setState(
         {
