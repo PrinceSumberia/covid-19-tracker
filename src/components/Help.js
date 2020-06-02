@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withStyles } from "@material-ui/styles";
+import axios from "axios";
+import React, { Component } from "react";
+import FadeIn from "react-fade-in";
 import styles from "../styles/HelpStyles";
 import Form from "./Form";
-import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
-import FadeIn from "react-fade-in";
 import Placeholder from "./Placeholder";
 
 class Help extends Component {

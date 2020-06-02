@@ -3,6 +3,7 @@ import sizes from "./sizes";
 export default {
   help: {
     textAlign: "center",
+    minHeight: "100vh",
   },
 
   mainHeading: {
@@ -57,8 +58,6 @@ export default {
       marginBottom: "1.5rem",
     },
   },
-
-  content: {},
 
   cardHeading: {
     textTransform: "uppercase",
