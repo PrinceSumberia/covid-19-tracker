@@ -19,13 +19,18 @@ class StaySafe extends Component {
       { src: Fifth, title: "Keep Distance" },
       { src: Sixth, title: "Stay Home Stay Safe" },
     ];
-    const { classes } = this.props;
+    const { classes, isDarkMode } = this.props;
     return (
       <div className={classes.staySafe}>
         <h1>Stay Safe</h1>
         <div className={classes.cardsBox}>
           {svgIcons.map((s, i) => (
-            <Cards key={i} src={s.src} title={s.title} />
+            <Cards
+              key={i}
+              src={s.src}
+              title={s.title}
+              isDarkMode={isDarkMode}
+            />
           ))}
         </div>
       </div>

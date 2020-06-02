@@ -1,4 +1,5 @@
 import sizes from "./sizes";
+import colors from "../constants/colors";
 
 export default {
   help: {
@@ -26,7 +27,8 @@ export default {
 
   card: {
     boxShadow: "0 1.5rem 3.5rem rgba(0,0,0,0.1)",
-    backgroundColor: "#fff",
+    backgroundColor: ({ isDarkMode }) =>
+      isDarkMode ? colors.darkPurple : "#fff",
     borderRadius: "1rem",
     padding: "3.5rem",
     width: "20%",

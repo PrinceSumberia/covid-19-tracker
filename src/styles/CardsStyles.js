@@ -1,4 +1,5 @@
 import sizes from "./sizes";
+import colors from "../constants/colors";
 
 export default {
   card: {
@@ -9,7 +10,8 @@ export default {
     alignItems: "center",
     flex: "0 0 20%",
     padding: "3rem 4rem",
-    backgroundColor: "#fff",
+    backgroundColor: ({ isDarkMode }) =>
+      isDarkMode ? colors.darkPurple : "#fff",
     marginBottom: "7rem",
     transition: "all .5s",
     boxShadow: `0 1px 2.3px -50px rgba(0, 0, 0, 0.014),

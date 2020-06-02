@@ -41,9 +41,21 @@ class App extends Component {
                   />
                 )}
               />
-              <Route exact path="/symptoms" render={() => <Symptoms />} />
-              <Route exact path="/stay-safe" render={() => <StaySafe />} />
-              <Route exact path="/essentials" render={() => <Help />} />
+              <Route
+                exact
+                path="/symptoms"
+                render={() => <Symptoms isDarkMode={isDarkMode} />}
+              />
+              <Route
+                exact
+                path="/stay-safe"
+                render={() => <StaySafe isDarkMode={isDarkMode} />}
+              />
+              <Route
+                exact
+                path="/essentials"
+                render={() => <Help isDarkMode={isDarkMode} />}
+              />
               <Route
                 path="/"
                 render={() => (
