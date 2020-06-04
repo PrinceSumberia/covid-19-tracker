@@ -1,26 +1,25 @@
-import React, { Component } from "react";
-import { formatDistance } from "date-fns";
-import Overview from "./Overview";
-import { withStyles } from "@material-ui/styles";
-import colors from "../constants/colors";
-import Charts from "./Charts";
-import DisplayTable from "./DisplayTable";
-import styles from "../styles/CovidAppStyles";
-import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faSyncAlt,
   faBell,
   faBellSlash,
+  faSyncAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import "../styles/DarkModeButton.css";
-import MapSection from "./MapSection";
-import Barchart from "./Barchart";
-import stateCodes from "../constants/stateCodes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { withStyles } from "@material-ui/styles";
+import axios from "axios";
+import { formatDistance } from "date-fns";
+import React, { Component } from "react";
 import Lottie from "react-lottie";
 import * as animationData from "../assets/loading.json";
-// import FadeIn from "react-fade-in";
+import colors from "../constants/colors";
+import stateCodes from "../constants/stateCodes";
+import styles from "../styles/CovidAppStyles";
+import "../styles/DarkModeButton.css";
+import Barchart from "./Barchart";
+import Charts from "./Charts";
+import DisplayTable from "./DisplayTable";
 import Footer from "./Footer";
+import MapSection from "./MapSection";
+import Overview from "./Overview";
 
 const defaultOptions = {
   loop: true,
@@ -86,10 +85,7 @@ class CovidApp extends Component {
       axios.spread((...responses) => {
         const countryData = responses[0].data;
         const districtLevel = responses[1].data;
-        // const stateChanges = responses[2].data;
         const updates = responses[3].data;
-
-        // console.log(countryData.statewise[0].lastupdatedtime);
 
         const [todayData] = countryData.statewise.slice(0, 1);
         const casesTimeline = countryData.cases_time_series;

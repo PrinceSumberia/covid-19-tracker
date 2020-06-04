@@ -37,14 +37,15 @@ export default {
 
   notification: {
     fontSize: "3rem",
-    color: colors.darkPurple,
+    color: ({ isDarkMode }) =>
+      isDarkMode ? colors.lightPurple : colors.darkPurple,
     margin: "1rem",
     position: "relative",
     transition: "all .4s ease",
 
     "&:hover": {
       transform: "scale(1.15)",
-      color: "#000",
+      color: ({ isDarkMode }) => (isDarkMode ? "rgba(255,255,255,.8)" : "#000"),
     },
   },
 
@@ -77,7 +78,8 @@ export default {
     display: "block",
     position: "absolute",
     left: "-25rem",
-    backgroundColor: "rgba(255,255,255,.95)",
+    backgroundColor: ({ isDarkMode }) =>
+      isDarkMode ? colors.darkPurple : "rgba(255,255,255,.95)",
     borderRadius: "2rem",
     boxShadow: "0 1rem 2rem rgba(0,0,0,.15)",
     padding: "3rem",
