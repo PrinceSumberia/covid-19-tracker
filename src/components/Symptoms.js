@@ -49,7 +49,7 @@ class Symptoms extends Component {
                 <li>runny</li>
                 <li>nose.</li>
                 <li>sore throat.</li>
-                <li>diarrhoea.</li>
+                <li>diarrhea.</li>
               </ul>
             </div>
             <small className={classes.info}>
