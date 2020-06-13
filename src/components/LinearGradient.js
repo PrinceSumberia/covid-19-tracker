@@ -1,25 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../styles/LinearGradient.css";
+import styles from "../styles/LinearGradientStyles";
+import { withStyles } from "@material-ui/styles";
+import classNames from 'classnames'
 
 const LinearGradient = (props) => {
-  const { data } = props;
-  const boxStyle = {
-    width: 180,
-    margin: "auto",
-  };
-  const gradientStyle = {
-    backgroundImage: `linear-gradient(to right, ${data.fromColor} , ${data.toColor})`,
-    height: 20,
-  };
+  const { data, classes } = props;
   return (
     <div>
-      <div style={boxStyle} className="display-flex">
+      <div className={classNames(classes.boxStyle, classes.displayFlex)}>
         <span>{data.min}</span>
-        <span className="fill"></span>
+        <span className={classes.fill}></span>
         <span>{data.max}</span>
       </div>
-      <div style={{ ...boxStyle, ...gradientStyle }} className="mt8"></div>
+      <div className={classNames(classes.mt8, classes.boxStyle, classes.gradientStyle)}></div>
     </div>
   );
 };
@@ -28,4 +22,4 @@ LinearGradient.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-export default LinearGradient;
+export default withStyles(styles)(LinearGradient);

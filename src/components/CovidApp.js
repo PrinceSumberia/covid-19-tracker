@@ -1,7 +1,7 @@
 import {
   faBell,
   faBellSlash,
-  faSyncAlt,
+  faSyncAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withStyles } from "@material-ui/styles";
@@ -144,7 +144,7 @@ class CovidApp extends Component {
       const month = date.slice(3, 5);
       const time = date.slice(11);
       return `${day} ${months[month]}, ${time.slice(0, 5)} IST`;
-    } catch (err) {}
+    } catch (err) { }
   }
 
   render() {
@@ -189,7 +189,7 @@ class CovidApp extends Component {
             </div>
           );
         });
-    } catch (err) {}
+    } catch (err) { }
 
     return (
       <>
@@ -216,13 +216,13 @@ class CovidApp extends Component {
                   onClick={this.handleNotification}
                 />
               ) : (
-                <div className={classes.notificationBell}>
-                  <FontAwesomeIcon
-                    icon={faBell}
-                    onClick={this.handleNotification}
-                  />
-                </div>
-              )}
+                  <div className={classes.notificationBell}>
+                    <FontAwesomeIcon
+                      icon={faBell}
+                      onClick={this.handleNotification}
+                    />
+                  </div>
+                )}
             </div>
             {expanded && <div className={classes.update}>{displayUpdates}</div>}
           </div>
