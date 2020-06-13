@@ -26,7 +26,7 @@ function Overview(props) {
             title="Confirmed"
             number={confirmed}
             isDarkMode={isDarkMode}
-            dataChange={deltaconfirmed}
+            dataChange={deltaconfirmed > 0 ? deltaconfirmed : "-"}
           />
         </div>
         <div className={classes.panelContainer}>
