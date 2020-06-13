@@ -1,17 +1,11 @@
-import React, { Component } from "react";
-import { withStyles } from "@material-ui/styles";
+import { faBars, faBox, faFlask, faHeadSideCough, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHome,
-  faHeadSideCough,
-  faFlask,
-  faBox,
-  faBars,
-} from "@fortawesome/free-solid-svg-icons";
-import styles from "../styles/NavbarStyles";
+import { withStyles } from "@material-ui/styles";
+import classNames from "classnames";
+import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/SVG/06.svg";
-import classNames from "classnames";
+import styles from "../styles/NavbarStyles";
 
 class Navbar extends Component {
   constructor(props) {

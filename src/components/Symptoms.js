@@ -1,7 +1,7 @@
-import React, { Component } from "react";
 import { withStyles } from "@material-ui/styles";
-import styles from "../styles/SymptomsStyles";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import styles from "../styles/SymptomsStyles";
 import Footer from "./Footer";
 
 class Symptoms extends Component {

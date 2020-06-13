@@ -1,8 +1,8 @@
+import { withStyles } from "@material-ui/styles";
 import React, { Component } from "react";
+import styles from "../styles/MapSection";
 import DisplayPanels from "./DisplayPanels";
 import Map from "./Map";
-import { withStyles } from "@material-ui/styles";
-import styles from "../styles/MapSection";
 
 class MapSection extends Component {
   constructor(props) {

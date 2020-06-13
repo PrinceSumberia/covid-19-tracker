@@ -1,12 +1,12 @@
+import { withStyles } from "@material-ui/styles";
+import { scaleQuantile } from "d3-scale";
 import React, { Component } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-import { scaleQuantile } from "d3-scale";
 import ReactTooltip from "react-tooltip";
-import LinearGradient from "./LinearGradient.js";
 import INDIA_TOPO_JSON from "../constants/india.topo.json";
-import "../styles/MapStyles.js"
-import { withStyles } from "@material-ui/styles";
-import styles from '../styles/MapStyles'
+import styles from '../styles/MapStyles';
+import "../styles/MapStyles.js";
+import LinearGradient from "./LinearGradient.js";
 
 /**
  * Courtesy: https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/india.topo.json

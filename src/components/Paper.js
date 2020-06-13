@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import { withStyles } from "@material-ui/styles";
+import React, { Component } from "react";
 
 const styles = {
   darkMode: {

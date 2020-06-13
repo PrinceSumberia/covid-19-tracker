@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
+import { Bar, BarChart, Tooltip, XAxis, YAxis } from "recharts";
 
 export default class Barchart extends Component {
   render() {
@@ -23,7 +23,7 @@ export default class Barchart extends Component {
             (newObject.totalrecovered + newObject.totaldeceased),
         };
       });
-    } catch (err) {}
+    } catch (err) { }
 
     return (
       <div className="barcharts">

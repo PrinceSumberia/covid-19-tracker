@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "../styles/LinearGradientStyles";
 import { withStyles } from "@material-ui/styles";
-import classNames from 'classnames'
+import classNames from 'classnames';
+import PropTypes from "prop-types";
+import React from "react";
+import styles from "../styles/LinearGradientStyles";
 
 const LinearGradient = (props) => {
   const { data, classes } = props;

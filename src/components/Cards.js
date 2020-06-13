@@ -1,5 +1,5 @@
-import React from "react";
 import { withStyles } from "@material-ui/styles";
+import React from "react";
 import styles from "../styles/CardsStyles";
 
 function Cards({ title, src, classes }) {

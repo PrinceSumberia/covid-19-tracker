@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import { faArrowCircleDown, faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowCircleRight,
-  faArrowCircleDown,
-} from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
 import "../styles/DisplayTable.css";
 
 const useSortableData = (items, config = null) => {
@@ -58,7 +55,7 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
       }
       return newObject;
     });
-  } catch (err) {}
+  } catch (err) { }
 
   const getDistrictData = (statecode) => {
     try {
@@ -107,7 +104,7 @@ const DisplayTable = ({ tableData, isDarkMode, districtLevel }) => {
         </>
       );
       return markup;
-    } catch (err) {}
+    } catch (err) { }
   };
 
   const { items, requestSort, sortConfig } = useSortableData(result);

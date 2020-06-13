@@ -46,7 +46,7 @@ class Help extends Component {
           hashmap[x["state"]][x["city"]][x["category"]].push(x);
       });
       this.setState({ data: hashmap });
-    } catch (err) {}
+    } catch (err) { }
   }
 
   handleQuery(query) {
