@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DisplayPanels from "./DisplayPanels";
-import Map from "./Map/Map";
+import Map from "./Map";
 import { withStyles } from "@material-ui/styles";
 import styles from "../styles/MapSection";
 
@@ -32,7 +32,7 @@ class MapSection extends Component {
           (Number(updatedData.deltarecovered) +
             Number(updatedData.deltadeaths)),
       });
-    } catch (error) {}
+    } catch (error) { }
   }
 
   render() {
