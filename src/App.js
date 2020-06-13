@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import CovidApp from "./components/CovidApp";
-import Paper from "./components/Paper";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/Navbar";
-import { Switch, Route } from "react-router-dom";
-import StaySafe from "./components/StaySafe";
+import CovidApp from "./components/CovidApp";
 import Help from "./components/Help";
+import Navbar from "./components/Navbar";
+import Paper from "./components/Paper";
+import StaySafe from "./components/StaySafe";
 import Symptoms from "./components/Symptoms";
 
 class App extends Component {
