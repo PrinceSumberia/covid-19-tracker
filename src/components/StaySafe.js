@@ -1,13 +1,16 @@
-import { withStyles } from "@material-ui/styles";
 import React, { Component } from "react";
+import { withStyles } from "@material-ui/styles";
+
+import Cards from "./Cards";
+
 import First from "../assets/SVG/01.svg";
 import Second from "../assets/SVG/02.svg";
 import Third from "../assets/SVG/03.svg";
 import Fourth from "../assets/SVG/04.svg";
 import Fifth from "../assets/SVG/05.svg";
 import Sixth from "../assets/SVG/06.svg";
+
 import styles from "../styles/StaySafeStyles";
-import Cards from "./Cards";
 
 class StaySafe extends Component {
   render() {

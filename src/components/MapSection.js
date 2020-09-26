@@ -1,8 +1,10 @@
-import { withStyles } from "@material-ui/styles";
 import React, { Component } from "react";
-import styles from "../styles/MapSection";
-import DisplayPanels from "./DisplayPanels";
+import { withStyles } from "@material-ui/styles";
+
 import Map from "./Map";
+import DisplayPanels from "./DisplayPanels";
+
+import styles from "../styles/MapSection";
 
 class MapSection extends Component {
   constructor(props) {
@@ -32,7 +34,7 @@ class MapSection extends Component {
           (Number(updatedData.deltarecovered) +
             Number(updatedData.deltadeaths)),
       });
-    } catch (error) { }
+    } catch (error) {}
   }
 
   render() {

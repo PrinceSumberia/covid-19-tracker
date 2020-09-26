@@ -1,12 +1,14 @@
+import React, { Component } from "react";
+import axios from "axios";
+import FadeIn from "react-fade-in";
+import { withStyles } from "@material-ui/styles";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { withStyles } from "@material-ui/styles";
-import axios from "axios";
-import React, { Component } from "react";
-import FadeIn from "react-fade-in";
-import styles from "../styles/HelpStyles";
+
 import Form from "./Form";
 import Placeholder from "./Placeholder";
+
+import styles from "../styles/HelpStyles";
 
 class Help extends Component {
   constructor(props) {
@@ -46,7 +48,7 @@ class Help extends Component {
           hashmap[x["state"]][x["city"]][x["category"]].push(x);
       });
       this.setState({ data: hashmap });
-    } catch (err) { }
+    } catch (err) {}
   }
 
   handleQuery(query) {
