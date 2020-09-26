@@ -1,8 +1,10 @@
-import { withStyles } from "@material-ui/styles";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import styles from "../styles/SymptomsStyles";
+import { withStyles } from "@material-ui/styles";
+
 import Footer from "./Footer";
+
+import styles from "../styles/SymptomsStyles";
 
 class Symptoms extends Component {
   render() {
