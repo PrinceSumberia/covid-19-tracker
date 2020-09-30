@@ -21,7 +21,7 @@
     "react-fade-in": "^1.0.0",
     "react-lottie": "^1.2.3",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "react-simple-maps": "^2.0.0",
     "react-tooltip": "^4.2.5",
     "recharts": "^1.8.5"

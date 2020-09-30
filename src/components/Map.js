@@ -5,9 +5,7 @@ import { scaleQuantile } from "d3-scale";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 import LinearGradient from "./LinearGradient.js";
-
 import INDIA_TOPO_JSON from "../constants/india.topo.json";
-
 import styles from "../styles/MapStyles";
 import "../styles/MapStyles.js";
 
@@ -82,6 +80,7 @@ class Map extends Component {
   render() {
     const data = this.props.mapData;
     const { classes } = this.props;
+    
     const gradientData = {
       fromColor: COLOR_RANGE[0],
       toColor: COLOR_RANGE[COLOR_RANGE.length - 1],
