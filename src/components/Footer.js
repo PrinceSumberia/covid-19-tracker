@@ -1,6 +1,7 @@
+import React, { Component } from "react";
 import { withStyles } from "@material-ui/styles";
 import classNames from "classnames";
-import React, { Component } from "react";
+
 import styles from "../styles/FooterStyles.js";
 
 class Footer extends Component {

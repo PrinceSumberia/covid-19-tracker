@@ -1,7 +1,8 @@
-import { withStyles } from "@material-ui/styles";
-import classNames from 'classnames';
-import PropTypes from "prop-types";
 import React from "react";
+import classNames from "classnames";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/styles";
+
 import styles from "../styles/LinearGradientStyles";
 
 const LinearGradient = (props) => {
@@ -13,7 +14,13 @@ const LinearGradient = (props) => {
         <span className={classes.fill}></span>
         <span>{data.max}</span>
       </div>
-      <div className={classNames(classes.mt8, classes.boxStyle, classes.gradientStyle)}></div>
+      <div
+        className={classNames(
+          classes.mt8,
+          classes.boxStyle,
+          classes.gradientStyle
+        )}
+      ></div>
     </div>
   );
 };
