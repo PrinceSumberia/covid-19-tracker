@@ -79,8 +79,7 @@ class Map extends Component {
 
   render() {
     const data = this.props.mapData;
-    const { classes } = this.props;
-    
+
     const gradientData = {
       fromColor: COLOR_RANGE[0],
       toColor: COLOR_RANGE[COLOR_RANGE.length - 1],

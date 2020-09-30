@@ -37,8 +37,7 @@ export default {
 
   nav: {
     marginTop: "7rem",
-    position: "-webkit-sticky",
-    position: 'sticky',
+    position: "sticky",
     top: "5rem",
 
     [sizes.down("md")]: {
