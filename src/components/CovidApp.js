@@ -1,25 +1,28 @@
+import React, { Component } from "react";
+import axios from "axios";
+import Lottie from "react-lottie";
+import { formatDistance } from "date-fns";
+import { withStyles } from "@material-ui/styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBell,
   faBellSlash,
-  faSyncAlt
+  faSyncAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { withStyles } from "@material-ui/styles";
-import axios from "axios";
-import { formatDistance } from "date-fns";
-import React, { Component } from "react";
-import Lottie from "react-lottie";
-import * as animationData from "../assets/loading.json";
-import colors from "../constants/colors";
-import stateCodes from "../constants/stateCodes";
-import styles from "../styles/CovidAppStyles";
-import "../styles/DarkModeButton.css";
+
 import Barchart from "./Barchart";
 import Charts from "./Charts";
 import DisplayTable from "./DisplayTable";
 import Footer from "./Footer";
 import MapSection from "./MapSection";
 import Overview from "./Overview";
+
+import colors from "../constants/colors";
+import stateCodes from "../constants/stateCodes";
+import * as animationData from "../assets/loading.json";
+
+import styles from "../styles/CovidAppStyles";
+import "../styles/DarkModeButton.css";
 
 const defaultOptions = {
   loop: true,
@@ -40,9 +43,9 @@ const months = {
   "07": "Jul",
   "08": "Aug",
   "09": "Sep",
-  "10": "Oct",
-  "11": "Nov",
-  "12": "Dec",
+  10: "Oct",
+  11: "Nov",
+  12: "Dec",
 };
 
 class CovidApp extends Component {
@@ -144,7 +147,7 @@ class CovidApp extends Component {
       const month = date.slice(3, 5);
       const time = date.slice(11);
       return `${day} ${months[month]}, ${time.slice(0, 5)} IST`;
-    } catch (err) { }
+    } catch (err) {}
   }
 
   render() {
@@ -189,7 +192,7 @@ class CovidApp extends Component {
             </div>
           );
         });
-    } catch (err) { }
+    } catch (err) {}
 
     return (
       <>
@@ -216,13 +219,13 @@ class CovidApp extends Component {
                   onClick={this.handleNotification}
                 />
               ) : (
-                  <div className={classes.notificationBell}>
-                    <FontAwesomeIcon
-                      icon={faBell}
-                      onClick={this.handleNotification}
-                    />
-                  </div>
-                )}
+                <div className={classes.notificationBell}>
+                  <FontAwesomeIcon
+                    icon={faBell}
+                    onClick={this.handleNotification}
+                  />
+                </div>
+              )}
             </div>
             {expanded && <div className={classes.update}>{displayUpdates}</div>}
           </div>

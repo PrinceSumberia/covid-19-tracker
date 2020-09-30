@@ -1,10 +1,18 @@
-import { withStyles } from "@material-ui/styles";
 import React, { Component } from "react";
+import { withStyles } from "@material-ui/styles";
 import {
-  Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis
+  Legend,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
+
 import colors from "../constants/colors";
-import styles from '../styles/ChartsStyles';
+
+import styles from "../styles/ChartsStyles";
 
 class Charts extends Component {
   render() {
@@ -28,7 +36,7 @@ class Charts extends Component {
             (newObject.totalrecovered + newObject.totaldeceased),
         };
       });
-    } catch (err) { }
+    } catch (err) {}
 
     return (
       <div className={classes.charts}>
@@ -84,4 +92,4 @@ class Charts extends Component {
   }
 }
 
-export default withStyles(styles)(Charts)
+export default withStyles(styles)(Charts);
