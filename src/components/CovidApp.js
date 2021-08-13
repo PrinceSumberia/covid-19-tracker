@@ -33,20 +33,20 @@ const defaultOptions = {
   },
 };
 
-const months = {
-  1: 'Jan',
-  2: 'Feb',
-  3: 'Mar',
-  4: 'Apr',
-  5: 'May',
-  6: 'Jun',
-  7: 'Jul',
-  8: 'Aug',
-  9: 'Sep',
-  10: 'Oct',
-  11: 'Nov',
-  12: 'Dec',
-};
+const months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
 
 class CovidApp extends Component {
   constructor(props) {
@@ -145,24 +145,17 @@ class CovidApp extends Component {
     try {
       const [date, time] = timestamp.split(' ');
       const formattedDate = date.split('/');
-      console.log(time);
-      return `${formattedDate[0]} ${months[formattedDate[1]]}, ${time.slice(
-        0,
-        5
-      )} IST`;
+
+      return `${formattedDate[0]} ${
+        months[Number(formattedDate[1]) - 1]
+      }, ${time.slice(0, 5)} IST`;
     } catch (err) {}
   }
 
   render() {
     const { classes, setDarkMode, isDarkMode } = this.props;
-    const {
-      mapData,
-      isLoading,
-      data,
-      districtLevel,
-      expanded,
-      updates,
-    } = this.state;
+    const { mapData, isLoading, data, districtLevel, expanded, updates } =
+      this.state;
 
     if (isLoading) {
       return (
