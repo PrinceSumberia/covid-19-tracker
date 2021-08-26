@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import axios from "axios";
-import FadeIn from "react-fade-in";
-import { withStyles } from "@material-ui/styles";
-import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { Component } from 'react';
+import axios from 'axios';
+import FadeIn from 'react-fade-in';
+import { withStyles } from '@material-ui/styles';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Form from "./Form";
-import Placeholder from "./Placeholder";
+import Form from './Form';
+import Placeholder from './Placeholder';
 
-import styles from "../styles/HelpStyles";
+import styles from '../styles/HelpStyles';
 
 class Help extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: "",
+      query: '',
       data: {},
       currentResources: [],
       loadingStatus: null,
@@ -31,21 +31,21 @@ class Help extends Component {
   async fetchResources() {
     try {
       const [response] = await Promise.all([
-        axios.get("https://api.covid19india.org/resources/resources.json"),
+        axios.get('https://data.covid19india.org/resources/resources.json'),
       ]);
       const hashmap = {};
       response.data.resources.forEach((x) => {
-        if (typeof hashmap[x["state"]] === "undefined")
-          hashmap[x["state"]] = {};
-        if (typeof hashmap[x["state"]][x["city"]] === "undefined")
-          hashmap[x["state"]][x["city"]] = {};
+        if (typeof hashmap[x['state']] === 'undefined')
+          hashmap[x['state']] = {};
+        if (typeof hashmap[x['state']][x['city']] === 'undefined')
+          hashmap[x['state']][x['city']] = {};
 
         if (
-          typeof hashmap[x["state"]][x["city"]][x["category"]] === "undefined"
+          typeof hashmap[x['state']][x['city']][x['category']] === 'undefined'
         )
-          hashmap[x["state"]][x["city"]][x["category"]] = [];
-        if (Array.isArray(hashmap[x["state"]][x["city"]][x["category"]]))
-          hashmap[x["state"]][x["city"]][x["category"]].push(x);
+          hashmap[x['state']][x['city']][x['category']] = [];
+        if (Array.isArray(hashmap[x['state']][x['city']][x['category']]))
+          hashmap[x['state']][x['city']][x['category']].push(x);
       });
       this.setState({ data: hashmap });
     } catch (err) {}
@@ -56,7 +56,7 @@ class Help extends Component {
   }
 
   handleLoading() {
-    this.setState({ loadingStatus: "loading" });
+    this.setState({ loadingStatus: 'loading' });
   }
 
   getData() {
@@ -73,7 +73,7 @@ class Help extends Component {
       }
     }
     this.setState({ currentResources: resources });
-    setTimeout(() => this.setState({ loadingStatus: "completeLoading" }), 2000);
+    setTimeout(() => this.setState({ loadingStatus: 'completeLoading' }), 2000);
   }
 
   render() {
@@ -128,14 +128,14 @@ class Help extends Component {
           handleQuery={this.handleQuery}
           handleLoading={this.handleLoading}
         />
-        {this.state.loadingStatus === "loading" && (
+        {this.state.loadingStatus === 'loading' && (
           <div className={classes.container}>
             <Placeholder />
             <Placeholder />
             <Placeholder />
           </div>
         )}
-        {this.state.loadingStatus === "completeLoading" && (
+        {this.state.loadingStatus === 'completeLoading' && (
           <div className={classes.container}>{res}</div>
         )}
       </div>
